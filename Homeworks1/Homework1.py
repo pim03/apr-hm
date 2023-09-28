@@ -1,22 +1,18 @@
 from scipy.io.arff import loadarff
 import matplotlib.pyplot as plt
-from sklearn import metrics, datasets, tree
+from sklearn import metrics, tree
 from sklearn.model_selection import train_test_split
 import pandas as pd, numpy as np
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, OneHotEncoder
-from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score, StratifiedKFold
 from sklearn.feature_selection import f_classif
 import seaborn as sns
-import graphviz
-
 
 # Reading the ARFF file
 data = loadarff('column_diagnosis.arff')
 df = pd.DataFrame(data[0])
 df['class'] = df['class'].str.decode('utf-8')
-#print(df)
+#print(df.head())
 
 ### Exercise 1 ###
 
@@ -26,22 +22,14 @@ target = df['class']
 fvalues, pvalues = f_classif(features, target)
 columns = df.columns
 
-for i in range(6):
-    print('the f-value and the p-value of', df.columns[i], 'is:', fvalues[i], 'and', pvalues[i], 'respectively')
+fvalue_df = pd.DataFrame({'variable': features.columns, 'fvalues': fvalues, 'pvalues': pvalues})
+print(fvalue_df.head())
 
-<<<<<<< HEAD
-# the greater the f-value the better
-# the lower the p-value the better
-
-# degree_spondylolisthesis is the variable with higher discriminative power.
-# pelvic_radius is the variable with lower discriminative power.
-=======
 '''the greater the f-value the better
 the lower the p-value the better
 
 degree_spondylolisthesis is the variable with higher discriminative power.
 pelvic_radius is the variable with lower discriminative power.'''
->>>>>>> 72fa96e65695cf75f377c1de52cc03adb8422c37
 
 new_features = df.drop('class', axis=1)
 new_features = df.drop('pelvic_incidence', axis=1)
@@ -75,15 +63,9 @@ plt.legend()
 plt.title('Funções de Densidade de Probabilidade para pelvic_radius')
 plt.show()
 
-<<<<<<< HEAD
-# #Final Graphic
-# sns.pairplot(df, hue='class', height=2)
-# plt.show()
-=======
 #Final Graphic
 #sns.pairplot(df, hue='class', height=2)
 #plt.show()
->>>>>>> 72fa96e65695cf75f377c1de52cc03adb8422c37
 
 
 ### Exercise 2 ###
@@ -130,26 +112,6 @@ plt.ylabel("Training Accuracy")
 plt.xlabel("Depth")
 plt.ylim(0.73, 1.03)
 plt.legend() #por legenda a esquerda
-<<<<<<< HEAD
-plt.show()
-
-# ### Exercise 3 ###
-# x_train = df.drop('class', axis= 1)
-# y_train = df['class']
-
-# tree4 = DecisionTreeClassifier(criterion='gini', min_samples_leaf=20, random_state=0)
-# tree4.fit(x_train, y_train)
-# target_pred = tree4.predict(x_train)
-
-# print('accuracy:', round(metrics.accuracy_score(y_train, target_pred), 2))
-
-# class_names = ['Hernia', 'Spondylolisthesis', 'Normal']
-
-# plot = tree.plot_tree(tree4, filled=True, feature_names=x_train.columns, class_names=tree4.classes_)
-# plt.show()
-
-
-=======
 plt.show() 
 
 ### Exercise 3 ###
@@ -167,4 +129,3 @@ class_names = ['Hernia', 'Spondylolisthesis', 'Normal']
 tree.plot_tree(tree4, filled=True, feature_names=x_train.columns, class_names=tree4.classes_)
 plt.show()
 
->>>>>>> 72fa96e65695cf75f377c1de52cc03adb8422c37
