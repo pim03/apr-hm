@@ -16,13 +16,12 @@ df['class'] = df['class'].str.decode('utf-8')
 
 ### Exercise 1 ###
 
-features = df.drop('class', axis=1)
+variables = df.drop('class', axis= 1)
 target = df['class']
 
-fvalues, pvalues = f_classif(features, target)
-columns = df.columns
+fvalues, pvalues = f_classif(variables, target)
 
-fvalue_df = pd.DataFrame({'variable': features.columns, 'fvalues': fvalues, 'pvalues': pvalues})
+fvalue_df = pd.DataFrame({'variable': variables.columns, 'fvalues': fvalues, 'pvalues': pvalues})
 print(fvalue_df.head())
 
 '''the greater the f-value the better
@@ -31,34 +30,28 @@ the lower the p-value the better
 degree_spondylolisthesis is the variable with higher discriminative power.
 pelvic_radius is the variable with lower discriminative power.'''
 
-new_features = df.drop('class', axis=1)
-new_features = df.drop('pelvic_incidence', axis=1)
-new_features = df.drop('pelvic_tilt', axis=1)
-new_features = df.drop('lumbar_lordosis_angle', axis=1)
-new_features = df.drop('sacral_slope', axis=1)                     
-
 hernia = df[df['class'] == 'Hernia']
 spondylolisthesis = df[df['class'] == 'Spondylolisthesis']
 normal = df[df['class'] == 'Normal']
 
 #Graphic1
+plt.figure(figsize=(12,7))
 sns.kdeplot(hernia['degree_spondylolisthesis'], label= 'Hernia', fill = True)
 sns.kdeplot(spondylolisthesis['degree_spondylolisthesis'], label= 'Spondylolisthesis', fill = True)
 sns.kdeplot(normal['degree_spondylolisthesis'], label= 'Normal', fill = True)
 plt.xlabel('degree_spondylolisthesis')
 plt.ylabel('Densidade de Probabilidade')
-plt.xlim(-20, 150)
 plt.legend()
 plt.title('Funções de Densidade de Probabilidade para degree_spondylolisthesis')
 plt.show()
 
 #Graphic2
+plt.figure(figsize=(12,7))
 sns.kdeplot(hernia['pelvic_radius'], label= 'Hernia', fill = True)
 sns.kdeplot(spondylolisthesis['pelvic_radius'], label= 'Spondylolisthesis', fill = True)
 sns.kdeplot(normal['pelvic_radius'], label= 'Normal', fill = True)
 plt.xlabel('pelvic_radius')
 plt.ylabel('Densidade de Probabilidade')
-plt.xlim(50, 250)
 plt.legend()
 plt.title('Funções de Densidade de Probabilidade para pelvic_radius')
 plt.show()
@@ -69,8 +62,6 @@ plt.show()
 
 
 ### Exercise 2 ###
-variables = df.drop('class', axis= 1)
-target = df['class']
 
 depth_limits = [1, 2, 3, 4, 5, 6, 8, 10]
 
@@ -82,7 +73,7 @@ std1, std2 = np.array([]), np.array([])
 
 for depth in depth_limits:
     acc_folder1, acc_folder2 = np.array([]), np.array([])
-    for i in range(len(depth_limits)):
+    for i in range(10):
         tree2 = DecisionTreeClassifier(criterion='gini', max_depth=depth)
         tree2.fit(variables_train, target_train)
         
@@ -108,24 +99,20 @@ plt.errorbar(depth_limits, final_acc2, yerr=std2, label='Train Accuracy', color=
 plt.plot(depth_limits, final_acc1, 'o', color='#008080', markersize=3)
 plt.plot(depth_limits, final_acc2, 'o', color='red', markersize=3)
 plt.title("Accuracy vs Depth")
-plt.ylabel("Training Accuracy")
+plt.ylabel("Accuracy")
 plt.xlabel("Depth")
-plt.ylim(0.73, 1.03)
-plt.legend() #por legenda a esquerda
+plt.legend(loc='upper left', bbox_to_anchor=(0.0, 1.0)) #move the legend to the left
 plt.show() 
 
 ### Exercise 3 ###
-x_train = df.drop('class', axis= 1)
-y_train = df['class']
 
 tree4 = DecisionTreeClassifier(criterion='gini', min_samples_leaf=20, random_state=0)
-tree4.fit(x_train, y_train)
-target_pred = tree4.predict(x_train)
+tree4.fit(variables, target)
+target_pred = tree4.predict(variables)
 
-print('accuracy:', round(metrics.accuracy_score(y_train, target_pred), 2))
+print('accuracy:', round(metrics.accuracy_score(target, target_pred), 2))
 
-class_names = ['Hernia', 'Spondylolisthesis', 'Normal']
-
-tree.plot_tree(tree4, filled=True, feature_names=x_train.columns, class_names=tree4.classes_)
+tree.plot_tree(tree4, filled=True, feature_names=variables.columns, class_names=tree4.classes_)
+plt.title("Tree with min_samples_leaf=20")
 plt.show()
 
