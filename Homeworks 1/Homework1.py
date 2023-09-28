@@ -18,7 +18,7 @@ df['class'] = df['class'].str.decode('utf-8')
 
 ### Exercise 1 ###
 
-''' features = df.drop('class', axis=1)
+features = df.drop('class', axis=1)
 target = df['class']
 
 fvalues, pvalues = f_classif(features, target)
@@ -27,11 +27,11 @@ columns = df.columns
 for i in range(6):
     print('the f-value and the p-value of', df.columns[i], 'is:', fvalues[i], 'and', pvalues[i], 'respectively')
 
-the greater the f-value the better
-the lower the p-value the better
+# the greater the f-value the better
+# the lower the p-value the better
 
-degree_spondylolisthesis is the variable with higher discriminative power.
-pelvic_radius is the variable with lower discriminative power.
+# degree_spondylolisthesis is the variable with higher discriminative power.
+# pelvic_radius is the variable with lower discriminative power.
 
 new_features = df.drop('class', axis=1)
 new_features = df.drop('pelvic_incidence', axis=1)
@@ -65,16 +65,16 @@ plt.legend()
 plt.title('Funções de Densidade de Probabilidade para pelvic_radius')
 plt.show()
 
-#Final Graphic
-sns.pairplot(df, hue='class', height=2)
-plt.show() '''
+# #Final Graphic
+# sns.pairplot(df, hue='class', height=2)
+# plt.show()
 
 
 ### Exercise 2 ###
 #variables = df.drop('class', axis= 1)
 #target = df['class']
 
-'''depth_limits = [1, 2, 3, 4, 5, 6, 8, 10]
+depth_limits = [1, 2, 3, 4, 5, 6, 8, 10]
 
 variables_train, variables_test, target_train, target_test= train_test_split(variables, target, 
                                                                              train_size=0.7, stratify=target, random_state=0)
@@ -113,21 +113,21 @@ plt.ylabel("Training Accuracy")
 plt.xlabel("Depth")
 plt.ylim(0.73, 1.03)
 plt.legend() #por legenda a esquerda
-plt.show() '''
-
-### Exercise 3 ###
-x_train = df.drop('class', axis= 1)
-y_train = df['class']
-
-tree4 = DecisionTreeClassifier(criterion='gini', min_samples_leaf=20, random_state=0)
-tree4.fit(x_train, y_train)
-target_pred = tree4.predict(x_train)
-
-print('accuracy:', round(metrics.accuracy_score(y_train, target_pred), 2))
-
-class_names = ['Hernia', 'Spondylolisthesis', 'Normal']
-
-plot = tree.plot_tree(tree4, filled=True, feature_names=x_train.columns, class_names=tree4.classes_)
 plt.show()
+
+# ### Exercise 3 ###
+# x_train = df.drop('class', axis= 1)
+# y_train = df['class']
+
+# tree4 = DecisionTreeClassifier(criterion='gini', min_samples_leaf=20, random_state=0)
+# tree4.fit(x_train, y_train)
+# target_pred = tree4.predict(x_train)
+
+# print('accuracy:', round(metrics.accuracy_score(y_train, target_pred), 2))
+
+# class_names = ['Hernia', 'Spondylolisthesis', 'Normal']
+
+# plot = tree.plot_tree(tree4, filled=True, feature_names=x_train.columns, class_names=tree4.classes_)
+# plt.show()
 
 
