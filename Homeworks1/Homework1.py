@@ -24,12 +24,6 @@ fvalues, pvalues = f_classif(variables, target)
 fvalue_df = pd.DataFrame({'variable': variables.columns, 'fvalues': fvalues, 'pvalues': pvalues})
 print(fvalue_df.head())
 
-'''the greater the f-value the better
-the lower the p-value the better
-
-degree_spondylolisthesis is the variable with higher discriminative power.
-pelvic_radius is the variable with lower discriminative power.'''
-
 hernia = df[df['class'] == 'Hernia']
 spondylolisthesis = df[df['class'] == 'Spondylolisthesis']
 normal = df[df['class'] == 'Normal']
@@ -55,11 +49,6 @@ plt.ylabel('Densidade de Probabilidade')
 plt.legend()
 plt.title('Funções de Densidade de Probabilidade para pelvic_radius')
 plt.show()
-
-#Final Graphic
-#sns.pairplot(df, hue='class', height=2)
-#plt.show()
-
 
 ### Exercise 2 ###
 
@@ -104,7 +93,7 @@ plt.xlabel("Depth")
 plt.legend(loc='upper left', bbox_to_anchor=(0.0, 1.0)) #move the legend to the left
 plt.show() 
 
-### Exercise 3 ###
+### Exercise 4 a) ###
 
 tree4 = DecisionTreeClassifier(criterion='gini', min_samples_leaf=20, random_state=0)
 tree4.fit(variables, target)
@@ -112,7 +101,9 @@ target_pred = tree4.predict(variables)
 
 print('accuracy:', round(metrics.accuracy_score(target, target_pred), 2))
 
+plt.figure(figsize=(12,7))
 tree.plot_tree(tree4, filled=True, feature_names=variables.columns, class_names=tree4.classes_)
 plt.title("Tree with min_samples_leaf=20")
+plt.savefig('tree4.png')
 plt.show()
 
