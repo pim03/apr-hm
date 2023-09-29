@@ -106,4 +106,3 @@ tree.plot_tree(tree4, filled=True, feature_names=variables.columns, class_names=
 plt.title("Tree with min_samples_leaf=20")
 plt.savefig('tree4.png')
 plt.show()
-
