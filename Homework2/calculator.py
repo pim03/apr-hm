@@ -6,7 +6,7 @@ def covariance(x1,x2,mu1,mu2):
     sum = 0
     for i in range(len(x1)):
         sum = sum + (x1[i]-mu1)*(x2[i]-mu2)
-    return sum/(len(x1)-1)
+    return sum/(len(x1))
     
 #Training data
 training_data_y1_A = [0.24,0.16,0.32]
