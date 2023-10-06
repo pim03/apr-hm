@@ -71,58 +71,96 @@ if hypothesis[1] < 0.05:
 else:
     print("The null hypothesis is not rejected and there is no statistical superiority between kNN and GaussianNB")
     
-### Exercise 2 ###
+# ### Exercise 2 ###
 
-knn1 = KNeighborsClassifier(n_neighbors=1, weights='uniform', metric='euclidean')
-knn5 = KNeighborsClassifier(n_neighbors=5, weights='uniform', metric='euclidean')
+# knn1 = KNeighborsClassifier(n_neighbors=1, weights='uniform', metric='euclidean')
+# knn5 = KNeighborsClassifier(n_neighbors=5, weights='uniform', metric='euclidean')
 
-cumulative_tp1 = 0
-cumulative_tn1 = 0
-cumulative_fp1 = 0
-cumulative_fn1 = 0
+# cumulative_tp1 = 0
+# cumulative_tn1 = 0
+# cumulative_fp1 = 0
+# cumulative_fn1 = 0
 
-cumulative_fn5 = 0
-cumulative_tp5 = 0
-cumulative_tn5 = 0
-cumulative_fp5 = 0
+# cumulative_fn5 = 0
+# cumulative_tp5 = 0
+# cumulative_tn5 = 0
+# cumulative_fp5 = 0
 
-# iterate per fold
-for train_k, test_k in folds.split(features, target):
-    X_train, X_test = features.iloc[train_k], features.iloc[test_k]
-    y_train, y_test = target.iloc[train_k], target.iloc[test_k]
+# # iterate per fold
+# for train_k, test_k in folds.split(features, target):
+#     X_train, X_test = features.iloc[train_k], features.iloc[test_k]
+#     y_train, y_test = target.iloc[train_k], target.iloc[test_k]
     
-    knn1.fit(X_train, y_train)
-    knn1_pred = knn1.predict(X_test)
+#     knn1.fit(X_train, y_train)
+#     knn1_pred = knn1.predict(X_test)
     
-    knn5.fit(X_train, y_train)
-    knn5_pred = knn5.predict(X_test)
+#     knn5.fit(X_train, y_train)
+#     knn5_pred = knn5.predict(X_test)
     
-    cm1 = np.array(confusion_matrix(y_test, knn1_pred))
-    cumulative_tp1 += cm1[1, 1]
-    cumulative_fp1 += cm1[0, 1]
-    cumulative_fn1 += cm1[1, 0]
-    cumulative_tn1 += cm1[0, 0]
+#     cm1 = np.array(confusion_matrix(y_test, knn1_pred))
+#     cumulative_tp1 += cm1[1, 1]
+#     cumulative_fp1 += cm1[0, 1]
+#     cumulative_fn1 += cm1[1, 0]
+#     cumulative_tn1 += cm1[0, 0]
     
-    cm5 = np.array(confusion_matrix(y_test, knn5_pred))
-    cumulative_tp5 += cm5[1, 1]
-    cumulative_fp5 += cm5[0, 1]
-    cumulative_fn5 += cm5[1, 0]
-    cumulative_tn5 += cm5[0, 0]
+#     cm5 = np.array(confusion_matrix(y_test, knn5_pred))
+#     cumulative_tp5 += cm5[1, 1]
+#     cumulative_fp5 += cm5[0, 1]
+#     cumulative_fn5 += cm5[1, 0]
+#     cumulative_tn5 += cm5[0, 0]
     
-    confusion1 = pd.DataFrame(cm1, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
-    confusion5 = pd.DataFrame(cm5, index=knn5.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
+#     confusion1 = pd.DataFrame(cm1, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
+#     confusion5 = pd.DataFrame(cm5, index=knn5.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
 
-print("Confusion matrix for kNN with k=1:\n", confusion1, '\n')
-print("Confusion matrix for kNN with k=5:\n", confusion5)   
+# print("Confusion matrix for kNN with k=1:\n", confusion1, '\n')
+# print("Confusion matrix for kNN with k=5:\n", confusion5)   
 
-plt.figure(figsize=(10, 5))
-plt.imshow(confusion1-confusion5, cmap='Blues', interpolation='nearest')
-plt.title('Differences between the two cumulative confusion matrices')
-plt.xlabel('Predicted label')
-plt.xticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
-plt.yticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
-plt.ylabel('True label') 
+# plt.figure(figsize=(10, 5))
+# plt.imshow(confusion1-confusion5, cmap='Blues', interpolation='nearest')
+# plt.title('Differences between the two cumulative confusion matrices')
+# plt.xlabel('Predicted label')
+# plt.xticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
+# plt.yticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
+# plt.ylabel('True label') 
+# plt.show()
+
+
+
+############ Exercise 2 ############
+
+# Load your dataset and split it into training and testing sets
+# X_train, X_test, y_train, y_test = ...
+
+# Train kNN classifiers with k=1 and k=5
+knn1 = KNeighborsClassifier(n_neighbors=1)
+knn5 = KNeighborsClassifier(n_neighbors=5)
+
+knn1.fit(X_train, y_train)
+knn5.fit(X_train, y_train)
+
+# Make predictions
+y_pred1 = knn1.predict(X_test)
+y_pred5 = knn5.predict(X_test)
+
+# Calculate confusion matrices
+conf_matrix1 = confusion_matrix(y_test, y_pred1)
+conf_matrix5 = confusion_matrix(y_test, y_pred5)
+
+# Calculate cumulative confusion matrices
+cumulative_conf_matrix1 = np.cumsum(conf_matrix1, axis=0)
+cumulative_conf_matrix5 = np.cumsum(conf_matrix5, axis=0)
+
+# Calculate the difference between cumulative confusion matrices
+conf_matrix_diff = cumulative_conf_matrix1 - cumulative_conf_matrix5
+
+# Visualize the differences using a heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix_diff, annot=True, fmt="d", cmap="coolwarm", cbar=True)
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Difference in Cumulative Confusion Matrices (k=1 - k=5)")
 plt.show()
+
 
 
     
