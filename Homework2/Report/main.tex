@@ -62,7 +62,7 @@
 
 \fancyhf{} % This makes sure we do not have other information in our header or footer.
 
-\lhead{\footnotesize Homework 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+\lhead{\footnotesize Homework 2}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
 
 %\rhead works just like \lhead (you can also use \chead)
 \rhead{\footnotesize Joana Pimenta, Rodrigo Laia} %<---- Fill in your lastnames.
@@ -108,10 +108,18 @@ Instituto Superior Técnico \\ setembro de 2023  \\ \\
 ${y_1,y_2} , {y_3,y_4}$ and $y_5$ independent $\implies p(y_1,y_2,y_3,y_4,y_5) = p(y_1,y_2)\times p(y_3,y_4)\times p(y_5)$ \\
 
 
+
 Fórmulas utilizadas:
+\begin{equation}
+    \vec{y} = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \end{bmatrix}
+\end{equation}
 
 \begin{equation}
     P(y_4=A|y_1,y_2,y_3,y_5,y_6,y_7) = \frac{P(y_1,y_2,y_3,y_5,y_6,y_7|y_4=A)}{P(y_1,y_2,y_3,y_5,y_6,y_7)}
+\end{equation}
+
+\begin{equation}
+    P(x|\mu, \sigma^2) = \frac{1}{(2\pi)^(m/2) \sqrt{abs(\sum)}}e^{-\frac{1}{2}(x-\vec{\mu})^T \cdot \sum^(-1) \cdot (x-\vec{\mu})}
 \end{equation}
 
 \end{enumerate}
