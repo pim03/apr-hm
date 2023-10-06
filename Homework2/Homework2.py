@@ -132,8 +132,8 @@ else:
 # X_train, X_test, y_train, y_test = ...
 
 # Train kNN classifiers with k=1 and k=5
-knn1 = KNeighborsClassifier(n_neighbors=1)
-knn5 = KNeighborsClassifier(n_neighbors=5)
+knn1 = KNeighborsClassifier(n_neighbors=1,uniform=True,metric='euclidean')
+knn5 = KNeighborsClassifier(n_neighbors=5,uniform=True,metric='euclidean')
 
 knn1.fit(X_train, y_train)
 knn5.fit(X_train, y_train)
