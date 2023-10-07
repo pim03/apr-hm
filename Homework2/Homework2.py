@@ -163,10 +163,8 @@ for train_k, test_k in folds.split(features, target):
 #Calculate the difference between the two confusion matrices
 conf_matrix_diff = cum_conf_matrix1 - cum_conf_matrix5
 
-#cm1 = np.array(confusion_matrix(y_test, y_pred1))
 confusion1 = pd.DataFrame(conf_matrix_diff, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
 print(confusion1)
-# ... (previous code for conf_matrix_diff and heatmap setup)
 
 # Create the heatmap with a color bar
 plt.figure(figsize=(10, 5))

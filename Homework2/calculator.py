@@ -7,13 +7,17 @@ def covariance(x1,x2,mu1,mu2):
     for i in range(len(x1)):
         sum = sum + (x1[i]-mu1)*(x2[i]-mu2)
     return sum/(len(x1))
-    
+
+def bi_dim_gaussian_prob(x, mu, inverse,det_sigma):
+    return 1/(2*np.pi*np.sqrt(det_sigma))*np.exp(-0.5*np.dot(np.dot((x-mu).T,inverse),(x-mu)))
+
+print('--------------class A-----------------')
 #Training data
 training_data_y1_A = [0.24,0.16,0.32]
 training_data_y2_A = [0.36,0.48,0.72]
 
 #Test data
-test_data_A = [0.38,0.52]
+test_data_A = [0.42,0.59]
 
 #Calculate parameters
 mu1 = np.mean(training_data_y1_A)
@@ -46,15 +50,10 @@ multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
 # Calculate the probability density at the given vector 'x'
 probability = multivar_normal.pdf(x1)
 
-print("Probability x1:", probability)
+probability_mine = bi_dim_gaussian_prob(x1,mean,inverse_covariance_matrix,determinant)
 
-# Calculate the probability density at the given vector 'x2'
-x2 = np.array(test_data_A)
-multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
-probability = multivar_normal.pdf(x1)
-print("Probability x2:", probability)
-
-
+print("Probability xA multivar:", probability)
+#print("Probability xA mine:", probability_mine)
 ############################# class B #########################################
 
 print('--------------class B-----------------')
@@ -64,7 +63,7 @@ training_data_y1_B=[0.54,0.66,0.76,0.41]
 training_data_y2_B=[0.11,0.39,0.28,0.53]
 
 #Test data
-test_data_B = [0.42,0.59]
+test_data_B = [0.38,0.52]
 
 #Calculate parameters
 #Calculate parameters
@@ -96,8 +95,12 @@ multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
 
 # Calculate the probability density at the given vector 'x'
 probability = multivar_normal.pdf(x1)
+probability_mine = bi_dim_gaussian_prob(x1,mean,inverse_covariance_matrix,determinant)
+print("Probability xB:", probability)
+print("Probability xB mine:", probability_mine)
 
-print("Probability x2:", probability)
+num = 1/(2*np.pi*np.sqrt(determinant))
+print('num:',num)
 
 
 

@@ -103,24 +103,201 @@ Instituto Superior Técnico \\ setembro de 2023  \\ \\
 \section*{Pen and Paper}
 \begin{enumerate}
 
+\item 
+\begin{enumerate}
 \item
-
 ${y_1,y_2} , {y_3,y_4}$ and $y_5$ independent $\implies p(y_1,y_2,y_3,y_4,y_5) = p(y_1,y_2)\times p(y_3,y_4)\times p(y_5)$ \\
-
-
 
 Fórmulas utilizadas:
 \begin{equation}
-    \vec{y} = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \end{bmatrix}
+    P(y_6=H|\vec{x}) = \frac{P(\vec{x}|y_6=H)}{P(\vec{x})}
 \end{equation}
 
 \begin{equation}
-    P(y_6=H|y_1,y_2,y_3,y_4,y_5) = \frac{P(y_1,y_2,y_3,y_4,y_5|y_6=H)}{P(y_1,y_2,y_3,y_4,y_5)}
+    P(\vec{x}|\mu, \sigma^2) = \frac{1}{(2\pi)^{m/2} \sqrt{|\Sigma|}}e^{-\frac{1}{2}(\vec{x}-\vec{\mu})^T \cdot \Sigma^{-1} \cdot (\vec{x}-\vec{\mu})}
 \end{equation}
 
 \begin{equation}
-    P(\vec{y}|\mu, \sigma^2) = \frac{1}{(2\pi)^{m/2} \sqrt{|\sum|}}e^{-\frac{1}{2}(\vec{y}-\vec{\mu})^T \cdot \sum^{-1} \cdot (\vec{y}-\vec{\mu})}
+    \vec{\mu} = \begin{bmatrix} E(y_1) \\ E(y_2)  \end{bmatrix}
 \end{equation}
+
+\begin{equation}
+    \Sigma = \begin{bmatrix} cov(y_1,y_2) & cov(y_1,y_1) \\ cov(y_2,y_1) & cov(y_2,y_2) \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    |\Sigma| = cov(y_1,y_2) \cdot cov(y_2,y_1) - cov(y_1,y_1) \cdot cov(y_2,y_2)
+\end{equation}
+
+\begin{equation}
+    \Sigma^{-1} =  \frac{1}{|\Sigma|} \cdot \begin{bmatrix} cov(y_2,y_2) & -cov(y_1,y_2) \\ -cov(y_2,y_1) & cov(y_1,y_1) \end{bmatrix} 
+\end{equation}
+
+Parâmetros das gaussianas multivariadas: \\ \\
+Classe A:
+\begin{equation*} 
+    n\vec{\mu}_A = \begin{bmatrix} 0.24 \\ 0.52 \end{bmatrix} 
+\end{equation*}
+\begin{equation*} 
+    \Sigma_A = \begin{bmatrix} 0.004267 & -0.0064 \\ -0.0064 & 0.02240 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*} 
+    |\Sigma|_A = 5.4613 \cdot 10^{-5}
+\end{equation*}
+
+\begin{equation*} 
+\Sigma^{-1}_A = \begin{bmatrix} 410.1563 & -117.1875 \\ -117.1875 & 78.125 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    P(\vec{x}|A) = N(\vec{x}|\mu_{A},\Sigma_{A}) = \frac{1}{(2\pi)^{m/2} \sqrt{|\Sigma_{A}|}}e^{-\frac{1}{2}(\vec{x}-\vec{\mu}_A)^T \cdot \Sigma_A^{-1} \cdot (\vec{x}-\vec{\mu}_A)}
+\end{equation*}
+
+Classe B: \\ \\ 
+\begin{equation*}
+    \vec{\mu}_B = \begin{bmatrix} 0.5925 \\ 0.3275 \end{bmatrix}  
+\end{equation*}
+\begin{equation*}
+    \Sigma_B = \begin{bmatrix} 0.01717 & -0.00732 \\ -0.00732 & 0.02362 \end{bmatrix} 
+\end{equation*} \\
+\begin{equation*}
+    |\Sigma|_B = 3.519 \cdot 10^{-4} 
+\end{equation*}
+\begin{equation*}
+    \Sigma^{-1}_B = \begin{bmatrix} 67.1101 & 20.7954 \\ 20.7954 & 48.7831 \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+    P(\vec{x}|B) = N(\vec{x}|\mu_{B},\Sigma_{B}) = \frac{1}{(2\pi)^{m/2} \sqrt{|\Sigma_{B}|}}e^{-\frac{1}{2}(\vec{x}-\vec{\mu}_B)^T \cdot \Sigma_B^{-1} \cdot (\vec{x}-\vec{\mu}_B)}
+\end{equation*}
+
+
+\textbf{Probabilidades para $\{y_3,y_4\}$ condicionadas a A e B :}
+\\ \\
+Classe A:
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c|} 
+    \cline{2-3}
+                                 & $y_3=0$ & $y_3=1$ \\ \hline
+    \multicolumn{1}{|c|}{$y_4=0$} & P=0    & P=1/3  \\ \hline
+    \multicolumn{1}{|c|}{$y_4=1$} & P=1/3  & P=1/3  \\ \hline
+    \end{tabular}
+    \caption{Probabilidades para ${y_3,y_4}$ condicionadas a A}
+\end{table}
+
+Classe B:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|} 
+        \cline{2-3}
+                                     & $y_3=0$ & $y_3=1$ \\ \hline
+        \multicolumn{1}{|c|}{$y_4=0$} & P=1/2    & P=1/4  \\ \hline
+        \multicolumn{1}{|c|}{$y_4=1$} & P=1/4  & P=0  \\ \hline
+        \end{tabular}
+        \caption{Probabilidades para ${y_3,y_4}$ condicionadas a B}
+    \end{table}
+
+\textbf{Probabilidades para $\{y_5\}$ condicionadas a A e B :}
+\\ \\
+Classe A:
+
+\begin{equation*}
+    P(y_5=0|A) = 1/3
+\end{equation*}
+
+\begin{equation*}
+    P(y_5=1|A) = 1/3
+\end{equation*}
+
+\begin{equation*}
+    P(y_5=2|A) = 1/3
+\end{equation*}
+
+Classe B:
+
+\begin{equation*}
+    P(y_5=0|A) = 1/4
+\end{equation*}
+
+\begin{equation*}
+    P(y_5=1|A) = 1/2
+\end{equation*}
+
+\begin{equation*}
+    P(y_5=2|A) = 1/4
+\end{equation*}
+
+Priors:
+\begin{equation*}    
+    P(A) = \frac{3}{7}
+\end{equation*}
+
+\begin{equation*}    
+    P(B) = \frac{4}{7}
+\end{equation*}
+
+
+
+\item Uma vez que o denominador é o mesmo para todas para saber qual a classe mais provável, basta comparar os numeradores das probabilidades.
+
+\begin{equation*}
+    \begin{aligned}
+        P(A|\vec{x}_8) & = \frac{P(\vec{x}_8|A) \cdot P(A)}{P(\vec{x}_8)} \\
+                       & = \frac{P(y_1=0.38,y_2=0.52|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) \cdot P(A)}{P(\vec{x}_8)} \\
+                       & = \frac{\frac{3}{7} \cdot 0.3868 \cdot \frac{1}{3} \cdot \frac{1}{3}}{P(\vec{x}_8)} \\
+                       & = \frac{0.018}{P(\vec{x}_8)}
+    \end{aligned}
+\end{equation*}
+    
+\begin{equation*}
+    \begin{aligned}
+        P(B|\vec{x}_8) & = \frac{P(\vec{x}_8|B) \cdot P(B)}{P(\vec{x}_8)} \\
+                       & = \frac{P(y_1=0.38,y_2=0.52|B) \cdot P(y_3=0,y_4=1|B) \cdot P(y_5=0|B) \cdot P(B)}{P(\vec{x}_8)} \\
+                       & = \frac{\frac{4}{7} \cdot 1.7678 \cdot \frac{1}{4} \cdot \frac{1}{4}}{P(\vec{x}_8)} \\
+                       & = \frac{0.063}{P(\vec{x}_8)}
+    \end{aligned}
+\end{equation*}
+
+Como $P(A|\vec{x}_8) < P(B|\vec{x}_8)$, então $\vec{x}_8$ é classificado como B.
+
+\begin{equation*}
+    \begin{aligned}
+        P(A|\vec{x}_9) & = \frac{P(\vec{x}_9|A) \cdot P(A)}{P(\vec{x}_9)} \\
+                       & = \frac{P(y_1=0.42,y_2=0.59|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) \cdot P(A)}{P(\vec{x}_9)} \\
+                       & = \frac{\frac{3}{7} \cdot 0.1013 \cdot \frac{1}{3} \cdot \frac{1}{3}}{P(\vec{x}_9)} \\
+                       & = \frac{0.0048}{P(\vec{x}_9)}
+    \end{aligned}
+\end{equation*}
+    
+\begin{equation*}
+    \begin{aligned}
+        P(B|\vec{x}_8) & = \frac{P(\vec{x}_8|B) \cdot P(B)}{P(\vec{x}_8)} \\
+                       & = \frac{P(y_1=0.42,y_2=0.59|B) \cdot P(y_3=0,y_4=1|B) \cdot P(y_5=1|B) \cdot P(B)}{P(\vec{x}_8)} \\
+                       & = \frac{\frac{4}{7} \cdot 1.4927 \cdot \frac{1}{4} \cdot \frac{1}{2}}{P(\vec{x}_8)} \\
+                       & = \frac{0.1066}{P(\vec{x}_8)}
+    \end{aligned}
+\end{equation*}
+
+Como $P(A|\vec{x}_9) < P(B|\vec{x}_9)$, então $\vec{x}_9$ é classificado como B. 
+
+\item 
+Assumindo o critério de Maximum Likelihood, para classificar uma observação apenas interessam as probabilidades $P(\vec{x}|A)$ e $P(\vec{x}|B)$:
+\begin{equation*}
+    h = argmax(P())
+\end{equation*}
+Considerando diferentes thresholds para as probabilidades é possível maximizar a accuracy do nosso classificador.
+
+\begin{equation*}
+    P(\vec{x}_8|A) = P(y_1=0.38,y_2=0.52|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) = 0.043
+\end{equation*}
+
+\end{enumerate}
+
+
+
+
 
 \end{enumerate}
 
