@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1696605542 "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf" "main" 1696605542
+["pdflatex"] 1696703558 "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf" "main" 1696703558
   "/etc/texmf/web2c/texmf.cnf" 1695560022 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.aux" 1696605542 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" 1696605541 4458 01dee774ac7077dc9c457bf5658d99bc ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.aux" 1696703558 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" 1696703556 10156 f2e67929595040375ecec810fa618592 ""
   "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/subcaption.sty" 0 -1 0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
@@ -17,9 +17,9 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1695560033 4791332 a132e496f82f7e3162561efcd595906b ""
-  "main.tex" 1696605541 4458 01dee774ac7077dc9c457bf5658d99bc ""
+  "main.tex" 1696703556 10156 f2e67929595040375ecec810fa618592 ""
   "subcaption.sty" 0 -1 0 ""
   (generated)
+  "main.log"
   "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf"
   "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.log"
-  "main.log"
