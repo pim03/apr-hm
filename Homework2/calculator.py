@@ -46,14 +46,7 @@ multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
 # Calculate the probability density at the given vector 'x'
 probability = multivar_normal.pdf(x1)
 
-print("Probability x1:", probability)
-
-# Calculate the probability density at the given vector 'x2'
-x2 = np.array(test_data_A)
-multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
-probability = multivar_normal.pdf(x1)
-print("Probability x2:", probability)
-
+print("Probability xA:", probability)
 
 ############################# class B #########################################
 
@@ -82,22 +75,22 @@ print('cov_y2_y2:',cov_y2_y2)
 
 # Define the parameters of the 2D normal distribution
 mean = np.array([mu1, mu2])  # Mean vector [mu1, mu2]
-covariance_matrix = np.array([[cov_y1_y1, cov_y1_y2], [cov_y1_y2, cov_y2_y2]])  # Covariance matrix
-determinant = np.linalg.det(covariance_matrix)  # Determinant of the covariance matrix
-inverse_covariance_matrix = np.linalg.inv(covariance_matrix)  # Inverse of the covariance matrix
+covariance_matrix2 = np.array([[cov_y1_y1, cov_y1_y2], [cov_y1_y2, cov_y2_y2]])  # Covariance matrix
+determinant = np.linalg.det(covariance_matrix2)  # Determinant of the covariance matrix
+inverse_covariance_matrix2 = np.linalg.inv(covariance_matrix2)  # Inverse of the covariance matrix
 print('determinant:',determinant)
-print('inverse:',inverse_covariance_matrix)
+print('inverse:',inverse_covariance_matrix2)
 
 # Define the vector for which you want to calculate the probability
-x1 = np.array(test_data_B)
+xB = np.array(test_data_B)
 
 # Create a multivariate normal distribution object
-multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
+multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix2)
 
 # Calculate the probability density at the given vector 'x'
-probability = multivar_normal.pdf(x1)
+probability = multivar_normal.pdf(xB)
 
-print("Probability x2:", probability)
+print("Probability xB:", probability)
 
 
 

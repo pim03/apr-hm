@@ -1,17 +1,11 @@
 import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import confusion_matrix
 from scipy import stats
 from scipy.io.arff import loadarff
-from sklearn.model_selection import cross_val_score, StratifiedKFold
-from sklearn import metrics, datasets, tree
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, OneHotEncoder
-from sklearn.tree import DecisionTreeClassifier, export_graphviz
-from sklearn.feature_selection import f_classif
-import graphviz
+from sklearn.model_selection import StratifiedKFold
+from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
 
 
@@ -187,13 +181,3 @@ for i in range(conf_matrix_diff.shape[0]):
         plt.text(j, i, str(int(conf_matrix_diff[i, j])), ha='center', va='center', color='black')
 
 plt.show()
-
-
-    
-
-
-
-
-    
-    
-    
