@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1696793873 "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf" "main" 1696793873
+["pdflatex"] 1696794177 "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf" "main" 1696794177
   "/etc/texmf/web2c/texmf.cnf" 1695560022 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1696778311 31928 7d35df1670abf568349b46baee64c985 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1696778312 40112 919d48dd919803c5d604ba80e828f39c ""
@@ -9,8 +9,8 @@
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk" 1696778311 28416 8c3a24ab5ee86db14f8ff3da8646375e ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk" 1696793873 20008 22451cf29dc418b2778639076fe41bab ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1696781338 14040 7c2647e18130024fbef1f72a9801c3ae ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.aux" 1696793873 1534 10ff2091e7a1382c2bba4f4358131596 ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" 1696793871 22390 eb42e01a8f33cb91fde6522b6c580453 ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.aux" 1696794177 1534 10ff2091e7a1382c2bba4f4358131596 ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" 1696794177 22390 eb42e01a8f33cb91fde6522b6c580453 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
@@ -99,12 +99,12 @@
   "ex1a_boxplot.png" 1696793871 18991 aac3258bf74348b0401ea61a9441b843 ""
   "ex2_cummatrix.png" 1696793871 33999 b84561dfaa96c6c89859bd1520b13dfe ""
   "ex3_1_hist.png" 1696793871 60441 cdc5f6241cd4c2a3e650db01ee28db0f ""
-  "ex3_3_coormatrix.png" 1696793871 41918 d143cd19d2b0ce8a6671ceeeba829f48 ""
-  "main.aux" 1696793873 1534 10ff2091e7a1382c2bba4f4358131596 "pdflatex"
-  "main.tex" 1696793871 22390 eb42e01a8f33cb91fde6522b6c580453 ""
+  "ex3_3_coormatrix.png" 1696793674 55436 c1d1f9ce006bd3e395128ed5a5d25a3e ""
+  "main.aux" 1696794177 1534 10ff2091e7a1382c2bba4f4358131596 "pdflatex"
+  "main.tex" 1696794177 22390 eb42e01a8f33cb91fde6522b6c580453 ""
   (generated)
-  "main.aux"
   "main.pdf"
-  "main.log"
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.log"
   "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf"
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.log"
+  "main.aux"
+  "main.log"
