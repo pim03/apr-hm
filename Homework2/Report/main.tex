@@ -14,6 +14,9 @@
 
 % As we usually want to include some plots (.pdf files) we need a package for that.
 \usepackage{graphicx} 
+\usepackage{rotating}
+
+
 
 % The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
 \usepackage{setspace}
@@ -284,36 +287,157 @@ Como $P(A|\vec{x}_9) < P(B|\vec{x}_9)$, então $\vec{x}_9$ é classificado como 
 \item 
 Assumindo o critério de Maximum Likelihood, para classificar uma observação apenas interessam as probabilidades $P(\vec{x}|A)$ e $P(\vec{x}|B)$:
 \begin{equation*}
-    h = argmax(P())
+    h = argmax(P(\vec{x}_8|h))
 \end{equation*}
-Considerando diferentes thresholds para as probabilidades é possível maximizar a accuracy do nosso classificador.
+
+Considerando diferentes thresholds $\theta$ para as probabilidades é possível maximizar a accuracy do nosso classificador:
+
+\begin{equation*}
+    f(\vec{x}_8) = \begin{cases} 
+        A & \text{se } P(A|\vec{x}_8) > \theta \\
+        B &  \text{otherwise}
+     \end{cases}
+\end{equation*}
+
 
 \begin{equation*}
     P(\vec{x}_8|A) = P(y_1=0.38,y_2=0.52|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) = 0.043
 \end{equation*}
 
+\begin{equation*}
+    P(\vec{x}_9|A) = P(y_1=0.42,y_2=0.59|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) = 0.0113
+\end{equation*}
+
+Assumindo o critério de maximum Likelihood os priors são todos iguais.
+Escolhendo qualquer valor no intervalo (0.0113,0.043) como threshold $\theta$, a accuracy do classificador é de 100\% para estas observações de teste.
+
 \end{enumerate}
 
 \item
+
+As  fórmulas utilizadas neste exercício são:
+
+\begin{equation*}
+    \hat{z} = \frac{\sum_{i=1}^{k} w_i \cdot z_{i}}{\sum_{i=1}^{k} w_i}
+\end{equation*}
+
+\begin{equation*}
+    MAE = \
+\end{equation*}
 
 Para discretizar a variável $y_2$, considerando equal-width, é necessário dividir o intervalo $[0,1]$ em 2 partes iguais. 
 Assim, os intervalos são: $[0,0.5]$, $[0.5,1]$. \\
 
 Para cada observação, $y_2$ pode assumir os valores 0 ou 1, consoante o intervalo em que se encontra o seu valor. \\
 
-\begin{table}[]
-    \begin{tabular}{l|lllllllll}
-    y2     & 0.36 & 0.48 & 0.72 & 0.11 & 0.39 & 0.28 & 0.53 & 0.52 & 0.59 \\ \hline
-    new y2 & 0    & 0    & 1    & 0    & 0    & 0    & 1    & 1    & 1   
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|ccccccccc}
+    $y_2$     & 0.36 & 0.48 & 0.72 & 0.11 & 0.39 & 0.28 & 0.53 & 0.52 & 0.59 \\ \hline
+    $y_{2 new}$ & 0    & 0    & 1    & 0    & 0    & 0    & 1    & 1    & 1   
+    \end{tabular}
+\end{table}
+
+(a)
+Em 3-Fold cross-validation o dataset é dividido em 3 partes iguais. Duas delas são usadas para teste e uma para treino.
+
+Porque não há shuffling:
+
+\begin{table}[H]
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \captionof{table}{1º Fold}
+    \begin{tabular}{cccccc}
+        $x_1$ & 0 & 1 & 1 & 0 & A \\ \hline
+        $x_2$ & 0 & 1 & 0 & 1 & A \\ \hline
+        $x_3$ & 1 & 0 & 1 & 2 & A
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \captionof{table}{2º Fold}
+    \begin{tabular}{cccccc}
+        $x_1$ & 0 & 0 & 0 & 1 & B \\ \hline
+        $x_2$ & 0 & 0 & 0 & 0 & B \\ \hline
+        $x_3$ & 0 & 1 & 0 & 2 & B
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\linewidth}
+    \centering
+    \captionof{table}{3º Fold}
+    \begin{tabular}{cccccc}
+        $x_1$ & 1 & 0 & 1 & 1 & B \\ \hline
+        $x_2$ & 1 & 0 & 1 & 0 & A \\ \hline
+        $x_3$ & 1 & 0 & 1 & 1 & B
+        \end{tabular}
+    \end{minipage}
+    \hfill
+
+\end{table}
+
+(b)
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccccc}
+    D  & $y_1$   & $y_2$ & $y_3$ & $y_4$ & $y_5$ & $y_6$ &         \\ \hline
+    $x_1$ & 0.24 & 0  & 1  & 1  & 0  & A  & \multirow{6}{*}{TRAIN} \\
+    $x_2$ & 0.16 & 0  & 1  & 0  & 1  & A  &                        \\
+    $x_3$ & 0.32 & 1  & 0  & 1  & 2  & A  &                        \\
+    $x_4$ & 0.54 & 0  & 0  & 0  & 1  & B  &                        \\
+    $x_5$ & 0.66 & 0  & 0  & 0  & 0  & B  &                        \\
+    $x_6$ & 0.76 & 0  & 1  & 0  & 2  & B  &                        \\ \hline
+    $x_7$ & 0.41 & 1  & 0  & 1  & 1  & B  & \multirow{3}{*}{TEST}  \\
+    $x_8$ & 0.38 & 1  & 0  & 1  & 0  & A  &                        \\
+    $x_9$ & 0.42 & 1  & 0  & 1  & 1  & B  &                       
+    \end{tabular}
+\end{table}
+
+Para $x_7$:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cccccc}
+    d      & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ \\ \hline
+    $x_7$  & 4     & 4     & 2     & 2     & 3     & 4    
     \end{tabular}
     \end{table}
 
-(a)
-Porque não há shuffling:
+As observações com menor distância de Hamming são $x_3$, $x_4$ e $x_5$. O output previsto pelo kNN é dado por 
 
+\begin{equation*}
+    \hat{z}_{7} = \frac{1/2 \cdot 0.32 + 1/2 \cdot 0.54 + 1/3 \cdot 0.66}{1/2 + 1/2 + 1/3} = 0.4875
+\end{equation*}
 
+Para $x_8$:
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cccccc}
+    d      & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ \\ \hline
+    $x_8$  & 2     & 4     & 1     & 4     & 3     & 5    
+    \end{tabular}
+    \end{table}
 
+As observações com menor distância de Hamming são $x_1$, $x_3$ e $x_5$. O output previsto pelo kNN é dado por 
+
+\begin{equation*}
+    \hat{z}_{8} = \frac{1/2 \cdot 0.24 + 1 \cdot 0.32 + 1/3 \cdot 0.66}{1/2 + 1 + 1/3} = 0.36
+\end{equation*}
+
+Como as observações $x_7$ e $x_9$ são iguais, o output previsto pelo kNN para  $x_9$ é igual ao output previsto para $x_7$.
+
+\begin{equation*}
+    \hat{z}_{9} = \hat{z}_{7} = 0.4875
+\end{equation*}
+
+Por fim, o MAE deste classificador é dado por:
+
+\begin{equation*}
+    MAE = \frac{1}{3} \cdot (|0.41 - 0.4875| + |0.38 - 0.36| + |0.42 - 0.4875|) = 0.055
+\end{equation*}
 
 \end{enumerate}
 
@@ -321,7 +445,9 @@ Porque não há shuffling:
 \section*{Programming - Código Python e Resultados Obtidos}
 
 \begin{enumerate}
-    \item 
+    \item \begin{enumerate}
+        \item Caixas de bigodes.
+    \end{enumerate}
     
 \end{enumerate}
 
