@@ -11,7 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 # Reading the ARFF file
-data = loadarff('column_diagnosis.arff')
+data = loadarff('Homework2/column_diagnosis.arff')
 df = pd.DataFrame(data[0])
 df['class'] = df['class'].str.decode('utf-8')
 
@@ -57,7 +57,7 @@ plt.savefig('ex1a_boxplot.png')
 plt.show()
 
 #b)
-
+#Null Hypothesis: kNN is not statistically superior to GaussianNB
 hypothesis = stats.ttest_rel(acc_folds_knn, acc_folds_gauss, alternative='greater')
 
 if hypothesis[1] < 0.05:
@@ -69,8 +69,12 @@ else:
 
 ############ Exercise 2 ############
 
+<<<<<<< HEAD
 print('--------------Exercise 2-----------------')
 
+=======
+#Initialize the cumulative confusion matrices
+>>>>>>> 839b0c06f7a9dccc7b8595347a9db33dd2ac901d
 cum_conf_matrix1 = np.zeros((3,3))
 cum_conf_matrix5 = np.zeros((3,3))
 
@@ -96,8 +100,11 @@ for train_k, test_k in folds.split(features, target):
 conf_matrix_diff = cum_conf_matrix1 - cum_conf_matrix5
 
 confusion1 = pd.DataFrame(conf_matrix_diff, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
-print(confusion1)
 
+<<<<<<< HEAD
+=======
+#Plotting 
+>>>>>>> 839b0c06f7a9dccc7b8595347a9db33dd2ac901d
 plt.figure(figsize=(10, 5))
 heatmap = plt.imshow(conf_matrix_diff,cmap="coolwarm", interpolation='nearest')
 plt.title('Differences between the two cumulative confusion matrices (k1 - k5)')
@@ -126,6 +133,10 @@ plt.savefig('ex3_1_hist.png')
 plt.show()
 #Gaussian fits for each feature
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 839b0c06f7a9dccc7b8595347a9db33dd2ac901d
 #3. The dataset is not balanced, which can lead to a bias in the classifier.
 df['class'].value_counts()
 print(df['class'].value_counts())
