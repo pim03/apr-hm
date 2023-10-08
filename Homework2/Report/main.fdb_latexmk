@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1696785870 "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf" "main" 1696785870
+["pdflatex"] 1696786434 "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf" "main" 1696786434
   "/etc/texmf/web2c/texmf.cnf" 1695560022 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1696778311 31928 7d35df1670abf568349b46baee64c985 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1696778312 40112 919d48dd919803c5d604ba80e828f39c ""
@@ -7,8 +7,8 @@
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk" 1696778310 23784 46d45c91da40393cd1b073f061888349 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk" 1696778311 28416 8c3a24ab5ee86db14f8ff3da8646375e ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1696781338 14040 7c2647e18130024fbef1f72a9801c3ae ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.aux" 1696785870 737 d1c4c89028b84c14c2ea93107218b17c ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" 1696785870 14768 9af9c3a5883cc21038b5e337a4de88bf ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.aux" 1696786434 737 d1c4c89028b84c14c2ea93107218b17c ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.tex" 1696786433 14817 7606ceee335bbc9a44f8b04ddcb03093 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
@@ -90,11 +90,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1696778305 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1696778954 4794203 9e5b52fd34f94300244e4dae7faf9b0d ""
-  "main.aux" 1696785870 737 d1c4c89028b84c14c2ea93107218b17c "pdflatex"
-  "main.tex" 1696785870 14768 9af9c3a5883cc21038b5e337a4de88bf ""
+  "main.aux" 1696786434 737 d1c4c89028b84c14c2ea93107218b17c "pdflatex"
+  "main.tex" 1696786433 14817 7606ceee335bbc9a44f8b04ddcb03093 ""
   (generated)
   "main.pdf"
-  "main.log"
-  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.log"
   "main.aux"
+  "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.log"
+  "main.log"
   "/home/rofarate/Aprendizagem/apr-hm/Homework2/Report/main.pdf"
