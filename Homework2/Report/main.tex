@@ -124,6 +124,10 @@ Fórmulas utilizadas:
 \end{equation}
 
 \begin{equation}
+    cov(x,y) = \sum_{i=1}^{n} \frac{(x_i - E(x))(y_i - E(y))}{n}
+\end{equation}
+
+\begin{equation}
     \Sigma = \begin{bmatrix} cov(y_1,y_2) & cov(y_1,y_1) \\ cov(y_2,y_1) & cov(y_2,y_2) \end{bmatrix}
 \end{equation}
 
@@ -138,7 +142,7 @@ Fórmulas utilizadas:
 Parâmetros das gaussianas multivariadas: \\ \\
 Classe A:
 \begin{equation*} 
-    n\vec{\mu}_A = \begin{bmatrix} 0.24 \\ 0.52 \end{bmatrix} 
+    \vec{\mu}_A = \begin{bmatrix} 0.24 \\ 0.52 \end{bmatrix} 
 \end{equation*}
 \begin{equation*} 
     \Sigma_A = \begin{bmatrix} 0.004267 & -0.0064 \\ -0.0064 & 0.02240 \end{bmatrix}
@@ -403,7 +407,7 @@ Para $x_7$:
     d      & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ \\ \hline
     $x_7$  & 4     & 4     & 2     & 2     & 3     & 4    
     \end{tabular}
-    \end{table}
+\end{table}
 
 As observações com menor distância de Hamming são $x_3$, $x_4$ e $x_5$. O output previsto pelo kNN é dado por 
 
@@ -445,10 +449,182 @@ Por fim, o MAE deste classificador é dado por:
 \section*{Programming - Código Python e Resultados Obtidos}
 
 \begin{enumerate}
-    \item \begin{enumerate}
-        \item Caixas de bigodes.
-    \end{enumerate}
+    \item O objetivo deste exercício é comparar a performance de dois classificadores
+    (Naive Bayes com distribuição Gaussiana e kNN) para o dataset.
     
+        (a) Boxplots para as accuracies obtidas para GaussianNB e kNN:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{ex1a_boxplot.png}
+            \caption{Boxplot para as accuracies obtidas para GaussianNB e kNN}
+            \label{fig:boxplot}
+        \end{figure}
+        Conclui-se que apesar do o classificador kNN atingir accuracies maiores do que 
+        o GaussianNB, a mediana de ambos é quase igual. Além disso, o kNN tem accuracies ligeiramente mais dispersas 
+        (a sua distância interquartis é maior). A amplitude do boxplot é parecida para ambos os classificadores. 
+        \\ \\
+        Código utilizado:
+        \begin{lstlisting}[language=Python]
+### Exercise 1 ###
+
+#a)
+
+acc_folds_gauss = []
+acc_folds_knn = []
+folds = StratifiedKFold(n_splits=10, shuffle=True, random_state=0)
+
+# Gaussian Naive Bayes
+gaussNB = GaussianNB()
+
+# KNN
+knn_predictor = KNeighborsClassifier(n_neighbors=5)
+
+# iterate per fold
+for train_k, test_k in folds.split(features, target):
+    X_train, X_test = features.iloc[train_k], features.iloc[test_k]
+    y_train, y_test = target.iloc[train_k], target.iloc[test_k]
+    
+    ## train and assess
+    gaussNB.fit(X_train, y_train)
+    y_pred_gauss = gaussNB.predict(X_test)
+    acc_folds_gauss.append(round(metrics.accuracy_score(y_test, y_pred_gauss),2))
+    
+    knn_predictor.fit(X_train, y_train)
+    y_pred_knn = knn_predictor.predict(X_test)
+    acc_folds_knn.append(round(metrics.accuracy_score(y_test, y_pred_knn),2))
+
+print("Fold accuracies GaussianNB:", acc_folds_gauss)
+print("Fold accuracies kNN:", acc_folds_knn)
+
+plt.boxplot([acc_folds_gauss, acc_folds_knn], labels=['GaussianNB', 'kNN'])
+plt.title('Accuracies for GaussianNB and kNN')
+plt.xlabel('Classifiers')
+plt.ylabel('Accuracy')
+plt.savefig('ex1a_boxplot.png')
+plt.show()
+        \end{lstlisting}
+
+    
+    (b) Concluímos que a hipótese nula (H0: kNN não é estatisticamente superior a GaussianNB) não é rejeitada, uma vez que o p-value é maior do que 0.05, logo kNN não é estatisticamente superior a GaussianNB.
+    \\ \\
+    Código utilizado:
+    \begin{lstlisting}[language=Python]
+#b) 
+Null Hypothesis: kNN is not statistically superior to GaussianNB
+hypothesis = stats.ttest_rel(acc_folds_knn, acc_folds_gauss, alternative='greater')
+
+if hypothesis[1] < 0.05:
+    print("The null hypothesis is rejected and kNN is statistically superior to GaussianNB")
+    
+else:
+    print("The null hypothesis is not rejected and there is no statistical superiority between kNN and GaussianNB")
+    \end{lstlisting}
+
+    \item O objetivo deste exercício é comparar a performance de dois classificadores : kNN com k=1 e kNN com k=5. 
+    Assim, calculamos as matrizes de confusão para os dados de cada uma das 10 iterações, somámos os valores de cada célula obtendo duas matrizes de confusão cumulativas que subtraímos uma a outra (kNN com k=1 - kNN com k=5).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{ex2_cummatrix.png}
+        \caption{Matriz de confusão cumulativa para kNN com k=1 - kNN com k=5}
+        \label{fig:ex2a}
+    \end{figure}
+
+    CONCLUSÕESSSSS FAAAAAFIIIIIII
+
+    \begin{lstlisting}[language=Python]
+        ############ Exercise 2 ############
+
+        #Initialize the cumulative confusion matrices
+        cum_conf_matrix1 = np.zeros((3,3))
+        cum_conf_matrix5 = np.zeros((3,3))
+        
+        for train_k, test_k in folds.split(features, target):
+            X_train, X_test = features.iloc[train_k], features.iloc[test_k]
+            y_train, y_test = target.iloc[train_k], target.iloc[test_k]
+            
+            ## train and assess
+            knn1 = KNeighborsClassifier(n_neighbors=1,weights='uniform',metric='euclidean')
+            knn5 = KNeighborsClassifier(n_neighbors=5,weights='uniform',metric='euclidean')
+        
+            knn1.fit(X_train, y_train)
+            knn5.fit(X_train, y_train)
+        
+            # Make predictions
+            y_pred1 = knn1.predict(X_test)
+            y_pred5 = knn5.predict(X_test)
+        
+            # Calculate confusion matrices
+            conf_matrix1 = confusion_matrix(y_test, y_pred1)
+            conf_matrix5 = confusion_matrix(y_test, y_pred5)
+        
+            # Calculate cumulative confusion matrices
+            cum_conf_matrix1 += conf_matrix1
+            cum_conf_matrix5 += conf_matrix5
+        
+        #Calculate the difference between the two confusion matrices
+        conf_matrix_diff = cum_conf_matrix1 - cum_conf_matrix5
+        
+        confusion1 = pd.DataFrame(conf_matrix_diff, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
+        
+        #Plotting 
+        plt.figure(figsize=(10, 5))
+        heatmap = plt.imshow(conf_matrix_diff,cmap="coolwarm", interpolation='nearest')
+        plt.title('Differences between the two cumulative confusion matrices (k1 - k5)')
+        plt.xlabel('Predicted label')
+        plt.xticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
+        plt.yticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
+        plt.ylabel('True label')
+        
+        cbar = plt.colorbar(heatmap)
+        cbar.set_label('Difference Magnitude', rotation=90)
+        
+        for i in range(conf_matrix_diff.shape[0]):
+            for j in range(conf_matrix_diff.shape[1]):
+                plt.text(j, i, str(int(conf_matrix_diff[i, j])), ha='center', va='center', color='black')
+        plt.savefig('ex2_cummatrix.png')
+        plt.show()
+    \end{lstlisting}
+    
+\item Apesar de ser uma abordagem fácil e rápida, o Naive Bayes apresenta algumas desvantagens para este dataset. 
+Um problema é, por exemplo, a suposição de que as features têm uma distribuição Gaussiana. Para podermos visualizar a distribuição
+experimental destes features fizemos um histograma para cada um deles e concluímos que a maioria não tem uma distribuição Gaussiana, especialmente por exemplo a feature $degree\_Spondylolisthesis$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ex3_1_hist.png}
+    \caption{Histogramas para cada feature}
+    \label{fig:ex3_histograms}
+\end{figure}
+
+
+Código utilizado:
+
+\begin{lstlisting}[language=Python]
+    ############ Exercise 3 ############
+    #1. The dataset is not normally distributed, which is an assumption of the Naive Bayes classifier.
+    #Histograms for each feature:
+    features.hist(figsize=(10,10),density=True)
+    plt.savefig('ex3_1_hist.png')
+    plt.show()
+\end{lstlisting}
+
+Para além disso, outro exemplo de uma dificuldade do Naive Bayes é a suposição de que as features são independentes. Para avaliar 
+se estas featuras eram independentes ou não, fizemos a seguinte matriz de correlação:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ex3_3_coormatrix.png}
+    \caption{Matriz de correlação}
+    \label{fig:ex3_corr}
+\end{figure}
+
+Ao observar a matriz de correlação, concluímos que apesar de algumas features se encontrarem muito pouco
+correladas, podendo por isso ser aproximadas como independentes (como por exemplo $pelvic\_radius$ e $pelvic\_tilt$), há outras
+que se encontram bastante correladas e consequentemente não podem ser aproximadas como independentes (como por exemplo $pelvic\_incidence$ e $sacral\_slope$).
+
+Código utilizado:
+
+
 \end{enumerate}
 
 \end{document}
