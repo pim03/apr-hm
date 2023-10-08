@@ -50,11 +50,11 @@ multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix)
 # Calculate the probability density at the given vector 'x'
 probability = multivar_normal.pdf(x1)
 
-<<<<<<< HEAD
+
 print("Probability xA:", probability)
-=======
-probability_mine = bi_dim_gaussian_prob(x1,mean,inverse_covariance_matrix,determinant)
->>>>>>> a00509bad4af7f5842fc9249e8f0d6ef1796ae65
+
+#probability_mine = bi_dim_gaussian_prob(x1,mean,inverse_covariance_matrix,determinant)
+#>>>>>>> a00509bad4af7f5842fc9249e8f0d6ef1796ae65
 
 print("Probability xA multivar:", probability)
 #print("Probability xA mine:", probability_mine)
@@ -98,19 +98,14 @@ xB = np.array(test_data_B)
 multivar_normal = multivariate_normal(mean=mean, cov=covariance_matrix2)
 
 # Calculate the probability density at the given vector 'x'
-<<<<<<< HEAD
 probability = multivar_normal.pdf(xB)
 
 print("Probability xB:", probability)
-=======
-probability = multivar_normal.pdf(x1)
-probability_mine = bi_dim_gaussian_prob(x1,mean,inverse_covariance_matrix,determinant)
-print("Probability xB:", probability)
-print("Probability xB mine:", probability_mine)
 
-num = 1/(2*np.pi*np.sqrt(determinant))
-print('num:',num)
->>>>>>> a00509bad4af7f5842fc9249e8f0d6ef1796ae65
+# probability = multivar_normal.pdf(x1)
+# probability_mine = bi_dim_gaussian_prob(x1,mean,inverse_covariance_matrix,determinant)
+# print("Probability xB:", probability)
+# print("Probability xB mine:", probability_mine)
 
-
-
+# num = 1/(2*np.pi*np.sqrt(determinant))
+# print('num:',num)

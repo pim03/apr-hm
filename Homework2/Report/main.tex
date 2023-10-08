@@ -1,6 +1,5 @@
 \documentclass[a4paper,12pt]{article} % This defines the style of your paper
 
-
 \usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
 
 % Unfortunately, LaTeX has a hard time interpreting German Umlaute. The following two lines and packages should help. If it doesn't work for you please let me know.
@@ -294,6 +293,23 @@ Considerando diferentes thresholds para as probabilidades é possível maximizar
 \end{equation*}
 
 \end{enumerate}
+
+\item
+
+Para discretizar a variável $y_2$, considerando equal-width, é necessário dividir o intervalo $[0,1]$ em 2 partes iguais. 
+Assim, os intervalos são: $[0,0.5]$, $[0.5,1]$. \\
+
+Para cada observação, $y_2$ pode assumir os valores 0 ou 1, consoante o intervalo em que se encontra o seu valor. \\
+
+\begin{table}[]
+    \begin{tabular}{l|lllllllll}
+    y2     & 0.36 & 0.48 & 0.72 & 0.11 & 0.39 & 0.28 & 0.53 & 0.52 & 0.59 \\ \hline
+    new y2 & 0    & 0    & 1    & 0    & 0    & 0    & 1    & 1    & 1   
+    \end{tabular}
+    \end{table}
+
+(a)
+Porque não há shuffling:
 
 
 
