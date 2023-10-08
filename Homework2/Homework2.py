@@ -1,5 +1,6 @@
 import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix
 from scipy import stats
@@ -10,13 +11,14 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 # Reading the ARFF file
-data = loadarff('column_diagnosis.arff')
+data = loadarff('Homework2/column_diagnosis.arff')
 df = pd.DataFrame(data[0])
 df['class'] = df['class'].str.decode('utf-8')
 
 # Separate input from output data 
 features = df.drop('class', axis=1)
 target = df['class']
+
 
 ### Exercise 1 ###
 
@@ -53,6 +55,7 @@ plt.boxplot([acc_folds_gauss, acc_folds_knn], labels=['GaussianNB', 'kNN'])
 plt.title('Accuracies for GaussianNB and kNN')
 plt.xlabel('Classifiers')
 plt.ylabel('Accuracy')
+plt.savefig('ex1a_boxplot.png')
 plt.show()
 
 #b)
@@ -65,59 +68,6 @@ if hypothesis[1] < 0.05:
 else:
     print("The null hypothesis is not rejected and there is no statistical superiority between kNN and GaussianNB")
     
-### Exercise 2 ###
-'''
-knn1 = KNeighborsClassifier(n_neighbors=1, weights='uniform', metric='euclidean')
-knn5 = KNeighborsClassifier(n_neighbors=5, weights='uniform', metric='euclidean')
-
-cumulative_tp1 = 0
-cumulative_tn1 = 0
-cumulative_fp1 = 0
-cumulative_fn1 = 0
-
-cumulative_fn5 = 0
-cumulative_tp5 = 0
-cumulative_tn5 = 0
-cumulative_fp5 = 0
-
-# iterate per fold
-for train_k, test_k in folds.split(features, target):
-    X_train, X_test = features.iloc[train_k], features.iloc[test_k]
-    y_train, y_test = target.iloc[train_k], target.iloc[test_k]
-
-    knn1.fit(X_train, y_train)
-    knn1_pred = knn1.predict(X_test)
-
-    knn5.fit(X_train, y_train)
-    knn5_pred = knn5.predict(X_test)
-
-    cm1 = np.array(confusion_matrix(y_test, knn1_pred))
-    cumulative_tp1 += cm1[1, 1]
-    cumulative_fp1 += cm1[0, 1]
-    cumulative_fn1 += cm1[1, 0]
-    cumulative_tn1 += cm1[0, 0]
-
-    cm5 = np.array(confusion_matrix(y_test, knn5_pred))
-    cumulative_tp5 += cm5[1, 1]
-    cumulative_fp5 += cm5[0, 1]
-    cumulative_fn5 += cm5[1, 0]
-    cumulative_tn5 += cm5[0, 0]
-
-confusion1 = pd.DataFrame(cm1, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
-confusion5 = pd.DataFrame(cm5, index=knn5.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
-
-print("Confusion matrix for kNN with k=1:\n", confusion1, '\n')
-print("Confusion matrix for kNN with k=5:\n", confusion5) 
-print(confusion1-confusion5)  
-
-plt.figure(figsize=(10, 5))
-plt.imshow(confusion1-confusion5, cmap='Blues', interpolation='nearest')
-plt.title('Differences between the two cumulative confusion matrices')
-plt.xlabel('Predicted label')
-plt.xticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
-plt.yticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
-plt.ylabel('True label') 
-plt.show() '''
 
 ############ Exercise 2 ############
 
@@ -177,11 +127,40 @@ cbar.set_label('Difference Magnitude', rotation=90)
 for i in range(conf_matrix_diff.shape[0]):
     for j in range(conf_matrix_diff.shape[1]):
         plt.text(j, i, str(int(conf_matrix_diff[i, j])), ha='center', va='center', color='black')
-
+plt.savefig('ex2_cummatrix.png')
 plt.show()
 
 
-    
+############ Exercise 3 ############
+
+print('--------------Exercise 3-----------------')
+
+#Considering the unique properties of column_diagnosis, identify three possible difficulties of naïve Bayes when learning from the given dataset.
+
+#1. The dataset is not normally distributed, which is an assumption of the Naive Bayes classifier.
+#Histograms for each feature:
+features.hist(figsize=(10,10),density=True)
+plt.savefig('ex3_1_hist.png')
+plt.show()
+#Gaussian fits for each feature
+
+
+
+
+#3. The dataset is not balanced, which can lead to a bias in the classifier.
+df['class'].value_counts()
+print(df['class'].value_counts())
+
+
+#4. Check if variables are independent: correlation matrix
+df = df.drop('class', axis=1)
+df.corr(method='pearson')
+sns.heatmap(df.corr(method='pearson'), annot=True)
+plt.savefig('ex3_3_coormatrix.png')
+plt.show()
+
+
+
 
 
 
