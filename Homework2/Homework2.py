@@ -186,6 +186,12 @@ for i in range(conf_matrix_diff.shape[0]):
 
 plt.show()
 
+############ Exercise 3 ############
+
+print('--------------Exercise 3-----------------')
+
+
+
 
     
 
