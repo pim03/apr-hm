@@ -15,8 +15,7 @@
 % As we usually want to include some plots (.pdf files) we need a package for that.
 \usepackage{graphicx} 
 \usepackage{rotating}
-
-
+\usepackage{cancel}
 
 % The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
 \usepackage{setspace}
@@ -279,60 +278,83 @@ Como $P(A|\vec{x}_8) < P(B|\vec{x}_8)$, então $\vec{x}_8$ é classificado como 
     
 \begin{equation*}
     \begin{aligned}
-        P(B|\vec{x}_8) & = \frac{P(\vec{x}_8|B) \cdot P(B)}{P(\vec{x}_8)} \\
-                       & = \frac{P(y_1=0.42,y_2=0.59|B) \cdot P(y_3=0,y_4=1|B) \cdot P(y_5=1|B) \cdot P(B)}{P(\vec{x}_8)} \\
-                       & = \frac{\frac{4}{7} \cdot 1.4927 \cdot \frac{1}{4} \cdot \frac{1}{2}}{P(\vec{x}_8)} \\
-                       & = \frac{0.1066}{P(\vec{x}_8)}
+        P(B|\vec{x}_9) & = \frac{P(\vec{x}_9|B) \cdot P(B)}{P(\vec{x}_9)} \\
+                       & = \frac{P(y_1=0.42,y_2=0.59|B) \cdot P(y_3=0,y_4=1|B) \cdot P(y_5=1|B) \cdot P(B)}{P(\vec{x}_9)} \\
+                       & = \frac{\frac{4}{7} \cdot 1.4927 \cdot \frac{1}{4} \cdot \frac{1}{2}}{P(\vec{x}_9)} \\
+                       & = \frac{0.1066}{P(\vec{x}_9)}
     \end{aligned}
 \end{equation*}
 
 Como $P(A|\vec{x}_9) < P(B|\vec{x}_9)$, então $\vec{x}_9$ é classificado como B. 
 
 \item 
-Assumindo o critério de Maximum Likelihood, para classificar uma observação apenas interessam as probabilidades $P(\vec{x}|A)$ e $P(\vec{x}|B)$:
+Assumindo o critério de Maximum Likelihood, as probabilidades importantes para a classificação são $P(\vec{x}|A)$ e $P(\vec{x}|B)$:
 \begin{equation*}
-    h = argmax(P(\vec{x}_8|h))
+    h = argmax_{h}(P(\vec{x}_8|h))
 \end{equation*}
 
 Considerando diferentes thresholds $\theta$ para as probabilidades é possível maximizar a accuracy do nosso classificador:
 
 \begin{equation*}
-    f(\vec{x}_8) = \begin{cases} 
-        A & \text{se } P(A|\vec{x}_8) > \theta \\
+    f(\vec{x}) = \begin{cases} 
+        A & \text{se } P(A|\vec{x}) > \theta \\
         B &  \text{otherwise}
      \end{cases}
 \end{equation*}
 
+Usando o critério de maximum likelihood consideramos que os priors são iguais, ou seja, P(A)=P(B).
+
+\begin{equation*}
+    \begin{aligned}
+        P(A|\vec{x}) & = \frac{P(\vec{x}|A) \cdot P(A)}{P(\vec{x})} = \frac{P(\vec{x}|A) \cdot \cancel{P(A)}}{P(\vec{x}|A) \cdot \cancel{P(A)} + P(\vec{x}|B) \cdot \cancel{P(B)}} = \\
+        & = \frac{P(\vec{x}|A)}{P(\vec{x}|A)+P(\vec{x}|B)}
+    \end{aligned}
+\end{equation*}
 
 \begin{equation*}
     P(\vec{x}_8|A) = P(y_1=0.38,y_2=0.52|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) = 0.043
 \end{equation*}
 
 \begin{equation*}
+    P(\vec{x}_8|B) = P(y_1=0.38,y_2=0.52|B) \cdot P(y_3=0,y_4=1|B) \cdot P(y_5=0|B) = 0.1105
+\end{equation*}
+
+\begin{equation*}
     P(\vec{x}_9|A) = P(y_1=0.42,y_2=0.59|A) \cdot P(y_3=0,y_4=1|A) \cdot P(y_5=0|A) = 0.0113
 \end{equation*}
 
-Assumindo o critério de maximum Likelihood os priors são todos iguais.
-Escolhendo qualquer valor no intervalo (0.0113,0.043) como threshold $\theta$, a accuracy do classificador é de 100\% para estas observações de teste.
+
+\begin{equation*}
+    P(\vec{x}_9|B) = P(y_1=0.42,y_2=0.59|B) \cdot P(y_3=0,y_4=1|B) \cdot P(y_5=1|B) = 0.1866
+\end{equation*}
+
+\begin{equation*}
+    P(A|\vec{x}_8) = \frac{0.043}{0.043+0.1105} = 0.28
+\end{equation*}
+
+\begin{equation*}
+    P(A|\vec{x}_9) = \frac{0.0113}{0.0113+0.1866} = 0.057
+\end{equation*}
+
+Assim, o threshold, $\theta$, que maximiza a accuracy pode ser qualquer valor no intervalo [0.057,0.28).
 
 \end{enumerate}
 
 \item
+Para este exercício foram utilizadas as seguintes fórmulas:
 
-As  fórmulas utilizadas neste exercício são:
-
-\begin{equation*}
+\begin{equation}
     \hat{z} = \frac{\sum_{i=1}^{k} w_i \cdot z_{i}}{\sum_{i=1}^{k} w_i}
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     MAE = \frac{\frac{1}{n}}{\sum_{i=1}^{n} |z_i - \hat{z}|}
-\end{equation*}
+\end{equation}
 
 Para discretizar a variável $y_2$, considerando equal-width, é necessário dividir o intervalo $[0,1]$ em 2 partes iguais. 
-Assim, os intervalos são: $[0,0.5]$, $[0.5,1]$. \\
+Assim, os intervalos são: $[0,0.5)$, $[0.5,1]$. \\
 
-Para cada observação, $y_2$ pode assumir os valores 0 ou 1, consoante o intervalo em que se encontra o seu valor. \\
+Para cada observação, $y_2$ pode assumir os valores 0 ou 1: se $y_2 \in [0,0.5)$, $y_2$  \\
 
 \begin{table}[H]
     \centering
@@ -487,11 +509,11 @@ for train_k, test_k in folds.split(features, target):
     ## train and assess
     gaussNB.fit(X_train, y_train)
     y_pred_gauss = gaussNB.predict(X_test)
-    acc_folds_gauss.append(round(metrics.accuracy_score(y_test, y_pred_gauss),2))
+    acc_folds_gauss.append(round(metrics.accuracy_score(y_test, y_pred_gauss),4))
     
     knn_predictor.fit(X_train, y_train)
     y_pred_knn = knn_predictor.predict(X_test)
-    acc_folds_knn.append(round(metrics.accuracy_score(y_test, y_pred_knn),2))
+    acc_folds_knn.append(round(metrics.accuracy_score(y_test, y_pred_knn),4))
 
 print("Fold accuracies GaussianNB:", acc_folds_gauss)
 print("Fold accuracies kNN:", acc_folds_knn)
@@ -505,7 +527,7 @@ plt.show()
         \end{lstlisting}
 
     
-    (b) Concluímos que a hipótese nula (H0: kNN não é estatisticamente superior a GaussianNB) não é rejeitada, uma vez que o p-value é maior do que 0.05, logo kNN não é estatisticamente superior a GaussianNB.
+    (b) Concluímos que a hipótese nula (H0: a médias das duas populações de accuracies é igual) não é rejeitada (o valor do \textit{p-value} é superior a 0.05), logo não há evidência estatística para afirmar que o kNN é estatisticamente superior ao GaussianNB. 
     \\ \\
     Código utilizado:
     \begin{lstlisting}[language=Python]
@@ -517,7 +539,9 @@ if hypothesis[1] < 0.05:
     print("The null hypothesis is rejected and kNN is statistically superior to GaussianNB")
     
 else:
-    print("The null hypothesis is not rejected and there is no statistical superiority between kNN and GaussianNB")
+    print("The null hypothesis is not rejected and there is no statistical evidence that kNN is superior to GaussianNB")
+
+print("p-value:", hypothesis[1])
     \end{lstlisting}
 
     \item O objetivo deste exercício é comparar a performance de dois classificadores : kNN com k=1 e kNN com k=5. 
@@ -596,18 +620,6 @@ experimental destes features fizemos um histograma para cada um deles e concluí
     \label{fig:ex3_histograms}
 \end{figure}
 
-
-Código utilizado:
-
-\begin{lstlisting}[language=Python]
-    ############ Exercise 3 ############
-    #1. The dataset is not normally distributed, which is an assumption of the Naive Bayes classifier.
-    #Histograms for each feature:
-    features.hist(figsize=(10,10),density=True)
-    plt.savefig('ex3_1_hist.png')
-    plt.show()
-\end{lstlisting}
-
 Para além disso, outro exemplo de uma dificuldade do Naive Bayes é a suposição de que as features são independentes. Para avaliar 
 se estas featuras eram independentes ou não, fizemos a seguinte matriz de correlação:
 
@@ -621,9 +633,38 @@ se estas featuras eram independentes ou não, fizemos a seguinte matriz de corre
 Ao observar a matriz de correlação, concluímos que apesar de algumas features se encontrarem muito pouco
 correladas, podendo por isso ser aproximadas como independentes (como por exemplo $pelvic\_radius$ e $pelvic\_tilt$), há outras
 que se encontram bastante correladas e consequentemente não podem ser aproximadas como independentes (como por exemplo $pelvic\_incidence$ e $sacral\_slope$).
+\\ \\
+Por fim, as contagens para cada classe não são as mesmas no total, o que pode introduzir viéses no classificador, por exemplo devido à probabilidade significativamente superior da classe Spondylolisthesis
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline 
+        Classe & Contagens Totais \\ \hline
+        Spondylolisthesis & 150 \\ \hline
+        Normal & 100 \\ \hline
+        Hernia & 60 \\ \hline
+    \end{tabular}
+\end{table}
 
 Código utilizado:
-
+\begin{lstlisting}[language=Python]
+    ############ Exercise 3 ############
+    #1. The dataset is not normally distributed, which is an assumption of the Naive Bayes classifier.
+    #Histograms for each feature:
+    features.hist(figsize=(10,10),density=True)
+    plt.savefig('ex3_1_hist.png')
+    plt.show()
+    #2. Check if variables are independent: correlation matrix
+df = df.drop('class', axis=1)
+df.corr(method='pearson')
+sns.heatmap(df.corr(method='pearson'), annot=True)
+plt.savefig('ex3_3_coormatrix.png')
+plt.show()
+    #3. Check number of counts for each class
+df['class'].value_counts()
+print(df['class'].value_counts())
+\end{lstlisting}
 
 \end{enumerate}
 
