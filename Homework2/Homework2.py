@@ -34,12 +34,10 @@ gaussNB = GaussianNB()
 # KNN
 knn_predictor = KNeighborsClassifier(n_neighbors=5)
 
-# iterate per fold
 for train_k, test_k in folds.split(features, target):
     X_train, X_test = features.iloc[train_k], features.iloc[test_k]
     y_train, y_test = target.iloc[train_k], target.iloc[test_k]
     
-    ## train and assess
     gaussNB.fit(X_train, y_train)
     y_pred_gauss = gaussNB.predict(X_test)
     acc_folds_gauss.append(round(metrics.accuracy_score(y_test, y_pred_gauss),2))
@@ -71,7 +69,9 @@ else:
 
 ############ Exercise 2 ############
 
-#Initialize the cumulative confusion matrices
+print('--------------Exercise 2-----------------')
+
+
 cum_conf_matrix1 = np.zeros((3,3))
 cum_conf_matrix5 = np.zeros((3,3))
 
@@ -79,31 +79,25 @@ for train_k, test_k in folds.split(features, target):
     X_train, X_test = features.iloc[train_k], features.iloc[test_k]
     y_train, y_test = target.iloc[train_k], target.iloc[test_k]
     
-    ## train and assess
     knn1 = KNeighborsClassifier(n_neighbors=1,weights='uniform',metric='euclidean')
     knn5 = KNeighborsClassifier(n_neighbors=5,weights='uniform',metric='euclidean')
 
     knn1.fit(X_train, y_train)
     knn5.fit(X_train, y_train)
 
-    # Make predictions
     y_pred1 = knn1.predict(X_test)
     y_pred5 = knn5.predict(X_test)
 
-    # Calculate confusion matrices
     conf_matrix1 = confusion_matrix(y_test, y_pred1)
     conf_matrix5 = confusion_matrix(y_test, y_pred5)
 
-    # Calculate cumulative confusion matrices
     cum_conf_matrix1 += conf_matrix1
     cum_conf_matrix5 += conf_matrix5
 
-#Calculate the difference between the two confusion matrices
 conf_matrix_diff = cum_conf_matrix1 - cum_conf_matrix5
 
 confusion1 = pd.DataFrame(conf_matrix_diff, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
 
-#Plotting 
 plt.figure(figsize=(10, 5))
 heatmap = plt.imshow(conf_matrix_diff,cmap="coolwarm", interpolation='nearest')
 plt.title('Differences between the two cumulative confusion matrices (k1 - k5)')
@@ -126,15 +120,10 @@ plt.show()
 
 print('--------------Exercise 3-----------------')
 
-#Considering the unique properties of column_diagnosis, identify three possible difficulties of naïve Bayes when learning from the given dataset.
-
-#1. The dataset is not normally distributed, which is an assumption of the Naive Bayes classifier.
 #Histograms for each feature:
 features.hist(figsize=(10,10),density=True)
 plt.savefig('ex3_1_hist.png')
 plt.show()
-#Gaussian fits for each feature
-
 
 #3. The dataset is not balanced, which can lead to a bias in the classifier.
 df['class'].value_counts()
