@@ -243,8 +243,6 @@ Priors:
     P(B) = \frac{4}{7}
 \end{equation*}
 
-
-
 \item Uma vez que o denominador é o mesmo para todas para saber qual a classe mais provável, basta comparar os numeradores das probabilidades.
 
 \begin{equation*}
@@ -354,7 +352,12 @@ Para este exercício foram utilizadas as seguintes fórmulas:
 Para discretizar a variável $y_2$, considerando equal-width, é necessário dividir o intervalo $[0,1]$ em 2 partes iguais. 
 Assim, os intervalos são: $[0,0.5)$, $[0.5,1]$. \\
 
-Para cada observação, $y_2$ pode assumir os valores 0 ou 1: se $y_2 \in [0,0.5)$, $y_2$  \\
+Para cada observação, $y_2$ pode assumir os valores 0 ou 1: 
+\begin{itemize}
+    \item $y_2 \in [0,0.5) \implies y_2 \rightarrow 0$ 
+    \item $y_2 \in [0.5,1] \implies y_2 \rightarrow 1$ 
+
+\end{itemize}
 
 \begin{table}[H]
     \centering
@@ -372,32 +375,32 @@ Porque não há shuffling:
 \begin{table}[H]
     \begin{minipage}[b]{0.3\linewidth}
     \centering
-    \captionof{table}{1º Fold}
     \begin{tabular}{cccccc}
         $x_1$ & 0 & 1 & 1 & 0 & A \\ \hline
         $x_2$ & 0 & 1 & 0 & 1 & A \\ \hline
         $x_3$ & 1 & 0 & 1 & 2 & A
-        \end{tabular}
+    \end{tabular}
+    \captionof*{table}{1º Fold}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.3\linewidth}
     \centering
-    \captionof{table}{2º Fold}
     \begin{tabular}{cccccc}
         $x_1$ & 0 & 0 & 0 & 1 & B \\ \hline
         $x_2$ & 0 & 0 & 0 & 0 & B \\ \hline
         $x_3$ & 0 & 1 & 0 & 2 & B
-        \end{tabular}
+    \end{tabular}
+    \captionof*{table}{2º Fold}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.3\linewidth}
     \centering
-    \captionof{table}{3º Fold}
     \begin{tabular}{cccccc}
         $x_1$ & 1 & 0 & 1 & 1 & B \\ \hline
         $x_2$ & 1 & 0 & 1 & 0 & A \\ \hline
         $x_3$ & 1 & 0 & 1 & 1 & B
-        \end{tabular}
+    \end{tabular}
+    \captionof*{table}{3º Fold}
     \end{minipage}
     \hfill
 
@@ -518,6 +521,7 @@ for train_k, test_k in folds.split(features, target):
 print("Fold accuracies GaussianNB:", acc_folds_gauss)
 print("Fold accuracies kNN:", acc_folds_knn)
 
+# Plotting
 plt.boxplot([acc_folds_gauss, acc_folds_knn], labels=['GaussianNB', 'kNN'])
 plt.title('Accuracies for GaussianNB and kNN')
 plt.xlabel('Classifiers')
@@ -527,17 +531,15 @@ plt.show()
         \end{lstlisting}
 
     
-    (b) Concluímos que a hipótese nula (H0: a médias das duas populações de accuracies é igual) não é rejeitada (o valor do \textit{p-value} é superior a 0.05), logo não há evidência estatística para afirmar que o kNN é estatisticamente superior ao GaussianNB. 
+    (b) Para este exercídio definimos uma hipótese nula (H0: as médias das duas populações de accuracies são iguais) e uma hipótese alternativa (H1: a média da população das accuracies de kNN é superior à de Naive Bayes). Concluímos que a hipótese nula  não é rejeitada porque o valor do \textit{p-value} é superior a 0.05, logo não há evidência estatística para afirmar que o kNN é estatisticamente superior ao GaussianNB. 
     \\ \\
     Código utilizado:
     \begin{lstlisting}[language=Python]
 #b) 
-Null Hypothesis: kNN is not statistically superior to GaussianNB
 hypothesis = stats.ttest_rel(acc_folds_knn, acc_folds_gauss, alternative='greater')
 
 if hypothesis[1] < 0.05:
     print("The null hypothesis is rejected and kNN is statistically superior to GaussianNB")
-    
 else:
     print("The null hypothesis is not rejected and there is no statistical evidence that kNN is superior to GaussianNB")
 
@@ -553,60 +555,56 @@ print("p-value:", hypothesis[1])
         \label{fig:ex2a}
     \end{figure}
 
-    CONCLUSÕESSSSS FAAAAAFIIIIIII
+    Na diagonal, um valor igual a zero diz que ambos os classificadores tiveram o mesmo número de classificações corretas nessas classes. Se o valor for positivo, o kNN com k=1 (kNN1) teve um maior número de classificações corretas e se o valor for negativo, o outro classificador (kNN5) teve um maior número de classificações corretas. Se os valores fora da diagonal forem positivos, indica que kNN1 errou mais frequentemente e se forem negativos, implica o contrário. 
 
+Para este caso específico, é possivel inferir que o kNN1 funciona melhor para a classe 'Normal', enquanto que o kNN5 obteve mais classificações corretas para a classe 'Hernia' e 'Spondylolisthesis'. É importante realçar que o kNN5 tem dificuldade em classificar as observações que seriam Normal, trocando as mesmas por Hernia.
+
+    Código utilizado:
     \begin{lstlisting}[language=Python]
-        ############ Exercise 2 ############
+############ Exercise 2 ############
 
-        #Initialize the cumulative confusion matrices
-        cum_conf_matrix1 = np.zeros((3,3))
-        cum_conf_matrix5 = np.zeros((3,3))
+#Initialize the cumulative confusion matrices
+cum_conf_matrix1 = np.zeros((3,3))
+cum_conf_matrix5 = np.zeros((3,3))
         
-        for train_k, test_k in folds.split(features, target):
-            X_train, X_test = features.iloc[train_k], features.iloc[test_k]
-            y_train, y_test = target.iloc[train_k], target.iloc[test_k]
-            
-            ## train and assess
-            knn1 = KNeighborsClassifier(n_neighbors=1,weights='uniform',metric='euclidean')
-            knn5 = KNeighborsClassifier(n_neighbors=5,weights='uniform',metric='euclidean')
-        
-            knn1.fit(X_train, y_train)
-            knn5.fit(X_train, y_train)
-        
-            # Make predictions
-            y_pred1 = knn1.predict(X_test)
-            y_pred5 = knn5.predict(X_test)
-        
-            # Calculate confusion matrices
-            conf_matrix1 = confusion_matrix(y_test, y_pred1)
-            conf_matrix5 = confusion_matrix(y_test, y_pred5)
-        
-            # Calculate cumulative confusion matrices
-            cum_conf_matrix1 += conf_matrix1
-            cum_conf_matrix5 += conf_matrix5
-        
-        #Calculate the difference between the two confusion matrices
-        conf_matrix_diff = cum_conf_matrix1 - cum_conf_matrix5
-        
-        confusion1 = pd.DataFrame(conf_matrix_diff, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
-        
-        #Plotting 
-        plt.figure(figsize=(10, 5))
-        heatmap = plt.imshow(conf_matrix_diff,cmap="coolwarm", interpolation='nearest')
-        plt.title('Differences between the two cumulative confusion matrices (k1 - k5)')
-        plt.xlabel('Predicted label')
-        plt.xticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
-        plt.yticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
-        plt.ylabel('True label')
-        
-        cbar = plt.colorbar(heatmap)
-        cbar.set_label('Difference Magnitude', rotation=90)
-        
-        for i in range(conf_matrix_diff.shape[0]):
-            for j in range(conf_matrix_diff.shape[1]):
-                plt.text(j, i, str(int(conf_matrix_diff[i, j])), ha='center', va='center', color='black')
-        plt.savefig('ex2_cummatrix.png')
-        plt.show()
+for train_k, test_k in folds.split(features, target):
+    X_train, X_test = features.iloc[train_k], features.iloc[test_k]
+    y_train, y_test = target.iloc[train_k], target.iloc[test_k]  
+    # Train and assess
+    knn1 = KNeighborsClassifier(n_neighbors=1,weights='uniform',metric='euclidean')
+    knn5 = KNeighborsClassifier(n_neighbors=5,weights='uniform',metric='euclidean')
+    knn1.fit(X_train, y_train)
+    knn5.fit(X_train, y_train)
+    # Make predictions
+    y_pred1 = knn1.predict(X_test)
+    y_pred5 = knn5.predict(X_test)
+    # Calculate confusion matrices
+    conf_matrix1 = confusion_matrix(y_test, y_pred1)
+    conf_matrix5 = confusion_matrix(y_test, y_pred5)
+    # Calculate cumulative confusion matrices
+    cum_conf_matrix1 += conf_matrix1
+    cum_conf_matrix5 += conf_matrix5
+
+#Calculate the difference between the two confusion matrices
+conf_matrix_diff = cum_conf_matrix1 - cum_conf_matrix5
+
+confusion1 = pd.DataFrame(conf_matrix_diff, index=knn1.classes_, columns=['Predicted Hernia', 'Predicted Normal', 'Predicted Spondylolisthesis'])
+
+#Plotting 
+plt.figure(figsize=(10, 5))
+heatmap = plt.imshow(conf_matrix_diff,cmap="coolwarm", interpolation='nearest')
+plt.title('Differences between the two cumulative confusion matrices (k1 - k5)')
+plt.xlabel('Predicted label')
+plt.xticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
+plt.yticks([0, 1, 2], ['Hernia', 'Normal', 'Spondylolisthesis'])
+plt.ylabel('True label')
+cbar = plt.colorbar(heatmap)
+cbar.set_label('Difference Magnitude', rotation=90)
+for i in range(conf_matrix_diff.shape[0]):
+    for j in range(conf_matrix_diff.shape[1]):
+        plt.text(j, i, str(int(conf_matrix_diff[i, j])), ha='center', va='center', color='black')
+plt.savefig('ex2_cummatrix.png')
+plt.show()
     \end{lstlisting}
     
 \item Apesar de ser uma abordagem fácil e rápida, o Naive Bayes apresenta algumas desvantagens para este dataset. 
@@ -649,19 +647,21 @@ Por fim, as contagens para cada classe não são as mesmas no total, o que pode 
 
 Código utilizado:
 \begin{lstlisting}[language=Python]
-    ############ Exercise 3 ############
-    #1. The dataset is not normally distributed, which is an assumption of the Naive Bayes classifier.
-    #Histograms for each feature:
-    features.hist(figsize=(10,10),density=True)
-    plt.savefig('ex3_1_hist.png')
-    plt.show()
-    #2. Check if variables are independent: correlation matrix
+############ Exercise 3 ############
+
+#Histograms for each feature:
+features.hist(figsize=(10,10),density=True)
+plt.savefig('ex3_1_hist.png')
+plt.show()
+
+#2. Check if variables are independent: correlation matrix
 df = df.drop('class', axis=1)
 df.corr(method='pearson')
 sns.heatmap(df.corr(method='pearson'), annot=True)
 plt.savefig('ex3_3_coormatrix.png')
 plt.show()
-    #3. Check number of counts for each class
+
+#3. Check number of counts for each class
 df['class'].value_counts()
 print(df['class'].value_counts())
 \end{lstlisting}
