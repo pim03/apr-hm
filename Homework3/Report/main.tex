@@ -292,6 +292,18 @@ Primeiro é necessário realizar (forward) propagation para obter os valores das
 
 - Para a segunda observação:
 
+\begin{equation*}
+    z^{[1]}_2 = W^{[1]} \cdot x^{[0]}_2 + b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \implies x^{[1]}_2 = \phi(z^{[1]}_2)= \begin{bmatrix} -0.90515 \\ -0.90515 \\ -0.90515 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    z^{[2]}_2 = W^{[2]} \cdot x^{[1]}_2 + b^{[2]} = \begin{bmatrix} -1.71545 \\ -4.43089 \end{bmatrix} \implies x^{[2]}_2 = \phi(z^{[2]}_2)= \begin{bmatrix} -0.99343 \\ -0.99956 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    z^{[3]}_2 = W^{[3]} \cdot x^{[2]}_2 + b^{[3]} = \begin{bmatrix} -0.992996 \\ -2.979861 \\ -0.992996 \end{bmatrix} \implies x^{[3]}_2 = \phi(z^{[3]}_2)= \begin{bmatrix} -0.98652 \\ -0.99814\\ -0.98652 \end{bmatrix}
+\end{equation*}
+
 Depois é necessário realizar (backward) propagation dos erros da última camada para a primeira:
 
 - Para a primeira observação:
@@ -310,9 +322,54 @@ Depois é necessário realizar (backward) propagation dos erros da última camad
 
 - Para a segunda observação:
 
+\begin{equation*}
+    \delta^{[3]}_2 = (x^{[3]}_2 - t_2) \circ \phi'(z^{[3]}_2) = \begin{bmatrix} -0.026596 \\ -0.001854 \\ -0.01321 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \delta^{[2]}_2 = (W^{[3]})^T \cdot \delta^{[3]}_2 \circ \phi'(z^{[2]}_2) = \begin{bmatrix} -2.9697\cdot 10^{-4} \\ -1.8157\cdot 10^{-5} \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \delta^{[1]}_2 = (W^{[2]})^T \cdot \delta^{[2]}_2 \circ \phi'(z^{[1]}_2) = \begin{bmatrix} -2.8473\cdot 10^{-5} \\ -3.3395\cdot 10^{-5} \\ -2.8473\cdot 10^{-5} \end{bmatrix}
+\end{equation*}
+
+Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um batch gradient descent update (with learning rate 0.1), a expressão para os pesos atualizados é dada por:
+
+\begin{equation*}
+    W^{[p]} = W^{[p]} - \eta \cdot (\delta^{[p]}_1 \cdot (x^{[p-1]}_1)^T + \delta^{[p]}_2 \cdot (x^{[p-1]}_2)^T)
+\end{equation*}
+
+\begin{equation*}
+    W^{[1]} = W^{[1]} - 0.1 \cdot (\delta^{[1]}_1 \cdot (x^{[0]}_1)^T + \delta^{[1]}_2 \cdot (x^{[0]}_2)^T) = \begin{bmatrix} 1.0071818 & 1.00717895 & 1.00717895 & 1.00717611 \\
+                                                                                                                            1.00887759 & 1.00887425 & 2.00887425 & 1.00887091 \\
+                                                                                                                            1.0071818 & 1.00717895 & 1.00717895 & 1.00717611 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    b^{[1]} = b^{[1]} - 0.1 \cdot (\delta^{[1]}_1 + \delta^{[1]}_2) = \begin{bmatrix} 1.0071818 \\ 1.00887759 \\ 1.0071818 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    W^{[2]} = W^{[2]} - 0.1 \cdot (\delta^{[2]}_1 \cdot (x^{[1]}_1)^T + \delta^{[2]}_2 \cdot (x^{[1]}_2)^T) = \begin{bmatrix} 1.00471224 & 1.00778345 & 1.00471224 \\
+                                                                                                                            1.00369595 & 4.00609219 & 1.00369595 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    b^{[2]} = b^{[2]} - 0.1 \cdot (\delta^{[2]}_1 + \delta^{[2]}_2) = \begin{bmatrix} 1.01028494 \\ 1.00800323 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    W^{[3]} = W^{[3]} - 0.1 \cdot (\delta^{[3]}_1 \cdot (x^{[2]}_1)^T + \delta^{[3]}_2 \cdot (x^{[2]}_2)^T) = \begin{bmatrix} 0.99310456 & 1.00066557 \\
+                                                                                                                            2.99674951 & 1.00221106 \\
+                                                                                                                            0.99443459 & 1.00200382 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    b^{[3]} = b^{[3]} - 0.1 \cdot (\delta^{[3]}_1 + \delta^{[3]}_2) = \begin{bmatrix} 1.01003842 \\ 1.00550496 \\ 1.00869959 \end{bmatrix}
+\end{equation*}
+
 \end{enumerate}
-
-
 
 \clearpage
 \section*{Programming - Código Python e Resultados Obtidos}
