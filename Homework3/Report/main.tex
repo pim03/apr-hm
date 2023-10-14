@@ -1,0 +1,244 @@
+\documentclass[a4paper,12pt]{article} % This defines the style of your paper
+
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+
+% Unfortunately, LaTeX has a hard time interpreting German Umlaute. The following two lines and packages should help. If it doesn't work for you please let me know.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{subcaption}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+\usepackage{amsmath}
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+\usepackage{rotating}
+\usepackage{cancel}
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\renewcommand{\arraystretch}{1.5}
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize Homework 3}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Joana Pimenta, Rodrigo Laia} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+\begin{document}
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}} % This is a simple tabular environment to align your text nicely 
+{\large \bf Aprendizagem} \\
+Instituto Superior Técnico \\ outubro  de 2023  \\ \\ 
+\hline % \hline produces horizontal lines.
+\\
+\end{tabular} % Our tabular environment ends here.
+
+\vspace*{0.3cm} % Now we want to add some vertical space in between the line and our title.
+
+\begin{center} % Everything within the center environment is centered.
+	{\Large \bf Homework 3 - Report} % <---- Don't forget to put in the right number
+	\vspace{2mm}
+	
+        % YOUR NAMES GO HERE
+	{\bf Joana Pimenta (103730), Rodrigo Laia (102674) } % <---- Fill in your names here!
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Up until this point you only have to make minor changes for every week (Number of the homework). Your write up essentially starts here.
+
+\section*{Pen and Paper}
+\begin{enumerate}
+
+\item 
+
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+%  & $y_1$ & $y_2$ & $y_{out}$ \\ \hline
+% $x_1$ & 0.7 & -0.3 & 0.8 \\ \hline
+% $x_2$ & 0.4 & 0.5 & 0.6 \\ \hline
+% $x_3$ & -0.2 & 0.8 & 0.3 \\ \hline
+% $x_4$ & -0.4 & 0.3 & 0.3 \\ \hline
+% \end{tabular}
+% \end{table}
+
+
+%%%%%%%%%%%%%%%%%% a) %%%%%%%%%%%%%%%%%%%
+
+a) Uma função radial basis permite mapear observações para um novo espaço 
+baseando-se na distância entre as observações e os centróides.
+
+\begin{equation}
+    \phi_j (x) = \exp\left(-\frac{\left\|\vec{x}-c_j\right\|^2}{2}\right)
+\end{equation}
+
+Cálculo dos vetores transformados:
+
+\begin{equation}
+\vec{\phi_i} = \left( \exp\left(-\frac{\left\|\vec{x}_i-c_1\right\|^2}{2}\right)   , \exp\left(-\frac{\left\|\vec{x}_i-c_2\right\|^2}{2}\right)  , \exp\left(-\frac{\left\|\vec{x}_i-c_3\right\|^2}{2}\right)   \right)
+\end{equation}
+
+Assim os vetores transformados obtidos foram:
+\begin{equation*}
+    \phi_1 = (0.74826,0.74826,0.10127)
+\end{equation*}
+
+\begin{equation*}
+    \phi_2 = (0.81465,0.27117,0.33121)
+\end{equation*}
+
+\begin{equation*}
+    \phi_3 = (0.71177,0.09633,0.71177)
+\end{equation*}
+
+Para fazer regressão de Ridge é necessário minimizar a função de erro:
+
+\begin{equation}
+    E(\vec{w}) = \frac{1}{2} \sum_{i=1}^{n} (z_i - \vec{w}^T \cdot x_i)^2 + \frac{\lambda}{2} ||\vec{w}||^2
+\end{equation}
+
+Sendo que isso é equivalente a calcular $\vec{w}$ através da seguinte fórmula:
+
+\begin{equation}
+    \vec{w} = (X^T\cdot X + \lambda \cdot I)^{-1} \cdot X^T \cdot \vec{z}
+\end{equation}
+
+Uma vez que estamos a trabalhar com uma transformação de espaços, é necessário
+calcular a matriz transformada $\Phi$ colocando para cada linha um 1 na primeira
+coluna e depois o vetor transformado de cada observação. Utilizamos então as 
+fórmulas acima com $\Phi$ no lugar de $X$, assumindo que após a transformação a 
+relação entre as variáveis e o target é linear.\\ 
+
+Cálculos intermédios:
+
+\begin{equation*}
+    \Phi = 
+\begin{bmatrix}
+    1 & 0.74826 & 0.74826 & 0.10127 \\ 1 & 0.81465 & 0.27117 & 0.33121 \\ 1 & 0.71177 & 0.09633 & 0.71177 \\ 1 & 0.88250 & 0.16122 & 0.65377
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \Phi^T = \begin{bmatrix}
+    1 & 1 & 1 & 1 \\ 0.74826 & 0.81465 & 0.71177 & 0.88250 \\ 0.74826 & 0.27117 & 0.09633 & 0.16122 \\ 0.10127 & 0.33121 & 0.71177 & 0.65377
+    \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    (\Phi^T\cdot \Phi + \lambda \cdot I)^{-1} \cdot \Phi^T = \begin{bmatrix}  0.14105 & 0.35022 & 0.35575 & -0.30185 \\
+        -0.09064 & 0.43823 & -0.50361 & 0.53370 \\
+         0.99394 & -0.50615  & -0.13690 & -0.16477 \\
+        -0.31222 & -0.65246 & 0.72647  &  0.42436 \\ \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \vec{w} = \begin{bmatrix}  0.33914 \\ 0.19945 \\ 0.40096 \\ -0.29600 \end{bmatrix}
+\end{equation*}
+
+Assim, a regressão de Ridge obtida foi:
+
+\begin{equation*}  
+    \hat{z} = 0.33914 + 0.19945 \cdot \phi_1 + 0.40096 \cdot \phi_2 - 0.29600 \cdot \phi_3
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%% b) %%%%%%%%%%%%%%%%%%%
+b)
+Para calcular o RMSE (root mean square error) foi utilizada a seguinte fórmula:
+
+\begin{equation}
+    RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (z_i - \hat{z}_i)^2}
+\end{equation}
+
+\begin{equation}
+    \hat{z}_i = \vec{w}^T \cdot \vec{\phi_i}
+\end{equation}
+ 
+Targets estimados:
+\begin{equation*}
+    \hat{z}_1 = 0.75843
+\end{equation*}
+
+\begin{equation*}
+    \hat{z}_2 = 0.51231
+\end{equation*}
+
+\begin{equation*}
+    \hat{z}_3 = 0.30905
+\end{equation*}
+
+\begin{equation*}
+    \hat{z}_4 = 0.38629
+\end{equation*}
+
+Assim, o RMSE obtido foi:
+\begin{equation*}
+    RMSE = 0.06508
+\end{equation*}
+
+\end{enumerate}
+
+\clearpage
+\section*{Programming - Código Python e Resultados Obtidos}
+
+\begin{enumerate}
+\item 
+
+\end{enumerate}
+
+\end{document}
