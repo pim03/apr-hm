@@ -231,7 +231,88 @@ Assim, o RMSE obtido foi:
     RMSE = 0.06508
 \end{equation*}
 
+\item
+É importante referir que para este exercício se utilizou a seguinte notação: $L^{\text{label}}_{observation}$
+
+As fórmulas utilizadas foram:
+
+\begin{equation*}
+    \vec{x}^{[p]} = \phi(\vec{W}^{[p]} \cdot \vec{x}^{[p-1]} + \vec{b}^{[p]})
+\end{equation*}
+
+\begin{equation*}
+    \vec{\delta}^{[p]} = \frac{\partial E}{\partial \vec{x}^{[p]}} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{x}^{[p]} - \vec{t}) \circ \phi'(\vec{z}^{[p]}) \text{, para a última layer}
+\end{equation*}
+
+\begin{equation*}
+    \vec{\delta}^{[p]} = (\frac{\partial \vec{z}^{[p+1]}}{\partial \vec{x}^{[p]}})^T \cdot \vec{\delta}^{[p+1]} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{W}^{[p+1]})^T \cdot \vec{\delta}^{[p+1]} \circ \phi'(\vec{z}^{[p]}) \text{, para as outras layers}
+\end{equation*}
+
+\begin{equation*}
+    \vec{W}^{[p]} = \vec{W}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{W}^{[p]}} = \vec{W}^{[p]} - \eta \cdot \vec{\delta}^{[p]} \cdot (\vec{x}^{[p-1]})^T
+\end{equation*}
+
+\begin{equation*}
+    \vec{b}^{[p]} = \vec{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{b}^{[p]}} = \vec{b}^{[p]} - \eta \cdot \vec{\delta}^{[p]}
+\end{equation*}
+
+Estas expressões são válidas para squared error loss function.
+
+Dados necessários para começar o algoritmo:
+
+\begin{equation*}
+    \vec{x}^{[0]}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} , t_1 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} , \vec{x}^{[0]}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \\ -1 \end{bmatrix} , t_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}, W^{[2]} = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 4 & 1 \end{bmatrix} , b^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , b^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \phi = tanh(0.5x -2) \text{, } \phi' = 0.5 * (1 - tanh^2(0.5x -2))
+\end{equation*}
+
+POR GUIA DE REDE!!!!!!!!
+
+Primeiro é necessário realizar (forward) propagation para obter os valores das observações:
+
+- Para a primeira observação:
+
+\begin{equation*}
+    z^{[1]}_1 = W^{[1]} \cdot x^{[0]}_1 + b^{[1]} = \begin{bmatrix} 5 \\ 6 \\ 5 \end{bmatrix} \implies x^{[1]}_1 = \phi(z^{[1]}_1)= \begin{bmatrix} 0.46212 \\ 0.76159 \\ 0.46212 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    z^{[2]}_1 = W^{[2]} \cdot x^{[1]}_1 + b^{[2]} = \begin{bmatrix} 2.68583 \\ 4.97061 \end{bmatrix} \implies x^{[2]}_1 = \phi(z^{[2]}_1)= \begin{bmatrix} -0.57642 \\ 0.45048 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    z^{[3]}_1 = W^{[3]} \cdot x^{[2]}_1 + b^{[3]} = \begin{bmatrix} 0.87406 \\ -0.27878 \\ 0.87406 \end{bmatrix} \implies x^{[3]}_1 = \phi(z^{[3]}_1)= \begin{bmatrix} -0.9159 \\ -0.97266 \\ -0.9159 \end{bmatrix}
+\end{equation*}
+
+- Para a segunda observação:
+
+Depois é necessário realizar (backward) propagation dos erros da última camada para a primeira:
+
+- Para a primeira observação:
+
+\begin{equation*}
+    \delta^{[3]}_1 = (x^{[3]}_1 - t_1) \circ \phi'(z^{[3]}_1) = \begin{bmatrix} -0.07379 \\ -0.05320 \\ -0.07379 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \delta^{[2]}_1 = (W^{[3]})^T \cdot \delta^{[3]}_1 \circ \phi'(z^{[2]}_1) = \begin{bmatrix} -0.10255 \\ -0.08001 \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \delta^{[1]}_1 = (W^{[2]})^T \cdot \delta^{[2]}_1 \circ \phi'(z^{[1]}_1) = \begin{bmatrix} -0.07179 \\ -0.08874 \\ -0.07179 \end{bmatrix}
+\end{equation*}
+
+- Para a segunda observação:
+
 \end{enumerate}
+
+
 
 \clearpage
 \section*{Programming - Código Python e Resultados Obtidos}

@@ -127,7 +127,7 @@ print('delta1_1: \n', delta1_1)
 ### second observation ###
 
 z2_1 = np.dot(w1, x2) + b1
-print('z1_1: \n', z2_1)
+print('z2_1: \n', z2_1)
 x2_1 = phi(z2_1)
 print('x2_1: \n', x2_1)
 
@@ -179,4 +179,15 @@ print('w2_new: \n', w2_new)
 
 w3_new = w3 - 0.1 * (dE1_dw3 + dE2_dw3)
 print('w3_new: \n', w3_new)
+
+### final biases ###
+
+b1_new = b1 - 0.1 * (delta1_1 + delta2_1)
+print('b1_new: \n', b1_new)
+
+b2_new = b2 - 0.1 * (delta1_2 + delta2_2)
+print('b2_new: \n', b2_new)
+
+b3_new = b3 - 0.1 * (delta1_3 + delta2_3)
+print('b3_new: \n', b3_new)
 
