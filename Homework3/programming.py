@@ -50,6 +50,9 @@ mae = np.mean(abs(target_test - y_pred))
 #Calculate new MAE
 mae_new = np.mean(abs(target_test - rounded_and_bounded_predictions))
 
+print('The previous MAE is: ', mae)
+print('The new MAE is: ', mae_new)
+
 if mae_new < mae:
     print('The new MAE is lower than the previous one')
 elif mae_new > mae:

@@ -375,7 +375,120 @@ Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um 
 \section*{Programming - Código Python e Resultados Obtidos}
 
 \begin{enumerate}
-\item 
+
+\item Utilizamos um training-test split de 80-20, ou seja 80\% dos dados foram utilizados para treinar o modelo e 20\% para testá-lo.\\ 
+De modo a minimizar o erro devido à aleatoriedade do algoritmo, o output final considerado foi a média de 10 outputs de 10 regressores MLP estocásticos com sementes de 0 a 9.
+Os resíduos foram calculados através da seguinte fórmula:
+
+\begin{equation}
+    \text{residual} = | z - \hat{z} |
+\end{equation}
+
+O histograma dos resíduos encontra-se representado na seguinte figura:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ex1_histogram.png}
+\end{figure}
+
+Observando o histograma, conclui-se que a frequência diminui significativamente 
+com o crescimento do valor absoluto dos resíduos. Isto significa que a maior parte
+da diferença entre o valor real e o valor previsto pelo MLP é pequena.\\ \\
+
+Códio Utilizado:
+
+\begin{lstlisting}[language=Python]
+import pandas as pd, numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPRegressor
+
+# Reading the csv file
+df = pd.read_csv('Homework3/winequality-red.csv')
+# Separating the variables from the target
+variables = df.drop("quality", axis= 1)
+target = df['quality']
+
+# Training Test Split
+variables_train, variables_test, target_train, target_test= train_test_split(variables, target, 
+                                                                            train_size=0.8, stratify=target, random_state=0)
+
+y_pred = np.zeros(len(target_test))
+
+# Average the mlp regressor
+for i in range(10):
+    # Learn the MLP regressor 
+    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', early_stopping=True, validation_fraction=0.2, random_state=i)
+    #Predict output
+    y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
+
+y_pred = y_pred/10
+
+######### Exercise 1 ##########
+
+# Calculate the residues
+residues = abs(target_test - y_pred)
+# Plot the residues
+
+plt.hist(residues,bins=20)
+plt.title('Histogram of the residues')
+plt.xlabel('Residues')
+plt.ylabel('Frequency')
+plt.savefig('ex1_histogram.png')
+plt.show()
+    
+\end{lstlisting}
+
+\item Uma vez que sabemos que a qualidade do vinho tem de ser um inteiro entre 
+1 e 10 podemos arredondar os valores previstos pelo MLP para o inteiro mais próximo
+e transformar os valores menores que 1 em 1 e os maiores que 10 em 10.\\ Comparando 
+os valores do erro médio absoluto (MAE) antes e depois deste processo conclui-se 
+que o MAE antes (0.51167) é maior do que o novo (0.45625). Assim, podemos dizer que 
+este processo melhora o desempenho do MLP.\\ \\
+
+Código Utilizado:
+
+\begin{lstlisting}[language=Python]
+
+########## Exercise 2 ##########
+
+# Round and bound the predictions
+rounded_predictions = np.round(y_pred)
+min_value = 1
+max_value = 10 
+rounded_and_bounded_predictions = np.clip(rounded_predictions, min_value, max_value)
+
+# Calculate previous MAE
+mae = np.mean(abs(target_test - y_pred))
+#Calculate new MAE
+mae_new = np.mean(abs(target_test - rounded_and_bounded_predictions))
+
+print('The previous MAE is: ', mae)
+print('The new MAE is: ', mae_new)
+
+if mae_new < mae:
+    print('The new MAE is lower than the previous one')
+elif mae_new > mae:
+    print('The new MAE is higher than the previous one')
+else:
+    print('The new MAE is equal to the previous one')
+\end{lstlisting}
+
+\item Até agora foram considerados MLP's com early stopping. Neste exercício vamos
+ver qual é o efeito do número máximo de iterações no desempenho do MLP, avaliado através do RMSE.
+Assim foram considerados 4 MLP's com números máximos de iterações iguais a 20, 50, 100 e 200. 
+Da mesma maneira que antes, o modelo final considerado foi a média de 10 modelos com sementes de 0 a 9. 
+No gráfico seguinte encontra-se representado o RMSE em função do número máximo de iterações.\\ \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{ex3_rmse.png}
+\end{figure}
+
+Observando o gráfico, conclui-se que o RMSE diminui significativamente com o aumento do número máximo de iterações.
+No entanto, essa diminuição abranda à medida que se aumenta o número máximo de iterações.\\ \\
+
+\item NAO SEI OQ E EARLY STOPPING ?????? 
 
 \end{enumerate}
 
