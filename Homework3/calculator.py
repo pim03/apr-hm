@@ -78,7 +78,7 @@ print('b1: \n', b1)
 t1 = np.array([[0], [1], [0]])
 print('t1: \n', t1)
 
-w2 = np.array([[1, 1, 1], [1, 4, 1]])
+w2 = np.array([[1, 4, 1], [1, 1, 1]])
 print('w2: \n', w2)
 b2 = np.array([[1], [1]])
 print('b2: \n', b2)
