@@ -18,7 +18,7 @@ y_pred = np.zeros(len(target_test))
 # Average the mlp regressor
 for i in range(10):
     # Learn the MLP regressor 
-    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', early_stopping=True, validation_fraction=0.2, random_state=i)
+    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
     #Predict output
     y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
 
@@ -68,7 +68,7 @@ for iter in [20,50,100,200]:
     y_pred = np.zeros(len(target_test))
     for i in range(10):
         # Learn the MLP regressor 
-        mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', max_iter = iter, validation_fraction=0.2, random_state=i)
+        mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', max_iter = iter, random_state=i)
         #Predict output
         y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
     y_pred = y_pred/10
