@@ -2,6 +2,7 @@ import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
+from sklearn import metrics
 
 # Reading the csv file
 df = pd.read_csv('Homework3/winequality-red.csv')
@@ -23,6 +24,8 @@ for seed in range(1,11):
 
 y_pred = y_pred/10
 first_rmse = np.sqrt(np.mean((target_test - y_pred)**2))
+
+print('ypred', y_pred)
 print('the average RMSE is', first_rmse)
 
 rmse_final = np.array([])
@@ -42,11 +45,12 @@ print('the average RMSE is', rmse_final)
 def const(x):
     return first_rmse
 
-
-plt.plot(number_of_iterations, rmse_final)
+plt.plot(number_of_iterations, rmse_final, '-o', label='RMSE')
 plt.hlines(first_rmse, xmin=min(number_of_iterations), xmax=max(number_of_iterations), colors='r', linestyles='dashed')
 plt.xlabel('Number of iterations') 
 plt.ylabel('RMSE')
 plt.title('RMSE vs number of iterations')
 plt.show()
+
+
 

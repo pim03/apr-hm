@@ -16,13 +16,14 @@ variables_train, variables_test, target_train, target_test= train_test_split(var
 y_pred = np.zeros(len(target_test))
 
 # Average the mlp regressor
-for i in range(10):
+for i in range(1, 11):
     # Learn the MLP regressor 
     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
     #Predict output
     y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
 
 y_pred = y_pred/10
+first_rmse = np.sqrt(np.mean((target_test - y_pred)**2))
 
 ######### Exercise 1 ##########
 
@@ -30,7 +31,7 @@ y_pred = y_pred/10
 residues = abs(target_test - y_pred)
 
 # Plot the residues
-plt.hist(residues,bins=20)
+plt.hist(residues, edgecolor='darkblue' ,bins=20)
 plt.title('Histogram of the residues')
 plt.xlabel('Residues')
 plt.ylabel('Frequency')
@@ -63,21 +64,26 @@ else:
 ########## Exercise 3 ##########
 
 # Calculate the RMSE for each number of iterations
-rmse = []
-for iter in [20,50,100,200]:
+rmse_final = []
+iter_array = [20,50,100,200]
+for iter in iter_array:
     y_pred = np.zeros(len(target_test))
-    for i in range(10):
+    for i in range(1, 11):
         # Learn the MLP regressor 
         mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', max_iter = iter, random_state=i)
         #Predict output
         y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
     y_pred = y_pred/10
-    rmse.append(np.sqrt(np.mean((y_pred-target_test)**2)))
+    rmse_final.append(np.sqrt(np.mean((y_pred-target_test)**2)))
+
+def const(x):
+    return first_rmse
 
 # Plot the RMSE
-plt.plot([20,50,100,200], rmse, '-o')#, color='orange', markerfacecolor='black')
-plt.title('RMSE for different number of iterations')
-plt.xlabel('Number of iterations')
+plt.plot(iter_array, rmse_final, '-o', label='RMSE')
+plt.hlines(first_rmse, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
+plt.xlabel('Number of iterations') 
 plt.ylabel('RMSE')
+plt.title('RMSE vs number of iterations')
 plt.savefig('ex3_rmse.png')
 plt.show()
