@@ -274,8 +274,6 @@ Dados necessários para começar o algoritmo:
 
 POR GUIA DE REDE!!!!!!!!
 
-HÁ VALORES ERRADOS NOS CÁLCULOS INTERMÉDIOS 
-
 Primeiro é necessário realizar (forward) propagation para obter os valores das observações:
 
 - Para a primeira observação:
@@ -289,7 +287,7 @@ Primeiro é necessário realizar (forward) propagation para obter os valores das
 \end{equation*}
 
 \begin{equation*}
-    z^{[3]}_1 = W^{[3]} \cdot x^{[2]}_1 + b^{[3]} = \begin{bmatrix} 0.87406 \\ -1.77502679 \\ 0.87406 \end{bmatrix} \implies x^{[3]}_1 = \phi(z^{[3]}_1)= \begin{bmatrix} -0.9159 \\ -0.80493961\\ -0.9159 \end{bmatrix}
+    z^{[3]}_1 = W^{[3]} \cdot x^{[2]}_1 + b^{[3]} = \begin{bmatrix} 0.87406 \\ 1.77503 \\ 0.87406 \end{bmatrix} \implies x^{[3]}_1 = \phi(z^{[3]}_1)= \begin{bmatrix} -0.91590 \\ -0.80494\\ -0.91590 \end{bmatrix}
 \end{equation*}
 
 - Para a segunda observação:
@@ -303,7 +301,7 @@ Primeiro é necessário realizar (forward) propagation para obter os valores das
 \end{equation*}
 
 \begin{equation*}
-    z^{[3]}_2 = W^{[3]} \cdot x^{[2]}_2 + b^{[3]} = \begin{bmatrix} -0.992996 \\ -2.99212439 \\ -0.992996 \end{bmatrix} \implies x^{[3]}_2 = \phi(z^{[3]}_2)= \begin{bmatrix} -0.98652 \\ -0.9981635\\ -0.98652 \end{bmatrix}
+    z^{[3]}_2 = W^{[3]} \cdot x^{[2]}_2 + b^{[3]} = \begin{bmatrix} -0.99300 \\ -2.99212 \\ -0.99300 \end{bmatrix} \implies x^{[3]}_2 = \phi(z^{[3]}_2)= \begin{bmatrix} -0.98652 \\ -0.99816\\ -0.98652 \end{bmatrix}
 \end{equation*}
 
 Depois é necessário realizar (backward) propagation dos erros da última camada para a primeira:
@@ -311,29 +309,29 @@ Depois é necessário realizar (backward) propagation dos erros da última camad
 - Para a primeira observação:
 
 \begin{equation*}
-    \delta^{[3]}_1 = (x^{[3]}_1 - t_1) \circ \phi'(z^{[3]}_1) = \begin{bmatrix} -0.07379 \\ -0.31773455 \\ -0.07379 \end{bmatrix}
+    \delta^{[3]}_1 = (x^{[3]}_1 - t_1) \circ \phi'(z^{[3]}_1) = \begin{bmatrix} -0.07379 \\ -0.31773 \\ -0.07379 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[2]}_1 = (W^{[3]})^T \cdot \delta^{[3]}_1 \circ \phi'(z^{[2]}_1) = \begin{bmatrix} -0.43869681\\ -0.15535308 \end{bmatrix}
+    \delta^{[2]}_1 = (W^{[3]})^T \cdot \delta^{[3]}_1 \circ \phi'(z^{[2]}_1) = \begin{bmatrix} -0.43870\\ -0.15535 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[1]}_1 = (W^{[2]})^T \cdot \delta^{[2]}_1 \circ \phi'(z^{[1]}_1) = \begin{bmatrix} -0.23359459 \\ -0.40110496 \\ -0.23359459 \end{bmatrix}
+    \delta^{[1]}_1 = (W^{[2]})^T \cdot \delta^{[2]}_1 \circ \phi'(z^{[1]}_1) = \begin{bmatrix} -0.23359 \\ -0.40110 \\ -0.23359 \end{bmatrix}
 \end{equation*}
 
 - Para a segunda observação:
 
 \begin{equation*}
-    \delta^{[3]}_2 = (x^{[3]}_2 - t_2) \circ \phi'(z^{[3]}_2) = \begin{bmatrix} -0.026596 \\ -0.001831 \\ -0.01321 \end{bmatrix}
+    \delta^{[3]}_2 = (x^{[3]}_2 - t_2) \circ \phi'(z^{[3]}_2) = \begin{bmatrix} -0.02660 \\ -0.00183 \\ -0.01321 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[2]}_2 = (W^{[3]})^T \cdot \delta^{[3]}_2 \circ \phi'(z^{[2]}_2) = \begin{bmatrix} -1.97439373\cdot 10^{-5} \\ -2.72552280\cdot 10^{-4} \end{bmatrix}
+    \delta^{[2]}_2 = (W^{[3]})^T \cdot \delta^{[3]}_2 \circ \phi'(z^{[2]}_2) = \begin{bmatrix} -1.97439\cdot 10^{-5} \\ -2.72552\cdot 10^{-4} \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[1]}_2 = (W^{[2]})^T \cdot \delta^{[2]}_2 \circ \phi'(z^{[1]}_2) = \begin{bmatrix} -2.64099335\cdot 10^{-5} \\ -3.17617243\cdot 10^{-5} \\ -2.64099335\cdot 10^{-5} \end{bmatrix}
+    \delta^{[1]}_2 = (W^{[2]})^T \cdot \delta^{[2]}_2 \circ \phi'(z^{[1]}_2) = \begin{bmatrix} -2.64099\cdot 10^{-5} \\ -3.17617\cdot 10^{-5} \\ -2.64099\cdot 10^{-5} \end{bmatrix}
 \end{equation*}
 
 Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um batch gradient descent update (with learning rate 0.1), a expressão para os pesos atualizados é dada por:
@@ -343,32 +341,32 @@ Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um 
 \end{equation*}
 
 \begin{equation*}
-    W^{[1]} = W^{[1]} - 0.1 \cdot (\delta^{[1]}_1 \cdot (x^{[0]}_1)^T + \delta^{[1]}_2 \cdot (x^{[0]}_2)^T) = \begin{bmatrix} 1.0233621 & 1.02335946 & 1.02335946 & 1.02335682 \\
-                                                                                                                            1.04011367 & 1.0401105 & 2.0401105 & 1.04010732 \\
-                                                                                                                            1.0233621 & 1.02335946 & 1.02335946 & 1.02335682 \end{bmatrix}
+    W^{[1]} = W^{[1]} - 0.1 \cdot (\delta^{[1]}_1 \cdot (x^{[0]}_1)^T + \delta^{[1]}_2 \cdot (x^{[0]}_2)^T) = \begin{bmatrix} 1.02336 & 1.02336 & 1.02336 & 1.02336 \\
+                                                                                                                            1.04011 & 1.04011 & 2.04011 & 1.04011 \\
+                                                                                                                            1.02336 & 1.02336 & 1.02336 & 1.02336 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    b^{[1]} = b^{[1]} - 0.1 \cdot (\delta^{[1]}_1 + \delta^{[1]}_2) = \begin{bmatrix} 1.0233621 \\ 1.04011367 \\ 1.0233621 \end{bmatrix}
+    b^{[1]} = b^{[1]} - 0.1 \cdot (\delta^{[1]}_1 + \delta^{[1]}_2) = \begin{bmatrix} 1.02336 \\ 1.04011 \\ 1.02336 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[2]} = W^{[2]} - 0.1 \cdot (\delta^{[2]}_1 \cdot (x^{[1]}_1)^T + \delta^{[2]}_2 \cdot (x^{[1]}_2)^T) = \begin{bmatrix} 1.02027115 & 4.03340911 & 1.02027115 \\
-                                                                                                                            1.00715446 & 1.01180693 & 1.00715446 \end{bmatrix}
+    W^{[2]} = W^{[2]} - 0.1 \cdot (\delta^{[2]}_1 \cdot (x^{[1]}_1)^T + \delta^{[2]}_2 \cdot (x^{[1]}_2)^T) = \begin{bmatrix} 1.02027 & 4.03341 & 1.02027 \\
+                                                                                                                            1.00715 & 1.01181 & 1.00715 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    b^{[2]} = b^{[2]} - 0.1 \cdot (\delta^{[2]}_1 + \delta^{[2]}_2) = \begin{bmatrix} 1.04387166 \\ 1.01556256 \end{bmatrix}
+    b^{[2]} = b^{[2]} - 0.1 \cdot (\delta^{[2]}_1 + \delta^{[2]}_2) = \begin{bmatrix} 1.04387 \\ 1.01556 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[3]} = W^{[3]} - 0.1 \cdot (\delta^{[3]}_1 \cdot (x^{[2]}_1)^T + \delta^{[3]}_2 \cdot (x^{[2]}_2)^T) = \begin{bmatrix} 1.00066557 & 0.99310456 \\
-                                                                                                                            3.01413032 & 0.98150318 \\
-                                                                                                                            1.00200382 & 0.99443459 \end{bmatrix}
+    W^{[3]} = W^{[3]} - 0.1 \cdot (\delta^{[3]}_1 \cdot (x^{[2]}_1)^T + \delta^{[3]}_2 \cdot (x^{[2]}_2)^T) = \begin{bmatrix} 1.00067 & 0.99310 \\
+                                                                                                                            3.01413 & 0.98150 \\
+                                                                                                                            1.00200 & 0.99443 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    b^{[3]} = b^{[3]} - 0.1 \cdot (\delta^{[3]}_1 + \delta^{[3]}_2) = \begin{bmatrix} 1.01003842 \\ 1.0319566 \\ 1.00869959 \end{bmatrix}
+    b^{[3]} = b^{[3]} - 0.1 \cdot (\delta^{[3]}_1 + \delta^{[3]}_2) = \begin{bmatrix} 1.01004 \\ 1.03196 \\ 1.00870 \end{bmatrix}
 \end{equation*}
 
 \end{enumerate}
