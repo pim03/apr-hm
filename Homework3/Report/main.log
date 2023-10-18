@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  18 OCT 2023 13:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  18 OCT 2023 16:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -150,6 +150,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2859.
 LaTeX Info: Redefining \] on input line 2860.
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup4
+\symboldletters=\mathgroup5
+\symboldsymbols=\mathgroup6
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 209.
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
@@ -271,20 +278,20 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 ) (/home/rofarate/Aprendizagem/apr-hm/Homework3/Report/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -346,90 +353,90 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count285
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--167
+Underfull \hbox (badness 10000) in paragraph at lines 163--168
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (41.77733pt too wide) detected at line 269
-\OML/cmm/m/it/12 W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; b[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; b[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; b[] \OT1/cmr/m/n/12 = []
+Overfull \hbox (49.28456pt too wide) detected at line 270
+\OML/cmm/m/it/12 W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; [][] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; [][] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; [][] \OT1/cmr/m/n/12 = []
  []
 
 [3] [4] [5] [6]
-<ex1_histogram.png, id=34, 462.528pt x 346.896pt>
+<ex1_histogram.png, id=36, 462.528pt x 346.896pt>
 File: ex1_histogram.png Graphic file (type png)
 <use ex1_histogram.png>
-Package pdftex.def Info: ex1_histogram.png  used on input line 395.
+Package pdftex.def Info: ex1_histogram.png  used on input line 396.
 (pdftex.def)             Requested size: 318.66948pt x 239.01443pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--401
+Underfull \hbox (badness 10000) in paragraph at lines 399--402
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--401
+Underfull \hbox (badness 10000) in paragraph at lines 399--402
 
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 404.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 405.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [7
 
  </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/ex1_histogram.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 447--453
+Underfull \hbox (badness 10000) in paragraph at lines 448--454
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--453
+Underfull \hbox (badness 10000) in paragraph at lines 448--454
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 482--487
+Underfull \hbox (badness 10000) in paragraph at lines 483--488
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 482--487
+Underfull \hbox (badness 10000) in paragraph at lines 483--488
 
  []
 
-<ex3_rmse.png, id=46, 462.528pt x 346.896pt>
+<ex3_rmse.png, id=48, 462.528pt x 346.896pt>
 File: ex3_rmse.png Graphic file (type png)
 <use ex3_rmse.png>
-Package pdftex.def Info: ex3_rmse.png  used on input line 490.
+Package pdftex.def Info: ex3_rmse.png  used on input line 491.
 (pdftex.def)             Requested size: 318.66948pt x 239.01443pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--495
+Underfull \hbox (badness 10000) in paragraph at lines 494--496
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 493--495
+Underfull \hbox (badness 10000) in paragraph at lines 494--496
 
  []
 
 [9 </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/ex3_rmse.png>] [10] (/home/rofarate/Aprendizagem/apr-hm/Homework3/Report/main.aux) ) 
 Here is how much of TeX's memory you used:
- 7296 strings out of 483163
- 101393 string characters out of 5965511
- 651844 words of memory out of 5000000
- 22219 multiletter control sequences out of 15000+600000
- 543295 words of font info for 47 fonts, out of 8000000 for 9000
+ 7384 strings out of 483163
+ 102323 string characters out of 5965511
+ 653221 words of memory out of 5000000
+ 22293 multiletter control sequences out of 15000+600000
+ 547621 words of font info for 58 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 48i,12n,46p,454b,2013s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/rofarate/Aprendizagem/apr-hm/Homework3/Report/main.pdf (10 pages, 190787 bytes).
+ 48i,12n,46p,483b,2013s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on /home/rofarate/Aprendizagem/apr-hm/Homework3/Report/main.pdf (10 pages, 206508 bytes).
 PDF statistics:
- 339 PDF objects out of 1000 (max. 8388607)
- 78 compressed objects within 1 object stream
+ 350 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
