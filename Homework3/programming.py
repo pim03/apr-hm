@@ -31,7 +31,7 @@ first_rmse = np.sqrt(np.mean((target_test - y_pred)**2))
 residues = abs(target_test - y_pred)
 
 # Plot the residues
-plt.hist(residues, edgecolor='darkblue' ,bins=20)
+plt.hist(residues, edgecolor='black' ,bins=20)
 plt.title('Histogram of the residues')
 plt.xlabel('Residues')
 plt.ylabel('Frequency')
