@@ -128,7 +128,7 @@ baseando-se na distância entre as observações e os centróides.
     \phi_j (x) = \exp\left(-\frac{\left\|\vec{x}-c_j\right\|^2}{2}\right)
 \end{equation}
 
-Cálculo dos vetores transformados:
+O cálculos dos vetores tranformados foi feita através da seguinte fórmula:
 
 \begin{equation}
 \vec{\phi_i} = \left( \exp\left(-\frac{\left\|\vec{x}_i-c_1\right\|^2}{2}\right)   , \exp\left(-\frac{\left\|\vec{x}_i-c_2\right\|^2}{2}\right)  , \exp\left(-\frac{\left\|\vec{x}_i-c_3\right\|^2}{2}\right)   \right)
@@ -204,7 +204,7 @@ Para calcular o RMSE (root mean square error) foi utilizada a seguinte fórmula:
 \begin{equation}
     RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (z_i - \hat{z}_i)^2}
 \end{equation}
-
+em que,
 \begin{equation}
     \hat{z}_i = \vec{w}^T \cdot \vec{\phi_i}
 \end{equation}
@@ -236,25 +236,25 @@ Assim, o RMSE obtido foi:
 
 As fórmulas utilizadas foram:
 
-\begin{equation*}
+\begin{equation}
     \vec{x}^{[p]} = \phi(\vec{W}^{[p]} \cdot \vec{x}^{[p-1]} + \vec{b}^{[p]})
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \vec{\delta}^{[p]} = \frac{\partial E}{\partial \vec{x}^{[p]}} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{x}^{[p]} - \vec{t}) \circ \phi'(\vec{z}^{[p]}) \text{, para a última layer}
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \vec{\delta}^{[p]} = (\frac{\partial \vec{z}^{[p+1]}}{\partial \vec{x}^{[p]}})^T \cdot \vec{\delta}^{[p+1]} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{W}^{[p+1]})^T \cdot \vec{\delta}^{[p+1]} \circ \phi'(\vec{z}^{[p]}) \text{, para as outras layers}
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \vec{W}^{[p]} = \vec{W}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{W}^{[p]}} = \vec{W}^{[p]} - \eta \cdot \vec{\delta}^{[p]} \cdot (\vec{x}^{[p-1]})^T
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}
     \vec{b}^{[p]} = \vec{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{b}^{[p]}} = \vec{b}^{[p]} - \eta \cdot \vec{\delta}^{[p]}
-\end{equation*}
+\end{equation}
 
 Estas expressões são válidas para squared error loss function.
 
@@ -265,17 +265,32 @@ Dados necessários para começar o algoritmo:
 \end{equation*}
 
 \begin{equation*}
-    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}, W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , b^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , b^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix},
+\end{equation*}
+
+\begin{equation*}
+    W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , b^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix},
+\end{equation*}
+
+\begin{equation*}
+    W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , b^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
     \phi = tanh(0.5x -2) \text{, } \phi' = 0.5 * (1 - tanh^2(0.5x -2))
 \end{equation*}
 
-POR GUIA DE REDE!!!!!!!!
+Guia de rede considerado:
 
-%network guide:
-%https://www.youtube.com/watch?v=UJwK6jAStmg
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{rede.jpg}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{equacoes.jpg}
+\end{figure}
 
 Primeiro é necessário realizar (forward) propagation para obter os valores das observações:
 
@@ -337,11 +352,13 @@ Depois é necessário realizar (backward) propagation dos erros da última camad
     \delta^{[1]}_2 = (W^{[2]})^T \cdot \delta^{[2]}_2 \circ \phi'(z^{[1]}_2) = \begin{bmatrix} -2.64099\cdot 10^{-5} \\ -3.17617\cdot 10^{-5} \\ -2.64099\cdot 10^{-5} \end{bmatrix}
 \end{equation*}
 
-Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um batch gradient descent update (with learning rate 0.1), a expressão para os pesos atualizados é dada por:
+Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um batch gradient descent update (com learning rate igual a 0.1), a expressão para os pesos atualizados é:
 
-\begin{equation*}
+\begin{equation}
     W^{[p]} = W^{[p]} - \eta \cdot (\delta^{[p]}_1 \cdot (x^{[p-1]}_1)^T + \delta^{[p]}_2 \cdot (x^{[p-1]}_2)^T)
-\end{equation*}
+\end{equation}
+
+Assim, os pesos e os bias atualizados foram:
 
 \begin{equation*}
     W^{[1]} = W^{[1]} - 0.1 \cdot (\delta^{[1]}_1 \cdot (x^{[0]}_1)^T + \delta^{[1]}_2 \cdot (x^{[0]}_2)^T) = \begin{bmatrix} 1.02336 & 1.02336 & 1.02336 & 1.02336 \\
@@ -380,7 +397,7 @@ Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um 
 \begin{enumerate}
 
 \item Utilizamos um training-test split de 80-20, ou seja 80\% dos dados foram utilizados para treinar o modelo e 20\% para testá-lo.\\ 
-De modo a minimizar o erro devido à aleatoriedade do algoritmo, o output final considerado foi a média de 10 outputs de 10 regressores MLP estocásticos com sementes de 0 a 9.
+De modo a minimizar o erro devido à aleatoriedade do algoritmo, o output final considerado foi a média de 10 outputs de 10 regressores MLP estocásticos com sementes de 1 a 10.
 Os resíduos foram calculados através da seguinte fórmula:
 
 \begin{equation}
@@ -448,7 +465,7 @@ plt.show()
 e transformar os valores menores que 1 em 1 e os maiores que 10 em 10.\\ Comparando 
 os valores do erro médio absoluto (MAE) antes e depois deste processo conclui-se 
 que o MAE antes (0.51167) é maior do que o novo (0.45625). Assim, podemos dizer que 
-este processo melhora o desempenho do MLP.\\ \\
+este processo melhora o desempenho do MLP.\\
 
 Código Utilizado:
 
@@ -481,7 +498,7 @@ else:
 \item Até agora foram considerados MLP's com early stopping. Neste exercício vamos
 ver qual é o efeito do número máximo de iterações no desempenho do MLP, avaliado através do RMSE.
 Assim foram considerados 4 MLP's com números máximos de iterações iguais a 20, 50, 100 e 200. 
-Da mesma maneira que antes, o modelo final considerado foi a média de 10 modelos com sementes de 0 a 9. 
+Da mesma maneira que antes, o modelo final considerado foi a média de 10 modelos com sementes de 1 a 10. 
 No gráfico seguinte encontra-se representado o RMSE em função do número máximo de iterações.\\ \\
 
 \begin{figure}[H]
@@ -490,7 +507,7 @@ No gráfico seguinte encontra-se representado o RMSE em função do número máx
 \end{figure}
 
 Observando o gráfico, conclui-se que o RMSE diminui significativamente com o aumento do número máximo de iterações.
-No entanto, essa diminuição abranda à medida que se aumenta o número máximo de iterações.\\ \\
+No entanto, essa diminuição abranda à medida que se aumenta o número máximo de iterações.\\
 
 Código utilizado:
 
