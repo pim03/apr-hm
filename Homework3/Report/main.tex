@@ -233,7 +233,7 @@ Assim, o RMSE obtido foi:
 \end{equation*}
 
 \item
-É importante referir que para este exercício se utilizou a seguinte notação: $L^{\text{label}}_{observation}$
+É importante referir que para este exercício se utilizou a seguinte notação: $L^{\text{camada}}_{observacao}$
 
 As fórmulas utilizadas foram:
 
@@ -242,11 +242,11 @@ As fórmulas utilizadas foram:
 \end{equation}
 
 \begin{equation}
-    \bm{\delta}^{[p]} = \frac{\partial E}{\partial \textbf{x}^{[p]}} \circ \frac{\partial \textbf{x}^{[p]}}{\partial \textbf{z}^{[p]}} = (\textbf{x}^{[p]} - \mathbf{t}) \circ \phi'(\mathbf{z}^{[p]}) \text{, para a última layer}
+    \bm{\delta}^{[p]} = \frac{\partial E}{\partial \textbf{x}^{[p]}} \circ \frac{\partial \textbf{x}^{[p]}}{\partial \textbf{z}^{[p]}} = (\textbf{x}^{[p]} - \mathbf{t}) \circ \phi'(\mathbf{z}^{[p]}) \text{, para a última camada}
 \end{equation}    
 
 \begin{equation}
-    \bm{\delta}^{[p]} = (\frac{\partial \textbf{z}^{[p+1]}}{\partial \textbf{x}^{[p]}})^T \cdot \bm{\delta}^{[p+1]} \circ \frac{\partial \textbf{x}^{[p]}}{\partial \textbf{z}^{[p]}} = ({W}^{[p+1]})^T \cdot \bm{\delta}^{[p+1]} \circ \phi'(\textbf{z}^{[p]}) \text{, para as outras layers}
+    \bm{\delta}^{[p]} = (\frac{\partial \textbf{z}^{[p+1]}}{\partial \textbf{x}^{[p]}})^T \cdot \bm{\delta}^{[p+1]} \circ \frac{\partial \textbf{x}^{[p]}}{\partial \textbf{z}^{[p]}} = ({W}^{[p+1]})^T \cdot \bm{\delta}^{[p+1]} \circ \phi'(\textbf{z}^{[p]}) \text{, para as outras camadas}
 \end{equation}
 
 \begin{equation}
@@ -257,7 +257,7 @@ As fórmulas utilizadas foram:
     \textbf{b}^{[p]} = \textbf{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \textbf{b}^{[p]}} = \textbf{b}^{[p]} - \eta \cdot \bm{\delta}^{[p]}
 \end{equation}
 
-Estas expressões são válidas para squared error loss function.
+Estas expressões são válidas quando consideramos a squared error loss function.
 
 Dados necessários para começar o algoritmo:
 
@@ -398,14 +398,13 @@ Assim, os pesos e os bias atualizados foram:
 \begin{enumerate}
 
 \item Utilizamos um training-test split de 80-20, ou seja 80\% dos dados foram utilizados para treinar o modelo e 20\% para testá-lo.\\ 
-De modo a minimizar o erro devido à aleatoriedade do algoritmo, o output final considerado foi a média de 10 outputs de 10 regressores MLP estocásticos com sementes de 1 a 10.
-Os resíduos foram calculados através da seguinte fórmula:
+A fórmula utilizada para calcular os resíduos foi:
 
 \begin{equation}
     \text{residual} = | z - \hat{z} |
 \end{equation}
 
-O histograma dos resíduos encontra-se representado na seguinte figura:
+O histograma dos resíduos dos 10 MLP's (com sementes de 1 a 10) encontra-se representado na seguinte figura:
 
 \begin{figure}[H]
     \centering
@@ -414,7 +413,8 @@ O histograma dos resíduos encontra-se representado na seguinte figura:
 
 Observando o histograma, conclui-se que a frequência diminui significativamente 
 com o crescimento do valor absoluto dos resíduos. Isto significa que a maior parte
-da diferença entre o valor real e o valor previsto pelo MLP é pequena.\\ \\
+da diferença entre o valor real e o valor previsto pelo MLP é pequena, logo a previsão
+dos MLP's em geral é boa.\\
 
 Códio Utilizado:
 
@@ -423,6 +423,7 @@ import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
+from sklearn.metrics import mean_absolute_error
 
 # Reading the csv file
 df = pd.read_csv('Homework3/winequality-red.csv')
@@ -432,27 +433,25 @@ target = df['quality']
 
 # Training Test Split
 variables_train, variables_test, target_train, target_test= train_test_split(variables, target, 
-                                                                            train_size=0.8, stratify=target, random_state=0)
+                                                                            train_size=0.8, random_state=0)
 
-y_pred = np.zeros(len(target_test))
+######### Exercise 1 ##########
 
-# Average the mlp regressor
+residues = np.array([])
+
 for i in range(1, 11):
     # Learn the MLP regressor 
     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
     #Predict output
-    y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
+    y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
+    #Calculate residues
+    residue = abs(target_test - y_pred)
+    residue = residue.to_numpy()
+    residues = np.append(residues, residue)
+    
 
-y_pred = y_pred/10
-first_rmse = np.sqrt(np.mean((target_test - y_pred)**2))
-
-######### Exercise 1 ##########
-
-# Calculate the residues
-residues = abs(target_test - y_pred)
-# Plot the residues
-
-plt.hist(residues, edgecolor='darkblue', bins=20)
+#Plot all the residues
+plt.hist(residues, edgecolor='black',bins='auto')
 plt.title('Histogram of the residues')
 plt.xlabel('Residues')
 plt.ylabel('Frequency')
@@ -462,44 +461,83 @@ plt.show()
 \end{lstlisting}
 
 \item Uma vez que sabemos que a qualidade do vinho tem de ser um inteiro entre 
-1 e 10 podemos arredondar os valores previstos pelo MLP para o inteiro mais próximo
-e transformar os valores menores que 1 em 1 e os maiores que 10 em 10.\\ Comparando 
-os valores do erro médio absoluto (MAE) antes e depois deste processo conclui-se 
-que o MAE antes (0.51167) é maior do que o novo (0.45625). Assim, podemos dizer que 
-este processo melhora o desempenho do MLP.\\
+1 e 10 podemos arredondar os valores previstos pelo MLP para o inteiro mais próximo (arredondamento)
+e transformar os valores menores que 1 em 1 e os maiores que 10 em 10 (limitação).\\
+Para comparar o desempenho do MLP antes e depois destes processos, comparamos os MAE's obtidos. 
+\\ O MAE foi calculado através da seguinte fórmula:
+
+\begin{equation}
+    MAE = \frac{1}{n} \sum_{i=1}^{n} | z_i - \hat{z}_i |
+\end{equation}
+
+Os valores obtidos foram os seguintes:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Processo aplicado & MAE \\ \hline
+Nenhum & 0.50972 \\ \hline
+Arredondamento & 0.43875 \\ \hline
+Limitação & 0.50972 \\ \hline
+Arredondamento e limitação & 0.43875 \\ \hline
+\end{tabular}
+\end{table}
+
+Assim, conclui-se que para este dataset o arredondamento tem um feito positivo no desempenho do MLP, enquanto que a limitação não tem qualquer efeito.\\
 
 Código Utilizado:
 
 \begin{lstlisting}[language=Python]
-
 ########## Exercise 2 ##########
 
 # Round and bound the predictions
-rounded_predictions = np.round(y_pred)
-min_value = 1
-max_value = 10 
-rounded_and_bounded_predictions = np.clip(rounded_predictions, min_value, max_value)
+mae_array = np.array([])
+mae_bounded_array = np.array([])
+mae_rounded_array = np.array([])
+mae_rounded_and_bounded_array = np.array([])
 
-# Calculate previous MAE
-mae = np.mean(abs(target_test - y_pred))
-#Calculate new MAE
-mae_new = np.mean(abs(target_test - rounded_and_bounded_predictions))
+for i in range(1, 11):
+    # Learn the MLP regressor 
+    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
 
-print('The previous MAE is: ', mae)
-print('The new MAE is: ', mae_new)
+    #Calculate MAE
+    y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
+    mae = mean_absolute_error(target_test, y_pred)
+    #mae = np.mean(abs(target_test - y_pred))
+    mae_array = np.append(mae_array, mae)
+    print(mae)
+    #Calculate MAE - rounded
+    y_pred_rounded = np.round(y_pred)
+    mae_rounded = np.mean(abs(target_test - y_pred_rounded))
+    mae_rounded_array = np.append(mae_rounded_array, mae_rounded)
+    
+    #Calculate MAE - bounded
+    y_pred_bounded = np.clip(y_pred, a_min=1, a_max=10)
+    mae_bounded = np.mean(abs(target_test - y_pred_bounded))
+    mae_bounded_array = np.append(mae_bounded_array, mae_bounded)
 
-if mae_new < mae:
-    print('The new MAE is lower than the previous one')
-elif mae_new > mae:
-    print('The new MAE is higher than the previous one')
-else:
-    print('The new MAE is equal to the previous one')
+    ##Calculate MAE - rounded and bounded
+    y_pred_rounded_and_bounded = np.clip(y_pred_rounded, a_min=1, a_max=10)
+    mae_rounded_and_bounded = np.mean(abs(target_test - y_pred_rounded_and_bounded))
+    mae_rounded_and_bounded_array = np.append(mae_rounded_and_bounded_array, mae_rounded_and_bounded)
+
+mean_mae = np.mean(mae_array)
+mean_mae_rounded = np.mean(mae_rounded_array)
+mean_mae_bounded = np.mean(mae_bounded_array)
+mean_mae_rounded_and_bounded = np.mean(mae_rounded_and_bounded_array)
+
+# Print the results
+print('MAE (not rounded and not bounded): ', mean_mae)
+print('MAE (rounded): ', mean_mae_rounded)
+print('MAE (bounded): ', mean_mae_bounded)
+print('MAE (rounded and bounded): ', mean_mae_rounded_and_bounded)
 \end{lstlisting}
 
 \item Até agora foram considerados MLP's com early stopping. Neste exercício vamos
 ver qual é o efeito do número máximo de iterações no desempenho do MLP, avaliado através do RMSE.
 Assim foram considerados 4 MLP's com números máximos de iterações iguais a 20, 50, 100 e 200. 
-Da mesma maneira que antes, o modelo final considerado foi a média de 10 modelos com sementes de 1 a 10. 
+Da mesma maneira que antes, o RMSE considerado foi a média dos 10 RMSE's de cada ums dos modelos com sementes de 1 a 10. 
 No gráfico seguinte encontra-se representado o RMSE em função do número máximo de iterações.\\ \\
 
 \begin{figure}[H]
@@ -513,25 +551,43 @@ No entanto, essa diminuição abranda à medida que se aumenta o número máximo
 Código utilizado:
 
 \begin{lstlisting}[language=Python]
+########## Exercise 3 ##########
+
+# Calculate the RMSE for the old MLP regressor
+sum_rmse_old = 0
+for i in range(1, 11):
+    #Learn the old MLP regressor
+    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
+    #Predict old output
+    y_pred_old = mlp.fit(variables_train,target_train).predict(variables_test)
+    #Calculate old RMSE
+    rmse = np.sqrt(np.mean((target_test - y_pred_old) ** 2))
+    sum_rmse_old += rmse
+
+average_rmse_old = np.mean(sum_rmse_old/10)
+
 # Calculate the RMSE for each number of iterations
-rmse_final = []
+new_rmse_array = []
 iter_array = [20,50,100,200]
 for iter in iter_array:
-    y_pred = np.zeros(len(target_test))
+    y_pred_new = np.zeros(len(target_test))
+    sum_rmse_new = 0
     for i in range(1, 11):
-        # Learn the MLP regressor 
-        mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', max_iter = iter, random_state=i)
-        #Predict output
-        y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
-    y_pred = y_pred/10
-    rmse_final.append(np.sqrt(np.mean((y_pred-target_test)**2)))
+        # Learn the new MLP regressor 
+        mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', max_iter = iter, random_state=i)
+        #Predict new output
+        y_pred_new = mlp.fit(variables_train,target_train).predict(variables_test)
+        #Calculate new RMSE
+        rmse = np.sqrt(np.mean((target_test - y_pred_new) ** 2))
+        sum_rmse_new += rmse
+    #Append new RMSE
+    new_rmse_array += [sum_rmse_new/10]
 
-def const(x):
-    return first_rmse
+def const(x): return average_rmse_old
 
 # Plot the RMSE
-plt.plot(iter_array, rmse_final, '-o', label='RMSE')
-plt.hlines(first_rmse, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
+plt.plot(iter_array, new_rmse_array, '-o', label='RMSE')
+plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
 plt.xlabel('Number of iterations') 
 plt.ylabel('RMSE')
 plt.title('RMSE vs number of iterations')
@@ -539,7 +595,7 @@ plt.savefig('ex3_rmse.png')
 plt.show()
 \end{lstlisting}
 
-\item De um modo geral, o early stopping obteve um melhor desempenho em comparação com um número fixo de iterações. Isto é, o RMSE obtido com early stopping é menor do que o RMSE obtido com um número fixo de iterações (20, 50 e 100).
+\item De um modo geral, o MLP com early stopping tem um desempenho melhor em comparação com um número fixo de iterações. Isto é, o RMSE obtido com early stopping é menor do que o RMSE obtido com um número fixo de iterações (20, 50 e 100).
 Para o número máximo de iterações igual a 200, o RMSE obtido com early stopping é maior do que o RMSE obtido com um número fixo de iterações. No entanto, a diferença entre os dois RMSE's é muito pequena.
 
 Early stopping é uma técnica utilizada para combater o overfitting. No entanto, pode impedir que o modelo alcance seu potencial total de ajuste se o critério de paragem utilizado não for o mais adequado (por ser demasiado elevado, por exemplo).
@@ -547,7 +603,6 @@ Early stopping é uma técnica utilizada para combater o overfitting. No entanto
 Também é importante referir que definir um número fixo de iterações pode ser ineficiente, já que o modelo pode não precisar de tantas iterações para convergir para uma solução aceitável. 
 
 O early stopping a 20\% é um critério de paragem que fornece um certo nível de flexibilidade no treino do modelo. Ele permite que o treino continue até que o modelo comece a demonstrar um claro sinal de overfitting, mas também evita que seja encerrado prematuramente devido a flutuações no erro.
-
 
 \end{enumerate}
 
