@@ -15,7 +15,7 @@ variables_train, variables_test, target_train, target_test= train_test_split(var
 
 ######### Exercise 1 ##########
 
-residues = pd.Series()
+residues = np.array([])
 
 for i in range(1, 11):
     # Learn the MLP regressor 
@@ -23,19 +23,18 @@ for i in range(1, 11):
     #Predict output
     y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
     #Calculate residues
-    print('y_pred shape: ',y_pred.shape)
-    print('target shape: ',target_test.shape)
-    residue = target_test - y_pred
+    residue = abs(target_test - y_pred)
+    residue = residue.to_numpy()
+    residues = np.append(residues, residue)
     
 
-print(residues.shape)
-# Plot all the residues
-# plt.hist(residues, edgecolor='black',bins=20)
-# plt.title('Histogram of the residues')
-# plt.xlabel('Residues')
-# plt.ylabel('Frequency')
-# plt.savefig('ex1_histogram.png')
-# plt.show()
+#Plot all the residues
+plt.hist(residues, edgecolor='black',bins='auto')
+plt.title('Histogram of the residues')
+plt.xlabel('Residues')
+plt.ylabel('Frequency')
+plt.savefig('ex1_histogram.png')
+plt.show()
 
 # ########## Exercise 2 ##########
 
