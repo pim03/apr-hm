@@ -65,7 +65,7 @@ for i in range(1, 11):
     mae_bounded = np.mean(abs(target_test - y_pred_bounded))
     mae_bounded_array = np.append(mae_bounded_array, mae_bounded)
 
-    ##Calculate MAE - rounded and bounded
+    #Calculate MAE - rounded and bounded
     y_pred_rounded_and_bounded = np.clip(y_pred_rounded, a_min=1, a_max=10)
     mae_rounded_and_bounded = np.mean(abs(target_test - y_pred_rounded_and_bounded))
     mae_rounded_and_bounded_array = np.append(mae_rounded_and_bounded_array, mae_rounded_and_bounded)
@@ -121,5 +121,6 @@ plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors=
 plt.xlabel('Number of iterations') 
 plt.ylabel('RMSE')
 plt.title('RMSE vs number of iterations')
+plt.legend()
 plt.savefig('ex3_rmse.png')
 plt.show()
