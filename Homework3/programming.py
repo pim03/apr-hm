@@ -13,77 +13,95 @@ target = df['quality']
 variables_train, variables_test, target_train, target_test= train_test_split(variables, target, 
                                                                          train_size=0.8, stratify=target, random_state=0)
 
-y_pred = np.zeros(len(target_test))
+######### Exercise 1 ##########
 
-# Average the mlp regressor
+residues = pd.Series()
+
 for i in range(1, 11):
     # Learn the MLP regressor 
     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
     #Predict output
-    y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
+    y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
+    #Calculate residues
+    print('y_pred shape: ',y_pred.shape)
+    print('target shape: ',target_test.shape)
+    residue = target_test - y_pred
+    
 
-y_pred = y_pred/10
-first_rmse = np.sqrt(np.mean((target_test - y_pred)**2))
+print(residues.shape)
+# Plot all the residues
+# plt.hist(residues, edgecolor='black',bins=20)
+# plt.title('Histogram of the residues')
+# plt.xlabel('Residues')
+# plt.ylabel('Frequency')
+# plt.savefig('ex1_histogram.png')
+# plt.show()
 
-######### Exercise 1 ##########
+# ########## Exercise 2 ##########
 
-# Calculate the residues
-residues = abs(target_test - y_pred)
+# # Round and bound the predictions
 
-# Plot the residues
-plt.hist(residues, edgecolor='black' ,bins=20)
-plt.title('Histogram of the residues')
-plt.xlabel('Residues')
-plt.ylabel('Frequency')
-plt.savefig('ex1_histogram.png')
-plt.show()
+# for i in range(1, 11):
+#     y_pred = np.zeros(len(target_test))
+#     # Learn the MLP regressor 
+#     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
+#     #Predict output
+#     y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
+#     #Calculate MAE (not rounded and bounded)
+#     mae = np.mean(abs(target_test - y_pred))
+#     #Round and bound the predictions
+#     y_pred = np.round(y_pred)
+#     y_pred = np.clip(y_pred, a_min=1, a_max=10)
+#     #Calculate MAE (rounded and bounded)
+#     mae_rounded = np.mean(abs(target_test - y_pred))
 
-########## Exercise 2 ##########
+# mean_mae = np.mean(mae)
+# mean_mae_rounded = np.mean(mae_rounded)
 
-# Round and bound the predictions
-rounded_predictions = np.round(y_pred)
-min_value = 1
-max_value = 10 
-rounded_and_bounded_predictions = np.clip(rounded_predictions, min_value, max_value)
+# # Print the results
+# print('MAE (not rounded and bounded): ', mean_mae)
+# print('MAE (rounded and bounded): ', mean_mae_rounded)
 
-# Calculate previous MAE
-mae = np.mean(abs(target_test - y_pred))
-#Calculate new MAE
-mae_new = np.mean(abs(target_test - rounded_and_bounded_predictions))
+# ########## Exercise 3 ##########
 
-print('The previous MAE is: ', mae)
-print('The new MAE is: ', mae_new)
+# # Calculate the RMSE for the old MLP regressor
+# sum_rmse_old = 0
+# for i in range(1, 11):
+#     #Learn the old MLP regressor
+#     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
+#     #Predict old output
+#     y_pred_old = mlp.fit(variables_train,target_train).predict(variables_test)
+#     #Calculate old RMSE
+#     rmse = np.sqrt(np.mean((target_test - y_pred_old) ** 2))
+#     sum_rmse_old += rmse
 
-if mae_new < mae:
-    print('The new MAE is lower than the previous one')
-elif mae_new > mae:
-    print('The new MAE is higher than the previous one')
-else:
-    print('The new MAE is equal to the previous one')
+# average_rmse_old = np.mean(sum_rmse_old/10)
 
-########## Exercise 3 ##########
+# # Calculate the RMSE for each number of iterations
+# new_rmse_array = []
+# iter_array = [20,50,100,200]
+# for iter in iter_array:
+#     y_pred_new = np.zeros(len(target_test))
+#     sum_rmse_new = 0
+#     for i in range(1, 11):
+#         # Learn the new MLP regressor 
+#         mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', max_iter = iter, random_state=i)
+#         #Predict new output
+#         y_pred_new = mlp.fit(variables_train,target_train).predict(variables_test)
+#         #Calculate new RMSE
+#         rmse = np.sqrt(np.mean((target_test - y_pred_new) ** 2))
+#         sum_rmse_new += rmse
+#     #Append new RMSE
+#     new_rmse_array += [sum_rmse_new/10]
 
-# Calculate the RMSE for each number of iterations
-rmse_final = []
-iter_array = [20,50,100,200]
-for iter in iter_array:
-    y_pred = np.zeros(len(target_test))
-    for i in range(1, 11):
-        # Learn the MLP regressor 
-        mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', solver='adam', max_iter = iter, random_state=i)
-        #Predict output
-        y_pred += mlp.fit(variables_train,target_train).predict(variables_test)
-    y_pred = y_pred/10
-    rmse_final.append(np.sqrt(np.mean((y_pred-target_test)**2)))
 
-def const(x):
-    return first_rmse
+# def const(x): return average_rmse_old
 
-# Plot the RMSE
-plt.plot(iter_array, rmse_final, '-o', label='RMSE')
-plt.hlines(first_rmse, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
-plt.xlabel('Number of iterations') 
-plt.ylabel('RMSE')
-plt.title('RMSE vs number of iterations')
-plt.savefig('ex3_rmse.png')
-plt.show()
+# # Plot the RMSE
+# plt.plot(iter_array, new_rmse_array, '-o', label='RMSE')
+# plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
+# plt.xlabel('Number of iterations') 
+# plt.ylabel('RMSE')
+# plt.title('RMSE vs number of iterations')
+# plt.savefig('ex3_rmse.png')
+# plt.show()
