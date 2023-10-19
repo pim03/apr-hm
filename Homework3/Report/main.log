@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  18 OCT 2023 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  19 OCT 2023 10:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -359,72 +359,63 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--168
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Overfull \hbox (29.85667pt too wide) detected at line 278
-[] \OT1/cmr/m/n/12 = [] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^Q \OMS/cmsy/m/n/12 ^^A [] \OT1/cmr/m/n/12 = [] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^Q \OMS/cmsy/m/n/12 ^^A [] \OML/cmm/m/it/12 >>>>>>> d\OT1/cmr/m/n/12 6245\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 45\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 db\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ca\OT1/cmr/m/n/12 8\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 3\OML/cmm/m/it/12 e\OT1/cmr/m/n/12 139568\OML/cmm/m/it/12 eeb\OT1/cmr/m/n/12 8646936\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 348\OML/cmm/m/it/12 d
- []
-
-[3]
-Overfull \hbox (700.95554pt too wide) detected at line 294
-\OML/cmm/m/it/12 <<<<<<< HEADW[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; [][] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; [][] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; [][] \OT1/cmr/m/n/12 = [] ======= \OML/cmm/m/it/12 W[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; b[] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ; >>>>>>> d\OT1/cmr/m/n/12 6245\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 45\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 db\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ca\OT1/cmr/m/n/12 8\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 3\OML/cmm/m/it/12 e\OT1/cmr/m/n/12 139568\OML/cmm/m/it/12 eeb\OT1/cmr/m/n/12 8646936\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 348\OML/cmm/m/it/12 d
- []
-
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 <rede.jpg, id=27, 855.195pt x 568.1225pt>
 File: rede.jpg Graphic file (type jpg)
 <use rede.jpg>
-Package pdftex.def Info: rede.jpg  used on input line 312.
+Package pdftex.def Info: rede.jpg  used on input line 288.
 (pdftex.def)             Requested size: 318.66948pt x 211.69307pt.
 <equacoes.jpg, id=28, 1061.9675pt x 444.66125pt>
 File: equacoes.jpg Graphic file (type jpg)
 <use equacoes.jpg>
-Package pdftex.def Info: equacoes.jpg  used on input line 317.
+Package pdftex.def Info: equacoes.jpg  used on input line 293.
 (pdftex.def)             Requested size: 409.71692pt x 171.5581pt.
-[4 </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/rede.jpg>] [5 </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/equacoes.jpg>] [6] [7]
+ [4 </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/rede.jpg> </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/equacoes.jpg>] [5] [6] [7]
 <ex1_histogram.png, id=42, 462.528pt x 346.896pt>
 File: ex1_histogram.png Graphic file (type png)
 <use ex1_histogram.png>
-Package pdftex.def Info: ex1_histogram.png  used on input line 436.
+Package pdftex.def Info: ex1_histogram.png  used on input line 412.
 (pdftex.def)             Requested size: 318.66948pt x 239.01443pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 439--442
+Underfull \hbox (badness 10000) in paragraph at lines 415--418
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 439--442
+Underfull \hbox (badness 10000) in paragraph at lines 415--418
 
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 445.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 421.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [8
 
  </home/rofarate/Aprendizagem/apr-hm/Homework3/Report/ex1_histogram.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 488--494
+Underfull \hbox (badness 10000) in paragraph at lines 464--470
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 523--528
+Underfull \hbox (badness 10000) in paragraph at lines 499--504
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 523--528
+Underfull \hbox (badness 10000) in paragraph at lines 499--504
 
  []
 
 <ex3_rmse.png, id=53, 462.528pt x 346.896pt>
 File: ex3_rmse.png Graphic file (type png)
 <use ex3_rmse.png>
-Package pdftex.def Info: ex3_rmse.png  used on input line 531.
+Package pdftex.def Info: ex3_rmse.png  used on input line 507.
 (pdftex.def)             Requested size: 318.66948pt x 239.01443pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 534--536
+Underfull \hbox (badness 10000) in paragraph at lines 510--512
 
  []
 
@@ -436,9 +427,9 @@ Here is how much of TeX's memory you used:
  22303 multiletter control sequences out of 15000+600000
  547621 words of font info for 58 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 48i,12n,46p,483b,2013s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,12n,46p,374b,2013s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /home/rofarate/Aprendizagem/apr-hm/Homework3/Report/main.pdf (11 pages, 322670 bytes).
+Output written on /home/rofarate/Aprendizagem/apr-hm/Homework3/Report/main.pdf (11 pages, 320209 bytes).
 PDF statistics:
  356 PDF objects out of 1000 (max. 8388607)
  86 compressed objects within 1 object stream

@@ -238,7 +238,6 @@ Assim, o RMSE obtido foi:
 As fórmulas utilizadas foram:
 
 \begin{equation}
-<<<<<<< HEAD
     \textbf{x}^{[p]} = \phi({W}^{[p]} \cdot \textbf{x}^{[p-1]} + \textbf{b}^{[p]})
 \end{equation}
 
@@ -256,25 +255,6 @@ As fórmulas utilizadas foram:
 
 \begin{equation}
     \textbf{b}^{[p]} = \textbf{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \textbf{b}^{[p]}} = \textbf{b}^{[p]} - \eta \cdot \bm{\delta}^{[p]}
-=======
-    \vec{x}^{[p]} = \phi(\vec{W}^{[p]} \cdot \vec{x}^{[p-1]} + \vec{b}^{[p]})
-\end{equation}
-
-\begin{equation}
-    \vec{\delta}^{[p]} = \frac{\partial E}{\partial \vec{x}^{[p]}} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{x}^{[p]} - \vec{t}) \circ \phi'(\vec{z}^{[p]}) \text{, para a última layer}
-\end{equation}
-
-\begin{equation}
-    \vec{\delta}^{[p]} = (\frac{\partial \vec{z}^{[p+1]}}{\partial \vec{x}^{[p]}})^T \cdot \vec{\delta}^{[p+1]} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{W}^{[p+1]})^T \cdot \vec{\delta}^{[p+1]} \circ \phi'(\vec{z}^{[p]}) \text{, para as outras layers}
-\end{equation}
-
-\begin{equation}
-    \vec{W}^{[p]} = \vec{W}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{W}^{[p]}} = \vec{W}^{[p]} - \eta \cdot \vec{\delta}^{[p]} \cdot (\vec{x}^{[p-1]})^T
-\end{equation}
-
-\begin{equation}
-    \vec{b}^{[p]} = \vec{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{b}^{[p]}} = \vec{b}^{[p]} - \eta \cdot \vec{\delta}^{[p]}
->>>>>>> d6245a45a2db1ca8a3e139568eeb8646936a348d
 \end{equation}
 
 Estas expressões são válidas para squared error loss function.
@@ -286,19 +266,15 @@ Dados necessários para começar o algoritmo:
 \end{equation*}
 
 \begin{equation*}
-<<<<<<< HEAD
-    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , \textbf{b}^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}, W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , \textbf{b}^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , \textbf{b}^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
-=======
-    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix},
->>>>>>> d6245a45a2db1ca8a3e139568eeb8646936a348d
+    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , \textbf{b}^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , b^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix},
+    W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , \textbf{b}^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , b^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+    W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , \textbf{b}^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
