@@ -11,6 +11,7 @@
 \usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
 \usepackage{booktabs} % For even nicer tables.
 \usepackage{amsmath}
+\usepackage{bm}
 
 % As we usually want to include some plots (.pdf files) we need a package for that.
 \usepackage{graphicx} 
@@ -237,23 +238,23 @@ Assim, o RMSE obtido foi:
 As fórmulas utilizadas foram:
 
 \begin{equation}
-    \vec{x}^{[p]} = \phi(\vec{W}^{[p]} \cdot \vec{x}^{[p-1]} + \vec{b}^{[p]})
+    \textbf{x}^{[p]} = \phi({W}^{[p]} \cdot \textbf{x}^{[p-1]} + \textbf{b}^{[p]})
 \end{equation}
 
 \begin{equation}
-    \vec{\delta}^{[p]} = \frac{\partial E}{\partial \vec{x}^{[p]}} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{x}^{[p]} - \vec{t}) \circ \phi'(\vec{z}^{[p]}) \text{, para a última layer}
+    \bm{\delta}^{[p]} = \frac{\partial E}{\partial \textbf{x}^{[p]}} \circ \frac{\partial \textbf{x}^{[p]}}{\partial \textbf{z}^{[p]}} = (\textbf{x}^{[p]} - \mathbf{t}) \circ \phi'(\mathbf{z}^{[p]}) \text{, para a última layer}
+\end{equation}    
+
+\begin{equation}
+    \bm{\delta}^{[p]} = (\frac{\partial \textbf{z}^{[p+1]}}{\partial \textbf{x}^{[p]}})^T \cdot \bm{\delta}^{[p+1]} \circ \frac{\partial \textbf{x}^{[p]}}{\partial \textbf{z}^{[p]}} = ({W}^{[p+1]})^T \cdot \bm{\delta}^{[p+1]} \circ \phi'(\textbf{z}^{[p]}) \text{, para as outras layers}
 \end{equation}
 
 \begin{equation}
-    \vec{\delta}^{[p]} = (\frac{\partial \vec{z}^{[p+1]}}{\partial \vec{x}^{[p]}})^T \cdot \vec{\delta}^{[p+1]} \circ \frac{\partial \vec{x}^{[p]}}{\partial \vec{z}^{[p]}} = (\vec{W}^{[p+1]})^T \cdot \vec{\delta}^{[p+1]} \circ \phi'(\vec{z}^{[p]}) \text{, para as outras layers}
+    {W}^{[p]} = {W}^{[p]} - \eta \cdot \frac{\partial E}{\partial {W}^{[p]}} = {W}^{[p]} - \eta \cdot \bm{\delta}^{[p]} \cdot (\textbf{x}^{[p-1]})^T
 \end{equation}
 
 \begin{equation}
-    \vec{W}^{[p]} = \vec{W}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{W}^{[p]}} = \vec{W}^{[p]} - \eta \cdot \vec{\delta}^{[p]} \cdot (\vec{x}^{[p-1]})^T
-\end{equation}
-
-\begin{equation}
-    \vec{b}^{[p]} = \vec{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \vec{b}^{[p]}} = \vec{b}^{[p]} - \eta \cdot \vec{\delta}^{[p]}
+    \textbf{b}^{[p]} = \textbf{b}^{[p]} - \eta \cdot \frac{\partial E}{\partial \textbf{b}^{[p]}} = \textbf{b}^{[p]} - \eta \cdot \bm{\delta}^{[p]}
 \end{equation}
 
 Estas expressões são válidas para squared error loss function.
@@ -261,19 +262,19 @@ Estas expressões são válidas para squared error loss function.
 Dados necessários para começar o algoritmo:
 
 \begin{equation*}
-    \vec{x}^{[0]}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} , t_1 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} , \vec{x}^{[0]}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \\ -1 \end{bmatrix} , t_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
+    \textbf{x}^{[0]}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} , \textbf{t}_1 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} , \textbf{x}^{[0]}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \\ -1 \end{bmatrix} , \textbf{t}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix},
+    W^{[1]} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 1 \end{bmatrix} , \textbf{b}^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , b^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix},
+    W^{[2]} = \begin{bmatrix} 1 & 4 & 1 \\  1 & 1 & 1 \end{bmatrix} , \textbf{b}^{[2]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , b^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+    W^{[3]} = \begin{bmatrix} 1 & 1 \\ 3 & 1 \\ 1 & 1 \end{bmatrix} , \textbf{b}^{[3]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
@@ -297,29 +298,29 @@ Primeiro é necessário realizar (forward) propagation para obter os valores das
 - Para a primeira observação:
 
 \begin{equation*}
-    z^{[1]}_1 = W^{[1]} \cdot x^{[0]}_1 + b^{[1]} = \begin{bmatrix} 5 \\ 6 \\ 5 \end{bmatrix} \implies x^{[1]}_1 = \phi(z^{[1]}_1)= \begin{bmatrix} 0.46212 \\ 0.76159 \\ 0.46212 \end{bmatrix}
+    \textbf{z}^{[1]}_1 = W^{[1]} \cdot \textbf{x}^{[0]}_1 + \textbf{b}^{[1]} = \begin{bmatrix} 5 \\ 6 \\ 5 \end{bmatrix} \implies \textbf{x}^{[1]}_1 = \phi(\textbf{z}^{[1]}_1)= \begin{bmatrix} 0.46212 \\ 0.76159 \\ 0.46212 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    z^{[2]}_1 = W^{[2]} \cdot x^{[1]}_1 + b^{[2]} = \begin{bmatrix} 4.97061 \\ 2.68583 \end{bmatrix} \implies x^{[2]}_1 = \phi(z^{[2]}_1)= \begin{bmatrix} 0.45048 \\ -0.57642 \end{bmatrix}
+    \textbf{z}^{[2]}_1 = W^{[2]} \cdot \textbf{x}^{[1]}_1 + \textbf{b}^{[2]} = \begin{bmatrix} 4.97061 \\ 2.68583 \end{bmatrix} \implies \textbf{x}^{[2]}_1 = \phi(\textbf{z}^{[2]}_1)= \begin{bmatrix} 0.45048 \\ -0.57642 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    z^{[3]}_1 = W^{[3]} \cdot x^{[2]}_1 + b^{[3]} = \begin{bmatrix} 0.87406 \\ 1.77503 \\ 0.87406 \end{bmatrix} \implies x^{[3]}_1 = \phi(z^{[3]}_1)= \begin{bmatrix} -0.91590 \\ -0.80494\\ -0.91590 \end{bmatrix}
+    \textbf{z}^{[3]}_1 = W^{[3]} \cdot \textbf{x}^{[2]}_1 + \textbf{b}^{[3]} = \begin{bmatrix} 0.87406 \\ 1.77503 \\ 0.87406 \end{bmatrix} \implies \textbf{x}^{[3]}_1 = \phi(\textbf{z}^{[3]}_1)= \begin{bmatrix} -0.91590 \\ -0.80494\\ -0.91590 \end{bmatrix}
 \end{equation*}
 
 - Para a segunda observação:
 
 \begin{equation*}
-    z^{[1]}_2 = W^{[1]} \cdot x^{[0]}_2 + b^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \implies x^{[1]}_2 = \phi(z^{[1]}_2)= \begin{bmatrix} -0.90515 \\ -0.90515 \\ -0.90515 \end{bmatrix}
+    \textbf{z}^{[1]}_2 = W^{[1]} \cdot \textbf{x}^{[0]}_2 + \textbf{b}^{[1]} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} \implies \textbf{x}^{[1]}_2 = \phi(\textbf{z}^{[1]}_2)= \begin{bmatrix} -0.90515 \\ -0.90515 \\ -0.90515 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    z^{[2]}_2 = W^{[2]} \cdot x^{[1]}_2 + b^{[2]} = \begin{bmatrix} -4.43089 \\ -1.71545 \end{bmatrix} \implies x^{[2]}_2 = \phi(z^{[2]}_2)= \begin{bmatrix} -0.99956 \\ -0.99343 \end{bmatrix}
+    \textbf{z}^{[2]}_2 = W^{[2]} \cdot \textbf{x}^{[1]}_2 + \textbf{b}^{[2]} = \begin{bmatrix} -4.43089 \\ -1.71545 \end{bmatrix} \implies \textbf{x}^{[2]}_2 = \phi(\textbf{z}^{[2]}_2)= \begin{bmatrix} -0.99956 \\ -0.99343 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    z^{[3]}_2 = W^{[3]} \cdot x^{[2]}_2 + b^{[3]} = \begin{bmatrix} -0.99300 \\ -2.99212 \\ -0.99300 \end{bmatrix} \implies x^{[3]}_2 = \phi(z^{[3]}_2)= \begin{bmatrix} -0.98652 \\ -0.99816\\ -0.98652 \end{bmatrix}
+    \textbf{z}^{[3]}_2 = W^{[3]} \cdot \textbf{x}^{[2]}_2 + \textbf{b}^{[3]} = \begin{bmatrix} -0.99300 \\ -2.99212 \\ -0.99300 \end{bmatrix} \implies \textbf{x}^{[3]}_2 = \phi(\textbf{z}^{[3]}_2)= \begin{bmatrix} -0.98652 \\ -0.99816\\ -0.98652 \end{bmatrix}
 \end{equation*}
 
 Depois é necessário realizar (backward) propagation dos erros da última camada para a primeira:
@@ -327,66 +328,66 @@ Depois é necessário realizar (backward) propagation dos erros da última camad
 - Para a primeira observação:
 
 \begin{equation*}
-    \delta^{[3]}_1 = (x^{[3]}_1 - t_1) \circ \phi'(z^{[3]}_1) = \begin{bmatrix} -0.07379 \\ -0.31773 \\ -0.07379 \end{bmatrix}
+    \bm{\delta}^{[3]}_1 = (\textbf{x}^{[3]}_1 - \textbf{t}_1) \circ \phi'(\textbf{z}^{[3]}_1) = \begin{bmatrix} -0.07379 \\ -0.31773 \\ -0.07379 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[2]}_1 = (W^{[3]})^T \cdot \delta^{[3]}_1 \circ \phi'(z^{[2]}_1) = \begin{bmatrix} -0.43870\\ -0.15535 \end{bmatrix}
+    \bm{\delta}^{[2]}_1 = (W^{[3]})^T \cdot \bm{\delta}^{[3]}_1 \circ \phi'(\textbf{z}^{[2]}_1) = \begin{bmatrix} -0.43870\\ -0.15535 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[1]}_1 = (W^{[2]})^T \cdot \delta^{[2]}_1 \circ \phi'(z^{[1]}_1) = \begin{bmatrix} -0.23359 \\ -0.40110 \\ -0.23359 \end{bmatrix}
+    \bm{\delta}^{[1]}_1 = (W^{[2]})^T \cdot \bm{\delta}^{[2]}_1 \circ \phi'(\textbf{z}^{[1]}_1) = \begin{bmatrix} -0.23359 \\ -0.40110 \\ -0.23359 \end{bmatrix}
 \end{equation*}
 
 - Para a segunda observação:
 
 \begin{equation*}
-    \delta^{[3]}_2 = (x^{[3]}_2 - t_2) \circ \phi'(z^{[3]}_2) = \begin{bmatrix} -0.02660 \\ -0.00183 \\ -0.01321 \end{bmatrix}
+    \bm{\delta}^{[3]}_2 = (\textbf{x}^{[3]}_2 - \textbf{t}_2) \circ \phi'(\textbf{z}^{[3]}_2) = \begin{bmatrix} -0.02660 \\ -0.00183 \\ -0.01321 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[2]}_2 = (W^{[3]})^T \cdot \delta^{[3]}_2 \circ \phi'(z^{[2]}_2) = \begin{bmatrix} -1.97439\cdot 10^{-5} \\ -2.72552\cdot 10^{-4} \end{bmatrix}
+    \bm{\delta}^{[2]}_2 = (W^{[3]})^T \cdot \bm{\delta}^{[3]}_2 \circ \phi'(\textbf{z}^{[2]}_2) = \begin{bmatrix} -1.97439\cdot 10^{-5} \\ -2.72552\cdot 10^{-4} \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \delta^{[1]}_2 = (W^{[2]})^T \cdot \delta^{[2]}_2 \circ \phi'(z^{[1]}_2) = \begin{bmatrix} -2.64099\cdot 10^{-5} \\ -3.17617\cdot 10^{-5} \\ -2.64099\cdot 10^{-5} \end{bmatrix}
+    \bm{\delta}^{[1]}_2 = (W^{[2]})^T \cdot \bm{\delta}^{[2]}_2 \circ \phi'(\textbf{z}^{[1]}_2) = \begin{bmatrix} -2.64099\cdot 10^{-5} \\ -3.17617\cdot 10^{-5} \\ -2.64099\cdot 10^{-5} \end{bmatrix}
 \end{equation*}
 
 Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um batch gradient descent update (com learning rate igual a 0.1), a expressão para os pesos atualizados é:
 
 \begin{equation}
-    W^{[p]} = W^{[p]} - \eta \cdot (\delta^{[p]}_1 \cdot (x^{[p-1]}_1)^T + \delta^{[p]}_2 \cdot (x^{[p-1]}_2)^T)
+    W^{[p]} = W^{[p]} - \eta \cdot (\bm{\delta}^{[p]}_1 \cdot (\textbf{x}^{[p-1]}_1)^T + \bm{\delta}^{[p]}_2 \cdot (\textbf{x}^{[p-1]}_2)^T)
 \end{equation}
 
 Assim, os pesos e os bias atualizados foram:
 
 \begin{equation*}
-    W^{[1]} = W^{[1]} - 0.1 \cdot (\delta^{[1]}_1 \cdot (x^{[0]}_1)^T + \delta^{[1]}_2 \cdot (x^{[0]}_2)^T) = \begin{bmatrix} 1.02336 & 1.02336 & 1.02336 & 1.02336 \\
+    W^{[1]} = W^{[1]} - 0.1 \cdot (\bm{\delta}^{[1]}_1 \cdot (\textbf{x}^{[0]}_1)^T + \bm{\delta}^{[1]}_2 \cdot (\textbf{x}^{[0]}_2)^T) = \begin{bmatrix} 1.02336 & 1.02336 & 1.02336 & 1.02336 \\
                                                                                                                             1.04011 & 1.04011 & 2.04011 & 1.04011 \\
                                                                                                                             1.02336 & 1.02336 & 1.02336 & 1.02336 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    b^{[1]} = b^{[1]} - 0.1 \cdot (\delta^{[1]}_1 + \delta^{[1]}_2) = \begin{bmatrix} 1.02336 \\ 1.04011 \\ 1.02336 \end{bmatrix}
+    \textbf{b}^{[1]} = \textbf{b}^{[1]} - 0.1 \cdot (\bm{\delta}^{[1]}_1 + \bm{\delta}^{[1]}_2) = \begin{bmatrix} 1.02336 \\ 1.04011 \\ 1.02336 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[2]} = W^{[2]} - 0.1 \cdot (\delta^{[2]}_1 \cdot (x^{[1]}_1)^T + \delta^{[2]}_2 \cdot (x^{[1]}_2)^T) = \begin{bmatrix} 1.02027 & 4.03341 & 1.02027 \\
+    W^{[2]} = W^{[2]} - 0.1 \cdot (\bm{\delta}^{[2]}_1 \cdot (\textbf{x}^{[1]}_1)^T + \bm{\delta}^{[2]}_2 \cdot (\textbf{x}^{[1]}_2)^T) = \begin{bmatrix} 1.02027 & 4.03341 & 1.02027 \\
                                                                                                                             1.00715 & 1.01181 & 1.00715 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    b^{[2]} = b^{[2]} - 0.1 \cdot (\delta^{[2]}_1 + \delta^{[2]}_2) = \begin{bmatrix} 1.04387 \\ 1.01556 \end{bmatrix}
+    \textbf{b}^{[2]} = \textbf{b}^{[2]} - 0.1 \cdot (\bm{\delta}^{[2]}_1 + \bm{\delta}^{[2]}_2) = \begin{bmatrix} 1.04387 \\ 1.01556 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[3]} = W^{[3]} - 0.1 \cdot (\delta^{[3]}_1 \cdot (x^{[2]}_1)^T + \delta^{[3]}_2 \cdot (x^{[2]}_2)^T) = \begin{bmatrix} 1.00067 & 0.99310 \\
+    W^{[3]} = W^{[3]} - 0.1 \cdot (\bm{\delta}^{[3]}_1 \cdot (\textbf{x}^{[2]}_1)^T + \bm{\delta}^{[3]}_2 \cdot (\textbf{x}^{[2]}_2)^T) = \begin{bmatrix} 1.00067 & 0.99310 \\
                                                                                                                             3.01413 & 0.98150 \\
                                                                                                                             1.00200 & 0.99443 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    b^{[3]} = b^{[3]} - 0.1 \cdot (\delta^{[3]}_1 + \delta^{[3]}_2) = \begin{bmatrix} 1.01004 \\ 1.03196 \\ 1.00870 \end{bmatrix}
+    \textbf{b}^{[3]} = \textbf{b}^{[3]} - 0.1 \cdot (\bm{\delta}^{[3]}_1 + \bm{\delta}^{[3]}_2) = \begin{bmatrix} 1.01004 \\ 1.03196 \\ 1.00870 \end{bmatrix}
 \end{equation*}
 
 \end{enumerate}
@@ -538,8 +539,15 @@ plt.savefig('ex3_rmse.png')
 plt.show()
 \end{lstlisting}
 
-\item Early stopping é uma técnica utilizada para combater o overfitting. O gráfico
-acima assemelha-se aos gráficos de overfitting mas não chega a subir ???????????'
+\item De um modo geral, o early stopping obteve um melhor desempenho em comparação com um número fixo de iterações. Isto é, o RMSE obtido com early stopping é menor do que o RMSE obtido com um número fixo de iterações (20, 50 e 100).
+Para o número máximo de iterações igual a 200, o RMSE obtido com early stopping é maior do que o RMSE obtido com um número fixo de iterações. No entanto, a diferença entre os dois RMSE's é muito pequena.
+
+Early stopping é uma técnica utilizada para combater o overfitting. No entanto, pode impedir que o modelo alcance seu potencial total de ajuste se o critério de paragem utilizado não for o mais adequado (por ser demasiado elevado, por exemplo).
+
+Também é importante referir que definir um número fixo de iterações pode ser ineficiente, já que o modelo pode não precisar de tantas iterações para convergir para uma solução aceitável. 
+
+O early stopping a 20\% é um critério de paragem que fornece um certo nível de flexibilidade no treino do modelo. Ele permite que o treino continue até que o modelo comece a demonstrar um claro sinal de overfitting, mas também evita que seja encerrado prematuramente devido a flutuações no erro.
+
 
 \end{enumerate}
 
