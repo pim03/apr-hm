@@ -112,7 +112,11 @@ Instituto Superior Técnico \\ outubro  de 2023  \\ \\
 
 NAO SEI SE POSSO PROPRIAMENTE METER ESTA EQ ASSIM ????????
 \begin{equation}
-    p(\mathbf{x}_i|c_k) = P(y_1) \cdot N(y_2, y_3 | \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
+    p(\mathbf{x}_i|c_k) =
+    \begin{cases} 
+        p_{k} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k) & \text{se } y_1 = 1 \\
+        (1-p_k) \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k) & \text{se } y_1 = 0 
+    \end{cases}
 \end{equation}
 
 E-step:
@@ -123,11 +127,11 @@ Cálculo das probabilidades $p(\textbf{x}_i)$
 \end{equation*}
 
 \begin{equation*}
-    p(\textbf{x}_2) = 0.03137
+    p(\textbf{x}_2) = 0.02775
 \end{equation*}
 
 \begin{equation*}
-    p(\textbf{x}_3) = 0.05561
+    p(\textbf{x}_3) = 0.04337
 \end{equation*}
 
 \begin{equation*}
@@ -145,19 +149,19 @@ Cálculos dos $\gamma_{ki}$
 \end{equation*}
 
 \begin{equation*}
-    \gamma_{k=1,i=2} = 0.23928
+    \gamma_{k=1,i=2} = 0.63135
 \end{equation*}
 
 \begin{equation*}
-    \gamma_{k=2,i=2} = 0.76072
+    \gamma_{k=2,i=2} = 0.36865
 \end{equation*}
 
 \begin{equation*}
-    \gamma_{k=1,i=3} = 0.18443
+    \gamma_{k=1,i=3} = 0.55181
 \end{equation*}
 
 \begin{equation*}
-    \gamma_{k=2,i=3} = 0.81557
+    \gamma_{k=2,i=3} = 0.44819
 \end{equation*}
 
 \begin{equation*}
@@ -168,17 +172,176 @@ Cálculos dos $\gamma_{ki}$
     \gamma_{k=2,i=4} = 0.83108
 \end{equation*}
 
-M-step para $y_1$:
+M-step: \\
+Cada observação $\mathbf{x}_i$ permite atualizar os parâmetros com peso $\gamma_{ki}$. 
+Assim calculamos os novos parâmetros atualizados para cada cluster utilizando as seguintes fórmulas. 
+
+\begin{equation}
+    N_k = \sum_{i=1}^4 \gamma_{ki}
+\end{equation}
+
+\begin{equation}
+    \pi_k = \frac{N_k}{N}
+\end{equation}
+% o parâmetro de uma distribuição de Bernoulli é a probabilidade de sucesso, 
+% ou seja, a probabilidade de a y_1 assumir o valor 1.
+% Ela é dada pelo numero total de observações em que y_1 é 1 dividido pelo numero total de observações
+% no entanto, neste caso cada observação tem um peso diferente, dado pelo gamma_ki
+% assim, o parâmetro da distribuição de Bernoulli é dado por:
+EU INVENTEI ISTO, PODE NAO TAR CERTO!!!!!!!
+\begin{equation}
+    P_k(y_1=1) = \frac{\sum_{i=1}^4 \gamma_{ki} p(y_1=1\mathbf{x}_i)}{\sum_{i=1}^4 \gamma_{ki}} 
+\end{equation}
+
+\begin{equation}
+    P_k(y_1=1) = \sum_{i=1}^4 \gamma_{ki}
+\end{equation}
+
+\begin{equation}
+    \boldsymbol{\mu}_k = \frac{1}{N_k} \sum_{i=1}^4 \gamma_{ki} \mathbf{x}_i    
+\end{equation}
+
+\begin{equation}
+    \boldsymbol{\Sigma}_k = \frac{1}{N_k} \sum_{i=1}^4 \gamma_{ki} (\mathbf{x}_i - \boldsymbol{\mu}_k)(\mathbf{x}_i - \boldsymbol{\mu}_k)^T
+\end{equation}
+
+
+Parâmetros atualizados:
 
 \begin{equation*}
-    p_{new} = \sum_{i=1}^{4} \gamma_{k=1,i} \cdot p(y_1 = 1) = 0.78522
+    \pi_1 = 0.38617
+\end{equation*}
+
+\begin{equation*}
+    \pi_2 = 0.61383
+\end{equation*}
+
+\begin{equation*}
+    P_{k=1}(y_1=1) = 0.23404
+\end{equation*}
+
+\begin{equation*}
+    P_{k=2}(y_1=1) = 0.66732
+\end{equation*}
+
+\begin{equation*}
+    \boldsymbol{\mu}_1 = \begin{bmatrix}
+    0.02651 \\
+    0.50713
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \boldsymbol{\mu}_2 = \begin{bmatrix}
+    0.30914 \\
+    0.21042
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \boldsymbol{\Sigma}_1 = \begin{bmatrix}
+    0.14137 & -0.10541 \\
+    -0.10541 & 0.09605
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+    \boldsymbol{\Sigma}_2 = \begin{bmatrix}
+    0.11698 & -0.11835 \\
+    -0.11835 & 0.13530
+\end{bmatrix}
 \end{equation*}
 
 \item
+Considerando o critério de \textit{máximo a posteriori} Para decidir a que 
+cluster pertence a observação $\mathbf{x}_{new}$ precisamos de calcular o seu 
+posterior. 
+Para isso utilizamos a seguinte fórmula:
 
-\item
+\begin{equation}
+    p(cluster = k|\mathbf{x}_{new}) = \frac{p(cluster = k)p(\mathbf{x}_{new}|cluster = k)}{p(\mathbf{x}_{new})}
+\end{equation}
 
-\item
+Cálculos:
+
+\begin{equation*}
+    p(\mathbf{x}_{new}) = 0.09667
+\end{equation*}
+
+\begin{equation*}
+    p(cluster = 1|\mathbf{x}_{new}) = 0.02531
+\end{equation*}
+
+\begin{equation*}
+    p(cluster = 2|\mathbf{x}_{new}) = 0.97469
+\end{equation*}
+
+Como $p(cluster = 2|\mathbf{x}_{new}) > p(cluster = 1|\mathbf{x}_{new})$, 
+então a observação $\mathbf{x}_{new}$ pertence ao cluster 2.
+
+\item Neste exercício assumimos que o cluster atribuído a cada observação é 
+é escolhido pelo critério de \textit{maximum likelihood}.
+Assim, o cluster escolhido é dado por:
+
+\begin{equation}
+    cluster = \arg\max_k p(\mathbf{x}_i|cluster = k)
+\end{equation}
+SERA Q ISTO TA CERTO????
+\begin{equation}
+    p(\mathbf{x}_i|cluster = k) = \frac{p(\mathbf{x}_i,cluster = k)}{p(cluster = k)}
+\end{equation}
+
+Assim,
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Observação & $p(\mathbf{x}_i|cluster = 1)$ & $p(\mathbf{x}_i|cluster = 2)$ & Cluster atribuído\\ \hline
+$\mathbf{x_1}$ &  0.59941  & 1.29174 & 2 \\ \hline
+$\mathbf{x_2}$ &  1.00197  & 0.25471 & 1 \\ \hline
+$\mathbf{x_3}$ &   1.13789 & 1.43871 & 2 \\ \hline
+$\mathbf{x_4}$ &  0.05377  & 1.26294 & 2 \\ \hline
+\end{tabular}
+\end{table}
+
+Coeficiente de Silhueta:
+
+\begin{equation}
+    s_i = 1 - \frac{a(\mathbf{x}_i)}{b(\mathbf{x}_i)}
+\end{equation}
+
+em que $a(\mathbf{x}_i)$ é a distância média entre $\mathbf{x}_i$ e as outras 
+observações no mesmo cluster e $b(\mathbf{x}_i)$ é a distância média entre 
+$\mathbf{x}_i$ e as observações no outro cluster. \\ \\
+
+A silhueta de um cluster é dada pela média dos coeficientes de silhueta de todas
+as observações pertencentes a esse cluster. \\ \\
+
+A silhueta da solução é por sua vez dada pela média das silhuetas de todos os
+clusters. \\ \\
+
+Neste caso a distância considerada é a distância de Manhattan, logo:
+
+\begin{equation}
+    d(\mathbf{u},\mathbf{v}) = \sum_{i=1}^n |u_i - v_i|
+\end{equation}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+cluster            & $x_i$ & $s(x_i)$   & $s(c_k)$                    & $s(sol)$                  \\ \hline
+1                  & $x_2$  & 1       & 1                        & \multirow{4}{*}{0.61420} \\ \cline{1-4}
+\multirow{3}{*}{2} & $x_1$  & 0.59259 & \multirow{3}{*}{0.22840} &                          \\ \cline{2-3}
+                    & $x_3$  & -0.5    &                          &                          \\ \cline{2-3}
+                    & $x_4$  & 0.59259 &                          &                          \\ \hline
+\end{tabular}
+\end{table}
+
+
+\item 
 
 \end{enumerate}
 
