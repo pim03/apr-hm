@@ -97,11 +97,6 @@ Instituto Superior Técnico \\ outubro  de 2023  \\ \\
 
 \vspace{0.4cm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Up until this point you only have to make minor changes for every week (Number of the homework). Your write up essentially starts here.
-
 \section*{Pen and Paper}
 \begin{enumerate}
 
@@ -393,6 +388,7 @@ Assim, os pesos e os bias atualizados foram:
 \end{enumerate}
 
 \clearpage
+
 \section*{Programming - Código Python e Resultados Obtidos}
 
 \begin{enumerate}
@@ -586,11 +582,12 @@ for iter in iter_array:
 def const(x): return average_rmse_old
 
 # Plot the RMSE
-plt.plot(iter_array, new_rmse_array, '-o', label='RMSE')
-plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
+plt.plot(iter_array, new_rmse_array, '-o', label='Different max iteration MLP')
+plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed', label = 'Early stopping MLP')
 plt.xlabel('Number of iterations') 
 plt.ylabel('RMSE')
 plt.title('RMSE vs number of iterations')
+plt.legend()
 plt.savefig('ex3_rmse.png')
 plt.show()
 \end{lstlisting}

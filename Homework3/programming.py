@@ -14,72 +14,72 @@ target = df['quality']
 variables_train, variables_test, target_train, target_test= train_test_split(variables, target, 
                                                                          train_size=0.8, random_state=0)
 
-######### Exercise 1 ##########
+# ######### Exercise 1 ##########
 
-residues = np.array([])
+# residues = np.array([])
 
-for i in range(1, 11):
-    # Learn the MLP regressor 
-    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
-    #Predict output
-    y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
-    #Calculate residues
-    residue = abs(target_test - y_pred)
-    residue = residue.to_numpy()
-    residues = np.append(residues, residue)
+# for i in range(1, 11):
+#     # Learn the MLP regressor 
+#     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
+#     #Predict output
+#     y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
+#     #Calculate residues
+#     residue = abs(target_test - y_pred)
+#     residue = residue.to_numpy()
+#     residues = np.append(residues, residue)
     
 
-#Plot all the residues
-plt.hist(residues, edgecolor='black',bins='auto')
-plt.title('Histogram of the residues')
-plt.xlabel('Residues')
-plt.ylabel('Frequency')
-plt.savefig('ex1_histogram.png')
-plt.show()
+# #Plot all the residues
+# plt.hist(residues, edgecolor='black',bins='auto')
+# plt.title('Histogram of the residues')
+# plt.xlabel('Residues')
+# plt.ylabel('Frequency')
+# plt.savefig('ex1_histogram.png')
+# plt.show()
 
-########## Exercise 2 ##########
+# ########## Exercise 2 ##########
 
-# Round and bound the predictions
-mae_array = np.array([])
-mae_bounded_array = np.array([])
-mae_rounded_array = np.array([])
-mae_rounded_and_bounded_array = np.array([])
+# # Round and bound the predictions
+# mae_array = np.array([])
+# mae_bounded_array = np.array([])
+# mae_rounded_array = np.array([])
+# mae_rounded_and_bounded_array = np.array([])
 
-for i in range(1, 11):
-    # Learn the MLP regressor 
-    mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
+# for i in range(1, 11):
+#     # Learn the MLP regressor 
+#     mlp = MLPRegressor(hidden_layer_sizes=(10,10), activation='relu', early_stopping=True, validation_fraction=0.2, random_state=i)
 
-    #Calculate MAE
-    y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
-    mae = mean_absolute_error(target_test, y_pred)
-    #mae = np.mean(abs(target_test - y_pred))
-    mae_array = np.append(mae_array, mae)
-    print(mae)
-    #Calculate MAE - rounded
-    y_pred_rounded = np.round(y_pred)
-    mae_rounded = np.mean(abs(target_test - y_pred_rounded))
-    mae_rounded_array = np.append(mae_rounded_array, mae_rounded)
+#     #Calculate MAE
+#     y_pred = mlp.fit(variables_train,target_train).predict(variables_test)
+#     mae = mean_absolute_error(target_test, y_pred)
+#     #mae = np.mean(abs(target_test - y_pred))
+#     mae_array = np.append(mae_array, mae)
+#     print(mae)
+#     #Calculate MAE - rounded
+#     y_pred_rounded = np.round(y_pred)
+#     mae_rounded = np.mean(abs(target_test - y_pred_rounded))
+#     mae_rounded_array = np.append(mae_rounded_array, mae_rounded)
     
-    #Calculate MAE - bounded
-    y_pred_bounded = np.clip(y_pred, a_min=1, a_max=10)
-    mae_bounded = np.mean(abs(target_test - y_pred_bounded))
-    mae_bounded_array = np.append(mae_bounded_array, mae_bounded)
+#     #Calculate MAE - bounded
+#     y_pred_bounded = np.clip(y_pred, a_min=1, a_max=10)
+#     mae_bounded = np.mean(abs(target_test - y_pred_bounded))
+#     mae_bounded_array = np.append(mae_bounded_array, mae_bounded)
 
-    ##Calculate MAE - rounded and bounded
-    y_pred_rounded_and_bounded = np.clip(y_pred_rounded, a_min=1, a_max=10)
-    mae_rounded_and_bounded = np.mean(abs(target_test - y_pred_rounded_and_bounded))
-    mae_rounded_and_bounded_array = np.append(mae_rounded_and_bounded_array, mae_rounded_and_bounded)
+#     #Calculate MAE - rounded and bounded
+#     y_pred_rounded_and_bounded = np.clip(y_pred_rounded, a_min=1, a_max=10)
+#     mae_rounded_and_bounded = np.mean(abs(target_test - y_pred_rounded_and_bounded))
+#     mae_rounded_and_bounded_array = np.append(mae_rounded_and_bounded_array, mae_rounded_and_bounded)
 
-mean_mae = np.mean(mae_array)
-mean_mae_rounded = np.mean(mae_rounded_array)
-mean_mae_bounded = np.mean(mae_bounded_array)
-mean_mae_rounded_and_bounded = np.mean(mae_rounded_and_bounded_array)
+# mean_mae = np.mean(mae_array)
+# mean_mae_rounded = np.mean(mae_rounded_array)
+# mean_mae_bounded = np.mean(mae_bounded_array)
+# mean_mae_rounded_and_bounded = np.mean(mae_rounded_and_bounded_array)
 
-# Print the results
-print('MAE (not rounded and not bounded): ', mean_mae)
-print('MAE (rounded): ', mean_mae_rounded)
-print('MAE (bounded): ', mean_mae_bounded)
-print('MAE (rounded and bounded): ', mean_mae_rounded_and_bounded)
+# # Print the results
+# print('MAE (not rounded and not bounded): ', mean_mae)
+# print('MAE (rounded): ', mean_mae_rounded)
+# print('MAE (bounded): ', mean_mae_bounded)
+# print('MAE (rounded and bounded): ', mean_mae_rounded_and_bounded)
 
 ########## Exercise 3 ##########
 
@@ -116,10 +116,11 @@ for iter in iter_array:
 def const(x): return average_rmse_old
 
 # Plot the RMSE
-plt.plot(iter_array, new_rmse_array, '-o', label='RMSE')
-plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed')
+plt.plot(iter_array, new_rmse_array, '-o', label='Different max iteration MLP')
+plt.hlines(average_rmse_old, xmin=min(iter_array), xmax=max(iter_array), colors='r', linestyles='dashed', label = 'Early stopping MLP')
 plt.xlabel('Number of iterations') 
 plt.ylabel('RMSE')
 plt.title('RMSE vs number of iterations')
+plt.legend()
 plt.savefig('ex3_rmse.png')
 plt.show()
