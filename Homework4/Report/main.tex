@@ -110,7 +110,6 @@ Instituto Superior Técnico \\ outubro  de 2023  \\ \\
     p(\mathbf{x}_i) = p(c_1)p(\mathbf{x}_i|c_1)+p(c_2)p(\mathbf{x}_i|c_2)
 \end{equation}
 
-NAO SEI SE POSSO PROPRIAMENTE METER ESTA EQ ASSIM ????????
 \begin{equation}
     p(\mathbf{x}_i|c_k) =
     \begin{cases} 
@@ -188,7 +187,6 @@ Assim calculamos os novos parâmetros atualizados para cada cluster utilizando a
 % Ela é dada pelo numero total de observações em que y_1 é 1 dividido pelo numero total de observações
 % no entanto, neste caso cada observação tem um peso diferente, dado pelo gamma_ki
 % assim, o parâmetro da distribuição de Bernoulli é dado por:
-EU INVENTEI ISTO, PODE NAO TAR CERTO!!!!!!!
 \begin{equation}
     P_k(y_1=1) = \frac{\sum_{i=1}^4 \gamma_{ki} \cdot p(y_1=1|\mathbf{x}_i)}{\sum_{i=1}^4 \gamma_{ki}} 
 \end{equation}
@@ -340,11 +338,40 @@ cluster           & $\mathbf{x}_i$ & a$(\mathbf{x}_i)$ & b$(\mathbf{x}_i)$ & s$(
 A purity é dada por:
 
 \begin{equation}
-    purity = \frac{1}{N} \sum_{k=1}^K \max_j |c_k \cap t_j|
+    \text{purity} = \frac{1}{N} \sum_{k=1}^K \max_j |c_k \cap t_j| = \frac{1}{N} \left( \max_j |c_1 \cap t_j| + \max_j |c_2 \cap t_j| \right)
 \end{equation}
 
+
 Uma vez que temos uma purity de 0.75 e um número total de observações de 4,
-então $\sum_{k=1}^K \max_j |c_k \cap t_j| = 3$ \\ \\
+então $\frac{1}{N} \left( \max_j |c_1 \cap t_j| + \max_j |c_2 \cap t_j| \right) = 0.75 \times 4 = 3$ \\ \\
+
+Logo podemos ter os seguintes casos:
+\begin{enumerate}
+    \item $\max_j |c_1 \cap t_j| = 3$ e $\max_j |c_2 \cap t_j| = 0$
+    \item $\max_j |c_1 \cap t_j| = 2$ e $\max_j |c_2 \cap t_j| = 1$
+    \item $\max_j |c_1 \cap t_j| = 1$ e $\max_j |c_2 \cap t_j| = 2$
+    \item $\max_j |c_1 \cap t_j| = 0$ e $\max_j |c_2 \cap t_j| = 3$
+\end{enumerate}
+
+As opções (a) e (d) não são possíveis porque o cluster 2 e 1 só têm 2 observações cada um. 
+
+\textbf{Opção (b)} \\ 
+Neste caso, as observações do cluster 1 são as duas classificadas corretamente. 
+No cluster 2 uma é corretamente identificada e a outra não. Assim, as observações 
+no cluster 1 têm a mesma classificação; uma das observações do cluster 2 tem classificação
+diferente das do cluster 1 e a outra pode ter classificação igual às do cluster 1 (opção 1)
+ou diferente, sendo que neste caso é também diferente da classificação do outra observação
+do cluster 2 (opção 2). Assim, conclui-se que o número verdadeiro de classes pode ser 2 ou 3. \\
+Para visualizar melhor as opções possíveis fizemos os seguintes esquemas 
+(bolas de cores diferentes representam classes verdadeiras diferentes):
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ex4_clusters.jpg}
+\end{figure}
+
+\textbf{Opção (c)} \\
+O raciocínio é semelhante ao da opção (b). Conclui-se que o número verdadeiro de classes pode ser 2 ou 3.
 
 \end{enumerate}
 
