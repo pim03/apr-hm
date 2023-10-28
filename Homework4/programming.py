@@ -1,7 +1,7 @@
 import math
 import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
-from sklearn import datasets, metrics, cluster, mixture
+from sklearn import metrics, cluster
 from scipy.io.arff import loadarff
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.decomposition import PCA
@@ -146,7 +146,7 @@ plt.scatter(X_pca[:,0], X_pca[:,1], c=target_pred, alpha=0.6)
 plt.xlabel('PC1')
 plt.ylabel('PC2')
 plt.legend()
-plt.title('𝑘 = 3 clustering solution')
+plt.title('k = 3 clustering solution')
 plt.show()
 
 # iii)
@@ -165,6 +165,26 @@ plt.title('K-means Clustering')
 # Create a legend using the calculated mode class for each cluster
 legend_labels = [f'Cluster {cluster}: {mode_class}' for cluster, mode_class in cluster_mode.items()]
 plt.legend(legend_labels)
-
+print('\n')
+print('legend_labels:',legend_labels)
 # Show the plot
 plt.show()
+
+
+'''legenda = {cluster : mode_class for cluster, mode_class in cluster_mode.items()}
+# identify incorrect predictions (pre-matching is necessary)
+#codes = {'Normal': 2, 'Hernia': 1, 'Spondylolisthesis': 0}
+
+y_ref = []
+for i in range(len(target)):
+    if target[i] == legenda
+    
+
+y_ref = target.map(codes)
+changes = [i for i in range(len(y_ref)) if y_ref[i] != target_pred.map(codes)[i]]
+print("incorrect observations:",changes)
+
+# plot incorrect predictions 
+plt.plot(features.iloc[:,0], features.iloc[:,1], 'w', markerfacecolor='b', marker='.', markersize=10)
+plt.plot(features.iloc[changes,0], features.iloc[changes,1], 'w', markerfacecolor='r', marker='.', markersize=10)
+plt.show()'''
