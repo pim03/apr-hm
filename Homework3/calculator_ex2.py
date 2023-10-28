@@ -9,14 +9,14 @@ w1 = np.array([[1, 1, 1, 1], [1, 1, 2, 1], [1, 1, 1, 1]])
 print('w1: \n', w1)
 b1 = np.array([[1], [1], [1]])
 print('b1: \n', b1)
-t1 = np.array([[0], [1], [0]])
+t1 = np.array([[-1], [1], [-1]])
 print('t1: \n', t1)
 
 w2 = np.array([[1, 4, 1], [1, 1, 1]])
 print('w2: \n', w2)
 b2 = np.array([[1], [1]])
 print('b2: \n', b2)
-t2 = np.array([[1], [0], [0]])
+t2 = np.array([[1], [-1], [-1]])
 print('t2: \n', t2)
 
 w3 = np.array([[1, 1], [3, 1], [1, 1]])
@@ -124,4 +124,8 @@ print('b2_new: \n', b2_new)
 
 b3_new = b3 - 0.1 * (delta1_3 + delta2_3)
 print('b3_new: \n', b3_new)
+
+
+
+
 

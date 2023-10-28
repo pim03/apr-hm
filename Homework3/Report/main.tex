@@ -118,7 +118,9 @@ Instituto Superior Técnico \\ outubro  de 2023  \\ \\
 %%%%%%%%%%%%%%%%%% a) %%%%%%%%%%%%%%%%%%%
 
 a) Uma função radial basis permite mapear observações para um novo espaço 
-baseando-se na distância entre as observações e os centróides.
+baseando-se na distância entre as observações e os centróides escolhidos.
+Neste caso a função radial basis utilizada para transformar as observações foi 
+a seguinte:
 
 \begin{equation}
     \phi_j (x) = \exp\left(-\frac{\left\|\vec{x}-c_j\right\|^2}{2}\right)
@@ -257,7 +259,7 @@ Estas expressões são válidas quando consideramos a squared error loss functio
 Dados necessários para começar o algoritmo:
 
 \begin{equation*}
-    \textbf{x}^{[0]}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} , \textbf{t}_1 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} , \textbf{x}^{[0]}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \\ -1 \end{bmatrix} , \textbf{t}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}
+    \textbf{x}^{[0]}_1 = \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} , \textbf{t}_1 = \begin{bmatrix} -1 \\ 1 \\ -1 \end{bmatrix} , \textbf{x}^{[0]}_2 = \begin{bmatrix} 1 \\ 0 \\ 0 \\ -1 \end{bmatrix} , \textbf{t}_2 = \begin{bmatrix} 1 \\ -1 \\ -1 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
@@ -323,29 +325,29 @@ Depois é necessário realizar (backward) propagation dos erros da última camad
 - Para a primeira observação:
 
 \begin{equation*}
-    \bm{\delta}^{[3]}_1 = (\textbf{x}^{[3]}_1 - \textbf{t}_1) \circ \phi'(\textbf{z}^{[3]}_1) = \begin{bmatrix} -0.07379 \\ -0.31773 \\ -0.07379 \end{bmatrix}
+    \bm{\delta}^{[3]}_1 = (\textbf{x}^{[3]}_1 - \textbf{t}_1) \circ \phi'(\textbf{z}^{[3]}_1) = \begin{bmatrix} -0.00678\\ -0.31773 \\ -0.00678 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \bm{\delta}^{[2]}_1 = (W^{[3]})^T \cdot \bm{\delta}^{[3]}_1 \circ \phi'(\textbf{z}^{[2]}_1) = \begin{bmatrix} -0.43870\\ -0.15535 \end{bmatrix}
+    \bm{\delta}^{[2]}_1 = (W^{[3]})^T \cdot \bm{\delta}^{[3]}_1 \circ \phi'(\textbf{z}^{[2]}_1) = \begin{bmatrix} -0.37448\\ -0.10156 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \bm{\delta}^{[1]}_1 = (W^{[2]})^T \cdot \bm{\delta}^{[2]}_1 \circ \phi'(\textbf{z}^{[1]}_1) = \begin{bmatrix} -0.23359 \\ -0.40110 \\ -0.23359 \end{bmatrix}
+    \bm{\delta}^{[1]}_1 = (W^{[2]})^T \cdot \bm{\delta}^{[2]}_1 \circ \phi'(\textbf{z}^{[1]}_1) = \begin{bmatrix} -0.18719 \\ -0.33587 \\ -0.18719 \end{bmatrix}
 \end{equation*}
 
 - Para a segunda observação:
 
 \begin{equation*}
-    \bm{\delta}^{[3]}_2 = (\textbf{x}^{[3]}_2 - \textbf{t}_2) \circ \phi'(\textbf{z}^{[3]}_2) = \begin{bmatrix} -0.02660 \\ -0.00183 \\ -0.01321 \end{bmatrix}
+    \bm{\delta}^{[3]}_2 = (\textbf{x}^{[3]}_2 - \textbf{t}_2) \circ \phi'(\textbf{z}^{[3]}_2) = \begin{bmatrix} -2.65961\cdot 10^{-2} \\ 3.36962\cdot 10^{-6} \\ 1.80463\cdot 10^{-4} \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \bm{\delta}^{[2]}_2 = (W^{[3]})^T \cdot \bm{\delta}^{[3]}_2 \circ \phi'(\textbf{z}^{[2]}_2) = \begin{bmatrix} -1.97439\cdot 10^{-5} \\ -2.72552\cdot 10^{-4} \end{bmatrix}
+    \bm{\delta}^{[2]}_2 = (W^{[3]})^T \cdot \bm{\delta}^{[3]}_2 \circ \phi'(\textbf{z}^{[2]}_2) = \begin{bmatrix} -1.15093\cdot 10^{-5} \\ -1.72899 \cdot 10^{-4} \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \bm{\delta}^{[1]}_2 = (W^{[2]})^T \cdot \bm{\delta}^{[2]}_2 \circ \phi'(\textbf{z}^{[1]}_2) = \begin{bmatrix} -2.64099\cdot 10^{-5} \\ -3.17617\cdot 10^{-5} \\ -2.64099\cdot 10^{-5} \end{bmatrix}
+    \bm{\delta}^{[1]}_2 = (W^{[2]})^T \cdot \bm{\delta}^{[2]}_2 \circ \phi'(\textbf{z}^{[1]}_2) = \begin{bmatrix} -1.66619\cdot 10^{-5} \\ -1.97816 \cdot 10^{-5} \\ -1.66193\cdot 10^{-5} \end{bmatrix}
 \end{equation*}
 
 Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um batch gradient descent update (com learning rate igual a 0.1), a expressão para os pesos atualizados é:
@@ -357,33 +359,165 @@ Por fim é necessário atualizar os pesos e os bias. Como estamos a realizar um 
 Assim, os pesos e os bias atualizados foram:
 
 \begin{equation*}
-    W^{[1]} = W^{[1]} - 0.1 \cdot (\bm{\delta}^{[1]}_1 \cdot (\textbf{x}^{[0]}_1)^T + \bm{\delta}^{[1]}_2 \cdot (\textbf{x}^{[0]}_2)^T) = \begin{bmatrix} 1.02336 & 1.02336 & 1.02336 & 1.02336 \\
-                                                                                                                            1.04011 & 1.04011 & 2.04011 & 1.04011 \\
-                                                                                                                            1.02336 & 1.02336 & 1.02336 & 1.02336 \end{bmatrix}
+    W^{[1]} = W^{[1]} - 0.1 \cdot (\bm{\delta}^{[1]}_1 \cdot (\textbf{x}^{[0]}_1)^T + \bm{\delta}^{[1]}_2 \cdot (\textbf{x}^{[0]}_2)^T) = \begin{bmatrix} 1.01872 & 1.01872 & 1.01872 & 1.01872 \\
+                                                                                                                            1.03359 & 1.03359 & 2.03359 & 1.03359 \\
+                                                                                                                            1.01872 & 1.01872 & 1.01872 & 1.01872 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \textbf{b}^{[1]} = \textbf{b}^{[1]} - 0.1 \cdot (\bm{\delta}^{[1]}_1 + \bm{\delta}^{[1]}_2) = \begin{bmatrix} 1.02336 \\ 1.04011 \\ 1.02336 \end{bmatrix}
+    \textbf{b}^{[1]} = \textbf{b}^{[1]} - 0.1 \cdot (\bm{\delta}^{[1]}_1 + \bm{\delta}^{[1]}_2) = \begin{bmatrix} 1.01872 \\ 1.03359 \\ 1.01872 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[2]} = W^{[2]} - 0.1 \cdot (\bm{\delta}^{[2]}_1 \cdot (\textbf{x}^{[1]}_1)^T + \bm{\delta}^{[2]}_2 \cdot (\textbf{x}^{[1]}_2)^T) = \begin{bmatrix} 1.02027 & 4.03341 & 1.02027 \\
-                                                                                                                            1.00715 & 1.01181 & 1.00715 \end{bmatrix}
+    W^{[2]} = W^{[2]} - 0.1 \cdot (\bm{\delta}^{[2]}_1 \cdot (\textbf{x}^{[1]}_1)^T + \bm{\delta}^{[2]}_2 \cdot (\textbf{x}^{[1]}_2)^T) = \begin{bmatrix} 1.01730 & 4.02852 & 1.01730 \\
+                                                                                                                            1.00468 & 1.00772 & 1.00468 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \textbf{b}^{[2]} = \textbf{b}^{[2]} - 0.1 \cdot (\bm{\delta}^{[2]}_1 + \bm{\delta}^{[2]}_2) = \begin{bmatrix} 1.04387 \\ 1.01556 \end{bmatrix}
+    \textbf{b}^{[2]} = \textbf{b}^{[2]} - 0.1 \cdot (\bm{\delta}^{[2]}_1 + \bm{\delta}^{[2]}_2) = \begin{bmatrix} 1.03745 \\ 1.01017 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    W^{[3]} = W^{[3]} - 0.1 \cdot (\bm{\delta}^{[3]}_1 \cdot (\textbf{x}^{[2]}_1)^T + \bm{\delta}^{[3]}_2 \cdot (\textbf{x}^{[2]}_2)^T) = \begin{bmatrix} 1.00067 & 0.99310 \\
-                                                                                                                            3.01413 & 0.98150 \\
-                                                                                                                            1.00200 & 0.99443 \end{bmatrix}
+    W^{[3]} = W^{[3]} - 0.1 \cdot (\bm{\delta}^{[3]}_1 \cdot (\textbf{x}^{[2]}_1)^T + \bm{\delta}^{[3]}_2 \cdot (\textbf{x}^{[2]}_2)^T) = \begin{bmatrix} 0.99704 & 0.99775 \\
+                                                                                                                            3.01431 & 0.98169 \\
+                                                                                                                            0.99971 & 1.00041 \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
-    \textbf{b}^{[3]} = \textbf{b}^{[3]} - 0.1 \cdot (\bm{\delta}^{[3]}_1 + \bm{\delta}^{[3]}_2) = \begin{bmatrix} 1.01004 \\ 1.03196 \\ 1.00870 \end{bmatrix}
+    \textbf{b}^{[3]} = \textbf{b}^{[3]} - 0.1 \cdot (\bm{\delta}^{[3]}_1 + \bm{\delta}^{[3]}_2) = \begin{bmatrix} 1.00198 \\ 1.03177 \\ 0.99930 \end{bmatrix}
 \end{equation*}
+
+Para facilitar a resolução deste exercício, críamos um código em \textit{Python} para 
+realizar os cálculos necessários utilizando a biblioteca \textit{numpy}.\\
+
+\begin{lstlisting}[language=Python]
+import numpy as np 
+
+### MLP ###
+
+x1 = np.array([[1], [1], [1], [1]])
+x2 = np.array([[1], [0], [0], [-1]])
+
+w1 = np.array([[1, 1, 1, 1], [1, 1, 2, 1], [1, 1, 1, 1]])
+print('w1: \n', w1)
+b1 = np.array([[1], [1], [1]])
+print('b1: \n', b1)
+t1 = np.array([[-1], [1], [-1]])
+print('t1: \n', t1)
+
+w2 = np.array([[1, 4, 1], [1, 1, 1]])
+print('w2: \n', w2)
+b2 = np.array([[1], [1]])
+print('b2: \n', b2)
+t2 = np.array([[1], [-1], [-1]])
+print('t2: \n', t2)
+
+w3 = np.array([[1, 1], [3, 1], [1, 1]])
+print('w3: \n', w3)
+b3 = np.array([[1], [1], [1]])
+print('b3: \n', b3)
+
+def phi(x):
+    return np.tanh(0.5 * x - 2)
+
+def phi_prime(x):
+    return 0.5 * (1 - np.tanh(0.5 * x - 2) ** 2)
+
+# x1_p and x2_p being p the index of the layer
+
+### first observation ###
+
+z1_1 = np.dot(w1, x1) + b1
+print('z1_1: \n', z1_1)
+x1_1 = phi(z1_1)
+print('x1_1: \n', x1_1)
+
+z1_2 = np.dot(w2, x1_1) + b2
+print('z1_2: \n', z1_2)
+x1_2 = phi(z1_2)
+print('x1_2: \n', x1_2)
+
+z1_3 = np.dot(w3, x1_2) + b3
+print('z1_3: \n', z1_3)
+x1_3 = phi(z1_3) 
+print('x1_3: \n', x1_3)
+
+delta1_3 = (x1_3 - t1) * phi_prime(z1_3)
+print('delta1_3: \n', delta1_3)
+
+delta1_2 = np.dot(w3.transpose(), delta1_3) * phi_prime(z1_2)
+print('delta1_2: \n', delta1_2)
+
+delta1_1 = np.dot(w2.transpose(), delta1_2) * phi_prime(z1_1)
+print('delta1_1: \n', delta1_1)
+
+### second observation ###
+
+z2_1 = np.dot(w1, x2) + b1
+print('z2_1: \n', z2_1)
+x2_1 = phi(z2_1)
+print('x2_1: \n', x2_1)
+
+z2_2 = np.dot(w2, x2_1) + b2
+print('z2_2: \n', z2_2)
+x2_2 = phi(z2_2)
+print('x2_2: \n', x2_2)
+
+z2_3 = np.dot(w3, x2_2) + b3
+print('z2_3: \n', z2_3)
+x2_3 = phi(z2_3)
+print('x2_3: \n', x2_3)
+
+delta2_3 = (x2_3 - t2) * phi_prime(z2_3)
+print('delta2_3: \n', delta2_3)
+
+delta2_2 = np.dot(w3.transpose(), delta2_3) * phi_prime(z2_2)
+print('delta2_2: \n', delta2_2)
+
+delta2_1 = np.dot(w2.transpose(), delta2_2) * phi_prime(z2_1)
+print('delta2_1: \n', delta2_1)
+
+### derivatives ###
+dE1_dw1 = np.dot(delta1_1, x1.transpose())
+print('dE1_dw1: \n', dE1_dw1)
+
+dE2_dw1 = np.dot(delta2_1, x2.transpose())
+print('dE2_dw1: \n', dE2_dw1)
+
+dE1_dw2 = np.dot(delta1_2, x1_1.transpose())
+print('dE1_dw2: \n', dE1_dw2)
+
+dE2_dw2 = np.dot(delta2_2, x2_1.transpose())
+print('dE2_dw2: \n', dE2_dw2)
+
+dE1_dw3 = np.dot(delta1_3, x1_2.transpose())
+print('dE1_dw3: \n', dE1_dw3)
+
+dE2_dw3 = np.dot(delta2_3, x2_2.transpose())
+print('dE2_dw3: \n', dE2_dw3)
+
+### final weights ###
+
+w1_new = w1 - 0.1 * (dE1_dw1 + dE2_dw1)
+print('w1_new: \n', w1_new)
+
+w2_new = w2 - 0.1 * (dE1_dw2 + dE2_dw2)
+print('w2_new: \n', w2_new)
+
+w3_new = w3 - 0.1 * (dE1_dw3 + dE2_dw3)
+print('w3_new: \n', w3_new)
+
+### final biases ###
+
+b1_new = b1 - 0.1 * (delta1_1 + delta2_1)
+print('b1_new: \n', b1_new)
+
+b2_new = b2 - 0.1 * (delta1_2 + delta2_2)
+print('b2_new: \n', b2_new)
+
+b3_new = b3 - 0.1 * (delta1_3 + delta2_3)
+print('b3_new: \n', b3_new)
+\end{lstlisting}
 
 \end{enumerate}
 
@@ -394,13 +528,14 @@ Assim, os pesos e os bias atualizados foram:
 \begin{enumerate}
 
 \item Utilizamos um training-test split de 80-20, ou seja 80\% dos dados foram utilizados para treinar o modelo e 20\% para testá-lo.\\ 
-A fórmula utilizada para calcular os resíduos foi:
+Usando 10 regressores MLP com as características especificadas no enunciado e com sementes de 1 a 10, 
+previmos o output para as observações de teste e calculamos os resíduos através da seguinte fórmula.
 
 \begin{equation}
-    \text{residual} = | z - \hat{z} |
+    \text{residual} = (z - \hat{z})
 \end{equation}
 
-O histograma dos resíduos dos 10 MLP's (com sementes de 1 a 10) encontra-se representado na seguinte figura:
+O histograma dos módulos dos resíduos dos 10 MLP's (com sementes de 1 a 10) encontra-se representado na seguinte figura:
 
 \begin{figure}[H]
     \centering
@@ -410,9 +545,9 @@ O histograma dos resíduos dos 10 MLP's (com sementes de 1 a 10) encontra-se rep
 Observando o histograma, conclui-se que a frequência diminui significativamente 
 com o crescimento do valor absoluto dos resíduos. Isto significa que a maior parte
 da diferença entre o valor real e o valor previsto pelo MLP é pequena, logo a previsão
-dos MLP's em geral é boa.\\
+dos MLP's em geral é bastante boa.\\
 
-Códio Utilizado:
+Código Utilizado:
 
 \begin{lstlisting}[language=Python]
 import pandas as pd, numpy as np
@@ -432,7 +567,6 @@ variables_train, variables_test, target_train, target_test= train_test_split(var
                                                                             train_size=0.8, random_state=0)
 
 ######### Exercise 1 ##########
-
 residues = np.array([])
 
 for i in range(1, 11):
@@ -445,7 +579,6 @@ for i in range(1, 11):
     residue = residue.to_numpy()
     residues = np.append(residues, residue)
     
-
 #Plot all the residues
 plt.hist(residues, edgecolor='black',bins='auto')
 plt.title('Histogram of the residues')
@@ -460,7 +593,8 @@ plt.show()
 1 e 10 podemos arredondar os valores previstos pelo MLP para o inteiro mais próximo (arredondamento)
 e transformar os valores menores que 1 em 1 e os maiores que 10 em 10 (limitação).\\
 Para comparar o desempenho do MLP antes e depois destes processos, comparamos os MAE's obtidos. 
-\\ O MAE foi calculado através da seguinte fórmula:
+\\ Consideramos que o valor do MAE é a média dos valores dos MAE's dos 10 MLP's com sementes de 1 a 10.\\
+A fórmula que usamos para calcular cada um destes 10 MAE's foi:
 
 \begin{equation}
     MAE = \frac{1}{n} \sum_{i=1}^{n} | z_i - \hat{z}_i |
@@ -486,7 +620,6 @@ Código Utilizado:
 
 \begin{lstlisting}[language=Python]
 ########## Exercise 2 ##########
-
 # Round and bound the predictions
 mae_array = np.array([])
 mae_bounded_array = np.array([])
@@ -548,7 +681,6 @@ Código utilizado:
 
 \begin{lstlisting}[language=Python]
 ########## Exercise 3 ##########
-
 # Calculate the RMSE for the old MLP regressor
 sum_rmse_old = 0
 for i in range(1, 11):
@@ -595,11 +727,14 @@ plt.show()
 \item De um modo geral, o MLP com early stopping tem um desempenho melhor em comparação com um número fixo de iterações. Isto é, o RMSE obtido com early stopping é menor do que o RMSE obtido com um número fixo de iterações (20, 50 e 100).
 Para o número máximo de iterações igual a 200, o RMSE obtido com early stopping é maior do que o RMSE obtido com um número fixo de iterações. No entanto, a diferença entre os dois RMSE's é muito pequena.
 
-Early stopping é uma técnica utilizada para combater o overfitting. No entanto, pode impedir que o modelo alcance seu potencial total de ajuste se o critério de paragem utilizado não for o mais adequado (por ser demasiado elevado, por exemplo).
+Early stopping é uma técnica utilizada para combater o overfitting. No entanto, pode impedir que o modelo alcance o seu potencial total de ajuste se o critério de paragem utilizado não for o mais adequado (por ser demasiado elevado, por exemplo).
 
 Também é importante referir que definir um número fixo de iterações pode ser ineficiente, já que o modelo pode não precisar de tantas iterações para convergir para uma solução aceitável. 
 
 O early stopping a 20\% é um critério de paragem que fornece um certo nível de flexibilidade no treino do modelo. Ele permite que o treino continue até que o modelo comece a demonstrar um claro sinal de overfitting, mas também evita que seja encerrado prematuramente devido a flutuações no erro.
+
+No caso específico dos dados em questão, concluímos que o melhor critério de paragem a utilizar seria o early stopping, uma vez que apesar de o RMSE obtido com early stopping ser maior do que o RMSE obtido com um número fixo de iterações (200), a diferença entre os dois RMSE's é desprezável. 
+Assim, o early stopping é o critério de paragem que permite obter o melhor desempenho do modelo, uma vez que evita o overfitting e é significativamente mais eficiente do que um número fixo de iterações.\\
 
 \end{enumerate}
 
