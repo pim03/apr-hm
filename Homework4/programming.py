@@ -113,40 +113,53 @@ print("Components (eigenvectors):\n",pca.components_)
 print("Explained variance (eigenvalues) =",pca.explained_variance_)
 print("Explained variance (ratio) =",pca.explained_variance_ratio_)
 
-xvector = pca.components_[0] 
-yvector = pca.components_[1]
+xvector = pca.components_[0] * max(X_pca[:,0])
+yvector = pca.components_[1] * max(X_pca[:,1])
 
 columns = features.columns
+impt_features1 = {columns[i] : math.sqrt(xvector[i]**2) for i in range(len(columns))}
+sorted_features1 = sorted(zip(impt_features1.values(),impt_features1.keys()),reverse=True)
+print('Features sorted by importance for the first component: \n')
+for i in range(len(sorted_features1)):
+    print(f'{sorted_features1[i][1]} : {sorted_features1[i][0]: .5f}')
+
+impt_features2 = {columns[i] : math.sqrt(yvector[i]**2) for i in range(len(columns))}
+sorted_features2 = sorted(zip(impt_features2.values(),impt_features2.keys()),reverse=True)
+print('\nFeatures sorted by importance for the second component: \n')
+for i in range(len(sorted_features2)):
+    print(f'{sorted_features2[i][1]} : {sorted_features2[i][0]: .5f}')
+
 impt_features = {columns[i] : math.sqrt(xvector[i]**2 + yvector[i]**2) for i in range(len(columns))}
-print("Features by importance:\n", sorted(zip(impt_features.values(),impt_features.keys()),reverse=True))
+sorted_features = sorted(zip(impt_features.values(),impt_features.keys()),reverse=True)
+print('\nFeatures sorted by importance: \n')
+for i in range(len(sorted_features)):
+    print(f'{sorted_features[i][1]} : {sorted_features[i][0]: .5f}')
 
 ### Exercise 3 ###
 
 # i)
-plt.figure(figsize=(12,10))
-plt.plot(X_pca[target=='Normal', 0], X_pca[target=='Normal', 1], 'o', markersize=7, alpha=0.6, label='Normal')
-plt.plot(X_pca[target=='Hernia', 0], X_pca[target=='Hernia', 1], 'o', markersize=7, alpha=0.6, label='Hernia')
-plt.plot(X_pca[target=='Spondylolisthesis', 0], X_pca[target=='Spondylolisthesis', 1], 'o', markersize=7, alpha=0.6, label='Spondylolisthesis')
+plt.figure(figsize=(12,7))
+plt.scatter(X_pca[target=='Normal', 0], X_pca[target=='Normal', 1], alpha=0.6, label='Normal')
+plt.scatter(X_pca[target=='Hernia', 0], X_pca[target=='Hernia', 1], alpha=0.6, label='Hernia')
+plt.scatter(X_pca[target=='Spondylolisthesis', 0], X_pca[target=='Spondylolisthesis', 1], alpha=0.6, label='Spondylolisthesis')
 
-plt.xlabel('PC1')
-plt.ylabel('PC2')
 plt.legend()
-plt.title('Ground diagnosis')
+plt.title('Points with Ground diagnosis')
+plt.savefig('ex3_ground_diagnosis.png')
 plt.show()
 
 # ii)
 
-kmeans_algo = cluster.KMeans(n_clusters=3, random_state=0 , n_init= 'auto')
+kmeans_algo = cluster.KMeans(n_clusters=3, random_state=0)
 kmeans_model = kmeans_algo.fit(features_scaled)
 target_pred = kmeans_model.labels_
 
-plt.figure(figsize=(12, 10))
+plt.figure(figsize=(12, 7))
 plt.scatter(X_pca[:,0], X_pca[:,1], c=target_pred, alpha=0.6)
 
-plt.xlabel('PC1')
-plt.ylabel('PC2')
 plt.legend()
-plt.title('k = 3 clustering solution')
+plt.title('Cluster for k = 3')
+plt.savefig('ex3_cluster.png')
 plt.show()
 
 # iii)
@@ -156,17 +169,17 @@ cluster_mapping = pd.DataFrame({'Cluster': target_pred, 'Class': target})
 # Calculate the mode class for each cluster
 cluster_mode = cluster_mapping.groupby('Cluster')['Class'].agg(lambda x: x.mode().iat[0])
 
+plt.figure(figsize=(12, 7))
 for cluster in set(target_pred):
     data = X_pca[target_pred == cluster]
     plt.scatter(data[:, 0], data[:, 1], label=f'Cluster {cluster}', alpha=0.6)
 
-plt.title('K-means Clustering')
+plt.title('K-means Clustering with k = 3 and labelled with the most frequent class') 
 
 # Create a legend using the calculated mode class for each cluster
-legend_labels = [f'Cluster {cluster}: {mode_class}' for cluster, mode_class in cluster_mode.items()]
+legend_labels = [f'Cluster {cluster+1}: {mode_class}' for cluster, mode_class in cluster_mode.items()]
 plt.legend(legend_labels)
-print('\n')
-print('legend_labels:',legend_labels)
+plt.savefig('ex3_cluster_labelled.png')
 # Show the plot
 plt.show()
 
