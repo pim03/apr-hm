@@ -133,6 +133,9 @@ OUTPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1200.tfm
+INPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex4_clusters.jpg
+INPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex4_clusters.jpg
+INPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex4_clusters.jpg
 INPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_silhouette.png
 INPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_silhouette.png
 INPUT /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_silhouette.png

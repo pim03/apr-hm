@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  29 OCT 2023 18:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  29 OCT 2023 18:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -353,169 +353,175 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count285
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 175--178
+Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 287--288
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 307--310
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 307--310
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
+Underfull \hbox (badness 10000) in paragraph at lines 311--313
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
+Underfull \hbox (badness 10000) in paragraph at lines 311--313
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--318
+Underfull \hbox (badness 10000) in paragraph at lines 314--316
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--318
+Underfull \hbox (badness 10000) in paragraph at lines 314--316
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--347
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--347
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
+<ex4_clusters.jpg, id=30, 944.52875pt x 543.02875pt>
+File: ex4_clusters.jpg Graphic file (type jpg)
+<use ex4_clusters.jpg>
+Package pdftex.def Info: ex4_clusters.jpg  used on input line 370.
+(pdftex.def)             Requested size: 318.66948pt x 183.21042pt.
+ [5 </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex4_clusters.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 359--360
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 359--360
-
- []
-
-<ex1_silhouette.png, id=33, 462.528pt x 346.896pt>
+<ex1_silhouette.png, id=34, 462.528pt x 346.896pt>
 File: ex1_silhouette.png Graphic file (type png)
 <use ex1_silhouette.png>
-Package pdftex.def Info: ex1_silhouette.png  used on input line 366.
+Package pdftex.def Info: ex1_silhouette.png  used on input line 393.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
-<ex1_purity.png, id=35, 462.528pt x 346.896pt>
+<ex1_purity.png, id=36, 462.528pt x 346.896pt>
 File: ex1_purity.png Graphic file (type png)
 <use ex1_purity.png>
-Package pdftex.def Info: ex1_purity.png  used on input line 372.
+Package pdftex.def Info: ex1_purity.png  used on input line 399.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--381
+Underfull \hbox (badness 10000) in paragraph at lines 405--408
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--381
+Underfull \hbox (badness 10000) in paragraph at lines 405--408
 
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 384.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 411.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [6
 
  </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_silhouette.png> </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_purity.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 423--425
+Underfull \hbox (badness 10000) in paragraph at lines 450--452
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--436
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 464--465
+Underfull \hbox (badness 10000) in paragraph at lines 491--492
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 467--469
+Underfull \hbox (badness 10000) in paragraph at lines 494--496
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 505--506
+Underfull \hbox (badness 10000) in paragraph at lines 532--533
 
  []
 
-<ex3_ground_diagnosis.png, id=52, 867.24pt x 505.89pt>
+<ex3_ground_diagnosis.png, id=53, 867.24pt x 505.89pt>
 File: ex3_ground_diagnosis.png Graphic file (type png)
 <use ex3_ground_diagnosis.png>
-Package pdftex.def Info: ex3_ground_diagnosis.png  used on input line 509.
+Package pdftex.def Info: ex3_ground_diagnosis.png  used on input line 536.
 (pdftex.def)             Requested size: 364.19667pt x 212.44919pt.
-<ex3_cluster.png, id=53, 867.24pt x 505.89pt>
+<ex3_cluster.png, id=54, 867.24pt x 505.89pt>
 File: ex3_cluster.png Graphic file (type png)
 <use ex3_cluster.png>
-Package pdftex.def Info: ex3_cluster.png  used on input line 516.
+Package pdftex.def Info: ex3_cluster.png  used on input line 543.
 (pdftex.def)             Requested size: 364.19667pt x 212.44919pt.
-<ex3_cluster_labelled.png, id=54, 867.24pt x 505.89pt>
+<ex3_cluster_labelled.png, id=55, 867.24pt x 505.89pt>
 File: ex3_cluster_labelled.png Graphic file (type png)
 <use ex3_cluster_labelled.png>
-Package pdftex.def Info: ex3_cluster_labelled.png  used on input line 523.
+Package pdftex.def Info: ex3_cluster_labelled.png  used on input line 550.
 (pdftex.def)             Requested size: 364.19667pt x 212.44919pt.
 [9 </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex3_ground_diagnosis.png> </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex3_cluster.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 528--530
+Underfull \hbox (badness 10000) in paragraph at lines 555--557
 
  []
 
 [10 </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex3_cluster_labelled.png>] [11] (/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.aux) ) 
 Here is how much of TeX's memory you used:
- 7423 strings out of 483163
- 103055 string characters out of 5965511
- 649625 words of memory out of 5000000
- 22326 multiletter control sequences out of 15000+600000
+ 7430 strings out of 483163
+ 103174 string characters out of 5965511
+ 649681 words of memory out of 5000000
+ 22331 multiletter control sequences out of 15000+600000
  549411 words of font info for 61 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  48i,12n,46p,488b,2011s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf (11 pages, 387180 bytes).
+Output written on /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf (11 pages, 424595 bytes).
 PDF statistics:
- 422 PDF objects out of 1000 (max. 8388607)
+ 427 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
