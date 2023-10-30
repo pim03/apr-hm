@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1698603179 "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf" "main" 1698603180
+["pdflatex"] 1698704096 "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.tex" "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf" "main" 1698704097
   "/etc/texmf/web2c/texmf.cnf" 1695560022 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1696778311 31928 7d35df1670abf568349b46baee64c985 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1696778312 40112 919d48dd919803c5d604ba80e828f39c ""
@@ -11,8 +11,8 @@
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk" 1696875265 39096 13a6949890190f7533be6ae30a0bce90 ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk" 1696793873 20008 22451cf29dc418b2778639076fe41bab ""
   "/home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1696781338 14040 7c2647e18130024fbef1f72a9801c3ae ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.aux" 1698603180 786 8cf9c1bcf331c7a60e976fa53f0cfb2f ""
-  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.tex" 1698603179 21943 ed56a9f197f6b6608c8c91feb9d0a3d1 ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.aux" 1698704097 786 8cf9c1bcf331c7a60e976fa53f0cfb2f ""
+  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.tex" 1698704096 22002 0a8c32ebf9746cb7115f0cc518402fda ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0600.tfm" 1136768653 3584 ad9fcbc26a2a7bccd6d08b0a5792fbe0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0800.tfm" 1136768653 3584 269b66e921ba58750c12f7f1c8ea3ebd ""
@@ -118,11 +118,11 @@
   "ex3_cluster_labelled.png" 1698597892 69412 e3cc71c85b31a57b371ebd08ed5719ce ""
   "ex3_ground_diagnosis.png" 1698596944 61739 6f9a7f7b01c357c3feb001db6f03b668 ""
   "ex4_clusters.jpg" 1698603179 34287 0c0b61a1bca25fabb99d2ba52d710c45 ""
-  "main.aux" 1698603180 786 8cf9c1bcf331c7a60e976fa53f0cfb2f "pdflatex"
-  "main.tex" 1698603179 21943 ed56a9f197f6b6608c8c91feb9d0a3d1 ""
+  "main.aux" 1698704097 786 8cf9c1bcf331c7a60e976fa53f0cfb2f "pdflatex"
+  "main.tex" 1698704096 22002 0a8c32ebf9746cb7115f0cc518402fda ""
   (generated)
-  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.log"
-  "main.pdf"
   "main.aux"
-  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf"
   "main.log"
+  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf"
+  "main.pdf"
+  "/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.log"

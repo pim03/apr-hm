@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  29 OCT 2023 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.10.8)  30 OCT 2023 22:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -446,40 +446,45 @@ File: ex1_purity.png Graphic file (type png)
 Package pdftex.def Info: ex1_purity.png  used on input line 399.
 (pdftex.def)             Requested size: 227.62206pt x 170.71628pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--408
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 405--408
+Underfull \hbox (badness 10000) in paragraph at lines 405--407
 
  []
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 411.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 410.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [6
 
  </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_silhouette.png> </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex1_purity.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 450--452
+Underfull \hbox (badness 10000) in paragraph at lines 449--451
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 462--463
+Underfull \hbox (badness 10000) in paragraph at lines 457--459
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 460--462
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 491--492
+Underfull \hbox (badness 10000) in paragraph at lines 492--493
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--496
+Underfull \hbox (badness 10000) in paragraph at lines 495--497
 
  []
 
@@ -510,17 +515,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 555--557
 
 [10 </home/rofarate/Aprendizagem/apr-hm/Homework4/Report/ex3_cluster_labelled.png>] [11] (/home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.aux) ) 
 Here is how much of TeX's memory you used:
- 7430 strings out of 483163
- 103174 string characters out of 5965511
- 649681 words of memory out of 5000000
- 22331 multiletter control sequences out of 15000+600000
+ 7429 strings out of 483163
+ 103147 string characters out of 5965511
+ 635508 words of memory out of 5000000
+ 22330 multiletter control sequences out of 15000+600000
  549411 words of font info for 61 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 48i,12n,46p,488b,2011s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,12n,46p,488b,2013s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/rofarate/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf (11 pages, 424595 bytes).
+Output written on /home/rofarate/Aprendizagem/apr-hm/Homework4/Report/main.pdf (11 pages, 425187 bytes).
 PDF statistics:
- 427 PDF objects out of 1000 (max. 8388607)
+ 428 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)

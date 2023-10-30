@@ -402,9 +402,8 @@ Os gráficos obtidos foram os seguintes:
     \end{minipage}
     \end{figure}
 
-Foi possível observar que a pureza aumenta com o aumento do número de clusters, enquanto que a silhueta diminui. 
-Ou seja, os clusters estão mais sobrepostos, menos coesos e não tão bem separados o que pode significar que estamos a supersegmentar os dados, criando clusters muito pequenos ou muitos clusters.
-Por outro lado, o facto da pureza aumentar com o valor de k indica que os clusters estão cada vez mais heterogéneos (com mais pontos de dados da mesma classe)  \\ \\
+Foi possível observar que, de um modo geral, a pureza aumenta com o número de clusters, enquanto que a silhueta diminui. 
+Ou seja, com o aumento do k, os clusters ficam pior definidos (menos coesos e mais juntos porque a silhueta diminui) mas também mais homogéneos (pureza aumenta). \\
 
 Código Utilizado:
 
@@ -456,8 +455,10 @@ Concluímos que as componentes principais (eigenvectors) são:
     \item PC2: (0.10004, -0.67037, 0.08005, 0.44333, -0.58107, 0.00458)
 \end{itemize}
 Obtivemos os seguintes valores para a variabilidade explicada:\\
-Explained variance (eigenvalues) = (0.07345, 0.02740)\\
-Explained variance (ratio) = (0.56181, 0.20956)
+Explained variance (ratio) = (0.56181, 0.20956)\\
+
+Somando as duas variabilidades explicadas, obtemos 0.77137, ou seja, 77.137\% da variabilidade é explicada pelas duas componentes principais. Neste caso, uma variabilidade considerável é explicada com apenas duas componentes principais.
+O PCA é bastante útil porque permite reduzir as dimensões do dataset utilizando a informação mais relevante para estudar o mesmo.   \\
 
 Para cada uma das duas componentes principais, ordenámos as variáveis de entrada por relevância. \\
 
@@ -502,28 +503,27 @@ pca.fit(features_scaled)
 X_pca = pca.transform(features_scaled)
 
 print("Components (eigenvectors):\n",pca.components_)
-print("Explained variance (eigenvalues) =",pca.explained_variance_)
 print("Explained variance (ratio) =",pca.explained_variance_ratio_)
 
 xvector = pca.components_[0] * max(X_pca[:,0])
 yvector = pca.components_[1] * max(X_pca[:,1])
 
 columns = features.columns
-impt_features1 = {columns[i] : math.sqrt(xvector[i]**2) for i in range(len(columns))}
-sorted_features1 = sorted(zip(impt_features1.values(),impt_features1.keys()),reverse=True)
-print('Features sorted by importance for the first component: \n')
+features1_rel = {columns[i] : math.sqrt(xvector[i]**2) for i in range(len(columns))}
+sorted_features1 = sorted(zip(features1_rel.values(), features1_rel.keys()),reverse=True)
+print('Features sorted by relevance for the first component: \n')
 for i in range(len(sorted_features1)):
     print(f'{sorted_features1[i][1]} : {sorted_features1[i][0]: .5f}')
 
-impt_features2 = {columns[i] : math.sqrt(yvector[i]**2) for i in range(len(columns))}
-sorted_features2 = sorted(zip(impt_features2.values(),impt_features2.keys()),reverse=True)
-print('\nFeatures sorted by importance for the second component: \n')
+features2_rel = {columns[i] : math.sqrt(yvector[i]**2) for i in range(len(columns))}
+sorted_features2 = sorted(zip(features2_rel.values(), features2_rel.keys()),reverse=True)
+print('\nFeatures sorted by relevance for the second component: \n')
 for i in range(len(sorted_features2)):
     print(f'{sorted_features2[i][1]} : {sorted_features2[i][0]: .5f}')
 
-impt_features = {columns[i] : math.sqrt(xvector[i]**2 + yvector[i]**2) for i in range(len(columns))}
-sorted_features = sorted(zip(impt_features.values(),impt_features.keys()),reverse=True)
-print('\nFeatures sorted by importance: \n')
+features_rel = {columns[i] : math.sqrt(xvector[i]**2 + yvector[i]**2) for i in range(len(columns))}
+sorted_features = sorted(zip(features_rel.values(), features_rel.keys()),reverse=True)
+print('\nFeatures sorted by relevance: \n')
 for i in range(len(sorted_features)):
     print(f'{sorted_features[i][1]} : {sorted_features[i][0]: .5f}')
     
