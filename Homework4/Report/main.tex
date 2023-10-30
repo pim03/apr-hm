@@ -33,7 +33,12 @@
 \usepackage{makecell}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage[colorlinks=true]{hyperref}
 
+
+\hypersetup{
+    allcolors=blue,
+}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -116,60 +121,43 @@ Instituto Superior Técnico \\ outubro  de 2023  \\ \\
         p_{k} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k) & \text{se } y_1 = 1 \\
         (1-p_k) \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k) & \text{se } y_1 = 0 
     \end{cases}
+    \label{eq:p_xi_ck}
 \end{equation}
 
-\textbf{E-step:} \\ \\
+\begin{equation}
+    p(c_k) = \pi_k
+\end{equation}
+
+\textbf{E-step:} \\
 
 Cálculo das probabilidades $p(\textbf{x}_i)$
-\begin{equation*}
-    p(\textbf{x}_1) = 0.05185
-\end{equation*}
+\begin{center}
+\begin{tabular}{c|c}
 
-\begin{equation*}
-    p(\textbf{x}_2) = 0.02775
-\end{equation*}
+$\mathbf{x}_i$ & $p(\mathbf{x}_i)$ \\
+\hline
+$\mathbf{x}_1$ & 0.05185 \\
+$\mathbf{x}_2$ & 0.02775 \\
+$\mathbf{x}_3$ & 0.04337 \\
+$\mathbf{x}_4$ & 0.05243 \\
 
-\begin{equation*}
-    p(\textbf{x}_3) = 0.04337
-\end{equation*}
+\end{tabular}
+\end{center}
 
-\begin{equation*}
-    p(\textbf{x}_4) = 0.05243
-\end{equation*}
+
 
 Cálculos dos $\gamma_{ki}$
 
-\begin{equation*}
-    \gamma_{k=1,i=1} = 0.19259
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=2,i=1} = 0.80741
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=1,i=2} = 0.63135
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=2,i=2} = 0.36865
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=1,i=3} = 0.55181
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=2,i=3} = 0.44819
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=1,i=4} = 0.16892
-\end{equation*}
-
-\begin{equation*}
-    \gamma_{k=2,i=4} = 0.83108
-\end{equation*}
+\begin{center}
+\begin{tabular}{c|c|c}
+$i$ & $\gamma_{k=1,i}$ & $\gamma_{k=2,i}$ \\
+\hline
+1 & 0.19259 & 0.80741 \\
+2 & 0.63135 & 0.36865 \\
+3 & 0.55181 & 0.44819 \\
+4 & 0.16892 & 0.83108 \\
+\end{tabular}
+\end{center}
 
 \textbf{M-step:} \\ \\
 Cada observação $\mathbf{x}_i$ permite atualizar os parâmetros com peso $\gamma_{ki}$. 
@@ -248,14 +236,14 @@ Parâmetros atualizados:
 \end{equation*}
 
 \item
-Considerando o critério de \textit{máximo a posteriori} Para decidir a que 
-cluster pertence a observação $\mathbf{x}_{new}$ precisamos de calcular o seu 
-posterior. 
-Para isso utilizamos a seguinte fórmula:
+Para calcular os posteriors da observação $\mathbf{x}_{new}$ utilizamos a 
+seguinte fórmula:
 
 \begin{equation}
     p(cluster = k|\mathbf{x}_{new}) = \frac{p(cluster = k)p(\mathbf{x}_{new}|cluster = k)}{p(\mathbf{x}_{new})}
 \end{equation}
+
+Em que $p(cluster = k)$ é dado por $\pi_k$ e $p(\mathbf{x}_{new}|cluster = k)$ é dado pela fórmula ~\eqref{eq:p_xi_ck}.
 
 Cálculos:
 
@@ -271,8 +259,8 @@ Cálculos:
     p(cluster = 2|\mathbf{x}_{new}) = 0.91971
 \end{equation*}
 
-Como $p(cluster = 2|\mathbf{x}_{new}) > p(cluster = 1|\mathbf{x}_{new})$, 
-então a observação $\mathbf{x}_{new}$ pertence ao cluster 2.
+Assim conclui-se que a observação $\mathbf{x}_{new}$ pertence ao cluster 2 com probabilidade 0.91971
+e ao cluster 1 com probabilidade 0.08029.
 
 \item Neste exercício assumimos que o cluster atribuído a cada observação é 
 é escolhido pelo critério de \textit{maximum likelihood}.
@@ -282,7 +270,7 @@ Assim, o cluster escolhido é dado por:
     cluster = \arg\max_k p(\mathbf{x}_i|cluster = k)
 \end{equation}
 
-Em que $p(\mathbf{x}_i|cluster = k)$ é dado pela fórmula (3). \\ \\
+Em que $p(\mathbf{x}_i|cluster = k)$ é dado pela fórmula ~\eqref{eq:p_xi_ck}. \\ \\
 
 Assim,
 
@@ -291,12 +279,13 @@ Assim,
 \begin{tabular}{|c|c|c|c|}
 \hline
 Observação & $p(\mathbf{x}_i|cluster = 1)$ & $p(\mathbf{x}_i|cluster = 2)$ & Cluster atribuído\\ \hline
-$\mathbf{x_1}$ &  0.59941  & 1.54691 & 2 \\ \hline
+$\mathbf{x_1}$ &  0.23147  & 0.94954 & 2 \\ \hline
 $\mathbf{x_2}$ &  1.26633  & 0.08874 & 1 \\ \hline
 $\mathbf{x_3}$ &  1.43811  & 0.45417 & 1 \\ \hline
 $\mathbf{x_4}$ &  0.02077  & 0.72331 & 2 \\ \hline
 \end{tabular}
 \end{table}
+
 
 Coeficiente de Silhueta:
 
@@ -320,6 +309,32 @@ Neste caso a distância considerada é a distância de Manhattan, logo:
     d(\mathbf{u},\mathbf{v}) = \sum_{i=1}^n |u_i - v_i|
 \end{equation}
 
+Cálculo das distâncias:
+
+\begin{equation*}
+    d(\mathbf{x}_1,\mathbf{x}_2) = 2.7
+\end{equation*}
+
+\begin{equation*}
+    d(\mathbf{x}_1,\mathbf{x}_3) = 1.7(9)
+\end{equation*}
+
+\begin{equation*}
+    d(\mathbf{x}_1,\mathbf{x}_4) = 0.3(9)
+\end{equation*}
+
+\begin{equation*}
+    d(\mathbf{x}_2,\mathbf{x}_3) = 1.9
+\end{equation*}
+
+\begin{equation*}
+    d(\mathbf{x}_2,\mathbf{x}_4) = 2.7
+\end{equation*}
+
+\begin{equation*}
+    d(\mathbf{x}_3,\mathbf{x}_4) = 1.7(9)
+\end{equation*}
+
 Assim, as silhuetas obtidas foram:
 
 \begin{table}[H]
@@ -327,13 +342,14 @@ Assim, as silhuetas obtidas foram:
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 cluster           & $\mathbf{x}_i$ & a$(\mathbf{x}_i)$ & b$(\mathbf{x}_i)$ & s$(\mathbf{x}_i)$  & s(cluster)& s(sol)\\ \hline
-\multirow{2}{*}{1} & $\mathbf{x}_2$ & 0.3(9) & 2.25 & 0.(6)  & \multirow{2}{*}{0.58(3)} & \multirow{4}{*}{0.702(7)} \\ \cline{2-5}
-                    & $\mathbf{x}_3$ & 0.9 & 2.7 & 0.4(9) & &  \\ \cline{1-6}
-\multirow{2}{*}{2} & $\mathbf{x}_1$ & 0.9 & 1.7(9)&0.8(2) & \multirow{2}{*}{0.8(2)}  & \\ \cline{2-5}
+\multirow{2}{*}{1} & $\mathbf{x}_2$ & 0.9 & 2.7 & 0.(6)  & \multirow{2}{*}{0.58(3)} & \multirow{4}{*}{0.702(7)} \\ \cline{2-5}
+                    & $\mathbf{x}_3$ & 0.9 & 1.7(9) & 0.4(9) & &  \\ \cline{1-6}
+\multirow{2}{*}{2} & $\mathbf{x}_1$ & 0.3(9) & 2.25 &0.8(2) & \multirow{2}{*}{0.8(2)}  & \\ \cline{2-5}
                     & $\mathbf{x}_4$ & 0.3(9) & 2.25 & 0.8(2) &  &   \\ \hline
 \end{tabular}
 \end{table}
-\item 
+
+\item
 
 A purity é dada por:
 
@@ -343,7 +359,7 @@ A purity é dada por:
 
 
 Uma vez que temos uma purity de 0.75 e um número total de observações de 4,
-então $\frac{1}{N} \left( \max_j |c_1 \cap t_j| + \max_j |c_2 \cap t_j| \right) = 0.75 \times 4 = 3$ \\ \\
+então $\left( \max_j |c_1 \cap t_j| + \max_j |c_2 \cap t_j| \right) = 0.75 \times 4 = 3$ \\ 
 
 Logo podemos ter os seguintes casos:
 \begin{enumerate}
@@ -353,7 +369,7 @@ Logo podemos ter os seguintes casos:
     \item $\max_j |c_1 \cap t_j| = 0$ e $\max_j |c_2 \cap t_j| = 3$
 \end{enumerate}
 
-As opções (a) e (d) não são possíveis porque o cluster 2 e 1 só têm 2 observações cada um. 
+As opções (a) e (d) não são possíveis porque os clusters 2 e 1 só têm 2 observações cada um. 
 
 \textbf{Opção (b)} \\ 
 Neste caso, as observações do cluster 1 são as duas classificadas corretamente. 
@@ -366,8 +382,8 @@ Para visualizar melhor as opções possíveis fizemos os seguintes esquemas
 (bolas de cores diferentes representam classes verdadeiras diferentes):
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{ex4_clusters.jpg}
+\centering
+\includegraphics[width=0.7\textwidth]{ex4_clusters.jpg}
 \end{figure}
 
 \textbf{Opção (c)} \\
