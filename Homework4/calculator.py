@@ -173,19 +173,21 @@ def gamma_calculator_c2(xi):
 
 def prob_xi_sabendo_c1(xi):
     if xi[0] == 1:
-        return mvn1.pdf(xi[1:])*p1#/pi1
+        return mvn1.pdf(xi[1:])*p1
     elif xi[0] == 0:
-        return mvn1.pdf(xi[1:])*(1-p1)#/pi1
+        return mvn1.pdf(xi[1:])*(1-p1)
     else:
         raise ValueError('y1 must be 0 or 1')
 
 def prob_xi_sabendo_c2(xi):
     if xi[0] == 1:
-        return mvn2.pdf(xi[1:])*p2#/pi2
+        return mvn2.pdf(xi[1:])*p2
     elif xi[0] == 0:
-        return mvn2.pdf(xi[1:])*(1-p2)#/pi2
+        return mvn2.pdf(xi[1:])*(1-p2)
     else:
         raise ValueError('y1 must be 0 or 1')
+
+print('multivar normal: ',mvn1.pdf(x1[1:])*p1)
 
 #Assign new observation to clusters
 x_new = np.array([1,0.3,0.7])
@@ -193,13 +195,6 @@ x_new = np.array([1,0.3,0.7])
 p_xnew = probability_calculator(x_new)
 print('p_xnew: ',p_xnew)
 print('\n')
-print('normal 1: ',mvn1.pdf(x_new[1:]))
-print('u1 atual = ',u1)
-print('Sigma1 atual = ',Sigma1)
-print('normal 1 curvo: ',multivariate_normal.pdf(x_new[1:], u1, Sigma1))
-print('\n')
-print('normal 2: ',mvn2.pdf(x_new[1:]))
-
 gamma_x_new_c1 = gamma_calculator_c1(x_new)
 gamma_x_new_c2 = gamma_calculator_c2(x_new)
 print('gamma_x_new_c1: ',gamma_x_new_c1)
@@ -218,7 +213,6 @@ else:
 p_xi_c1 = []
 p_xi_c2 = []
 for xi in obss:
-    print('xi: ',xi)
     p_xi_c1.append(prob_xi_sabendo_c1(xi))
     p_xi_c2.append(prob_xi_sabendo_c2(xi))
 p_xi_c1 = np.array(p_xi_c1)
