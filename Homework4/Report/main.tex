@@ -473,8 +473,8 @@ Concluímos que as componentes principais (eigenvectors) são:
 Obtivemos os seguintes valores para a variabilidade explicada:\\
 Explained variance (ratio) = (0.56181, 0.20956)\\
 
-Somando as duas variabilidades explicadas, obtemos 0.77137, ou seja, 77.137\% da variabilidade é explicada pelas duas componentes principais. Neste caso, uma variabilidade considerável é explicada com apenas duas componentes principais.
-O PCA é bastante útil porque permite reduzir as dimensões do dataset utilizando a informação mais relevante para estudar o mesmo.   \\
+Somando as variabilidades explicadas das duas componentes principais, obtemos 0.77137, ou seja, 77.137\% da variabilidade é explicada pelas mesmas. Neste caso, uma variabilidade considerável é explicada com apenas duas dimensões.
+O PCA é bastante útil porque permite reduzir as dimensões do dataset utilizando a informação mais relevante para estudar o mesmo. Consoante o nível de conhecimento que pretendemos ter sobre a amostra, podemos utilizar mais componentes.\\
 
 Para cada uma das duas componentes principais, ordenámos as variáveis de entrada por relevância. \\
 
@@ -568,8 +568,8 @@ for i in range(len(sorted_features)):
     \caption{Clusters para k = 3 com a classe mais frequente}
 \end{figure}
 
-No segundo gráfico, visualizamos os pontos separados em 3 clusters. Tendo em conta o primeiro e segundo gráficos, é possível observar que o algoritmo de clustering não conseguiu separar os pontos de forma a que cada cluster correspondesse a uma classe, notando que o cluster menos heterogéneo é o roxo (segundo gráfico). \\
-No ultimo gráfico desta secção, visualizamos os pontos separados em 3 clusters e com a classe mais frequente em cada cluster. \\
+No segundo gráfico, visualizamos os pontos separados em 3 clusters. Tendo em conta o primeiro e segundo gráficos, é possível observar que o algoritmo de clustering não conseguiu separar os pontos de forma a que cada cluster correspondesse a uma classe, notando que o cluster mais heterogéneo é o roxo (segundo gráfico). \\
+No ultimo gráfico desta secção, visualizamos os pontos separados em 3 clusters e a classe mais frequente em cada um. \\
 
 Código Utilizado: 
 
@@ -626,11 +626,11 @@ plt.show()
 Com base nos resultados obtidos nas questões anteriores, concluímos que é possível utilizar o clustering para realizar diagnósticos, identificando grupos de pacientes com características semelhantes, ou decidir qual o melhor tipo de tratamento 
 consoante as diferentes características entre os indivíduos da população identificada com uma doença. Através desses subgrupos de indivíduos com características semelhantes é possível identificar outros tipos da doença.
 
-Também se usa esta técnica para criar perfis de risco com base nas características da população. Isso pode ser usado para implantar programas de combate a aos riscos específicos da mesma.
+Também se usa esta técnica para criar perfis de risco com base nas características da população. Isso pode ser usado para implementar programas para combater os riscos da mesma.
 
-Analisar mais profundamente os dados de cada cluster poderá a ajudar os profissionais a compreender melhor a natureza do problema, diferentes formas de como o diagnosticar e, posteriormente, tratar.
+Analisar mais profundamente os dados de cada cluster poderá ajudar os profissionais a compreender melhor a natureza do problema, diferentes formas de como o diagnosticar e, posteriormente, tratar.
 
-Contudo, a utilização do clustering requer bastante cuidado visto que é preciso equilibrar os valores de silhueta e de pureza (consoante a informação que pretendemos retirar dos dados) e dado que os clusters nem sempre representam indivíduos exclusivamente da mesma classe. Neste caso, os plots anteriores revelaram a dificuldade do algoritmo em separar as populações das pessoas com classe Hérnia e Normal.
+Contudo, a utilização do clustering requer bastante cuidado visto que é preciso equilibrar os valores de silhueta e de pureza (consoante a informação que pretendemos retirar) e dado que os clusters nem sempre representam indivíduos exclusivamente da mesma classe. Neste caso, os plots anteriores revelaram a dificuldade do algoritmo em separar as populações das pessoas com classe Hérnia e Normal.
 
 \end{enumerate}
 
