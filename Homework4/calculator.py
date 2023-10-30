@@ -290,6 +290,12 @@ print('')
 print('b_x4: ',b_xi[3])
 print('\n')
 
+#calcular distância de um ponto a outro
+for i in range(len(obss)-1):
+    for j in range(i+1,len(obss)):
+        print('distância entre x',i+1,' e x',j+1,': ',manhattan_distance(obss[i],obss[j]))
+
+
 
 def silhouette(a,b):
     if a >= b: return (b-a)/a
